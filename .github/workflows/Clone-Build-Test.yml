@@ -42,7 +42,7 @@ jobs:
             user1Email: '${{ secrets.POWER_PLATFORM_USER }}'
             user1Password: '${{ secrets.POWER_PLATFORM_PASSWORD }}'
         run: |   
-          cd TestingPowerPlatform/TestingPowerPlatform/src/PowerAppsTestEngine
+          cd src/PowerAppsTestEngine
           dotnet build
           pwsh bin/Debug/net6.0/playwright.ps1 install
           cd ../../build-pipelines/scripts
