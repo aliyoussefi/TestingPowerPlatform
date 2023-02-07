@@ -1,0 +1,39 @@
+name: Build and test
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '0 6 * * 1,3,5'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['6.0.x']
+        
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.3.0
+        with:
+          # Repository name with owner. For example, actions/checkout
+          repository: https://github.com/microsoft/PowerApps-TestEngine.git # optional, default is ${{ github.repository }}
+          # The branch, tag or SHA to checkout. When checking out the repository that triggered a workflow, this defaults to the reference or SHA for that event.  Otherwise, uses the default branch.
+      - name: Install dependencies
+        run: |
+          cd src
+          dotnet restore
+      - name: Build
+        run: |
+          cd src
+          dotnet build --configuration Release --no-restore
+      - name: Test
+        run: |
+          cd src
+          dotnet test --no-restore --verbosity normal --logger:trx --collect:"XPlat Code Coverage" --results-directory ./TestResults
