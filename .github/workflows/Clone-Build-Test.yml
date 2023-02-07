@@ -37,3 +37,10 @@ jobs:
         run: |
           cd src
           dotnet test --no-restore --verbosity normal --logger:trx --collect:"XPlat Code Coverage" --results-directory ./TestResults
+  yaml-integration-tests-prod:
+    needs: build
+    uses: ./.github/workflows/yaml-integration-tests.yml
+    with: 
+       parameters: 
+         '[{ "environmentId": "10195613-f7d0-4d8e-bc74-f8f6bf1fe7d4", "tenantId": "1557f771-4c8e-4dbd-8b80-dd00a88e833e", "domain": "apps.powerapps.com", "testPlanFile": "../../samples/basicgallery/testPlan.fx.yaml", "outputDirectory": "../../TestResults" }]'
+    secrets: inherit
