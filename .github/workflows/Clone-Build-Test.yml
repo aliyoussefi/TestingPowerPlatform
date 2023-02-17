@@ -68,6 +68,9 @@ jobs:
             name: 'Test Run'
             path: |
                 **/TestResults/**
+                
+      - name: Azure Login
+        uses: Azure/login@v1.4.6
 
       - name: 'Deploy to Azure WebApp'
         id: deploy-to-webapp
