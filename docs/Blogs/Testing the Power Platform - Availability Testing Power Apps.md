@@ -34,17 +34,17 @@ Before building custom tests, let's look take a closer look at the Availability 
 
 ### The Availability Table
 
-The availability table is where our test telemetry will reside, either from URL ping tests or custom testing. The table is designed to allow for capturing if a test was **successful, the duration (typically captured in milliseconds with a stopwatch approach), location of the test and other properties**. I'll review this in depth further in the article but for now keep in mind at a minimum we want to capture successfulness, timing and location for each test.
+The availability table is where our test telemetry will reside, either from URL ping tests or custom testing. The table is designed to allow for capturing if a test was **successful, the duration (typically captured in milliseconds with a stopwatch approach), location of the test and other properties**. I'll review this in depth further in the article but for now keep in mind at a minimum we want to capture success, timing and location for each test.
 
 ### Testing Power Apps are launching correctly
-Many organizatons have an immense catalog of user created Power Apps used for multiple business purposes. These apps need a high level of uptime and need to respond quickly to provide users a reliable platform to perform their work. Uptime is essential for a reliable and performant solution. As we build towards operational excellence, we must continue to find ways to alidate and rreport on all of our enterprise apps, their integrations, etc and be able to respond quickly to change.
+Many organizations have an immense catalog of user created Power Apps used for multiple business purposes. These apps need a high level of uptime and need to respond quickly to provide users a reliable platform to perform their work. Uptime is essential for a reliable and performant solution. As we build towards operational excellence, we must continue to find ways to validate and report on all of our enterprise apps, their integrations, etc and be able to respond quickly to change.
 
-For Power Apps, typically a user will open the app from their desktop or mobile device. Considering the mobile aspect that user could be accessing the app from any point in the world. As such, organuzations muct be able to run synthetic tests globally. Many tools exist and will come that can help to simulate these tests. What we must focus on is not what tools we use but what must haves traits our strategy must adhere to.
+For Power Apps, typically a user will open the app from their desktop or mobile device. Considering the mobile aspect that user could be accessing the app from any point in the world. As such, organizations must be able to run synthetic tests globally. Many tools exist and will come that can help to simulate these tests. What we must focus on is not what tools we use but what must haves traits our strategy must adhere to.
 
-These must haves include guaranteed checks on uptime incuding the hosting platform and reducing any risks in tooling, the ability to deviler accurate reports, the ability to distiguish synthetic tests versus actual outages
+These must haves include guaranteed checks on uptime including the hosting platform and reducing any risks in tooling, the ability to deliver accurate reports, the ability to distinguish synthetic tests versus actual outages
 
 ### Identifying the tools and platforms needed for guaranteed checks
-When choosing a tool or multiple, look for attributes such as supportability, interoperatibility and maintainability. Ideally, a tool exists that meets these standards, if not, part of the strategy is to account for this and reduce risk. 
+When choosing a tool or multiple, look for attributes such as supportability, interoperability and maintainability. Ideally, a tool exists that meets these standards, if not, part of the strategy is to account for this and reduce risk. 
 
 Test Studio is a tool that requires no ownership of code, we simply call a URL and analyze the response. Test Studio tests allow us to monitor when the test starts. We can also add tracing statements.
 
@@ -54,6 +54,22 @@ Test Engine allows
 Our tests must be able to tell us accurately if our app is up and running and ideally reporting on standard business requirements like app load times. The tests don't need to validate the app is working correctly, that's a different kind of test so keep the test short and sweet. It simply needs to tell what we want and that's it.
 
 ### Synthetic testing and actual outages
-The reporting tooling must be able to distiguish between a test and a real user having an issue. This tradiitonally will come from the test tool which will identify its tests as simulations where real user interactions will come from the app.
+The reporting tooling must be able to distinguish between a test and a real user having an issue. This traditionally will come from the test tool which will identify its tests as simulations where real user interactions will come from the app.
+
+## Power App Availability Testing
+- Identify mission critical apps
+- Build tests for mission critical apps
+- Test mission critical apps globally
+
+### Identifying missing app availability tests
 
 
+### Building
+
+### Testing Globally for Availability and Latency
+In this example, we are looking to test availability from multiple spots worldwide. We are looking to test not only that Power Apps are opening up but how long it takes to open the app.
+
+The below image shows that we will deploy to an App Service allowing for Azure Web Jobs or Azure Functions to execute the tests.
+![Alt text](../artifacts/AvailabilityTests/AzureWorldMapDeployed.jpg)
+
+Leveraging the Availability Tests message within Azure Application Insights, we can populate
