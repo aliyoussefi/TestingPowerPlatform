@@ -68,6 +68,7 @@ Test Studio, a tool that requires no ownership of code, we simply call a URL and
 A challenge here traditionally has been how to automate this test. Historically, the tool to use has been UI Automation using the [PowerAppsTestAutomation open source project.](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/test-studio-classic-pipeline-editor) This allows us to automate the tests within CI/CD pipelines but does require dependencies that need to be dealt with. For assistance on understanding browser dependencies and techniques to overcome these challenges, refer to my video:
 
 [EasyRepro - DevOps - Managing Browser Dependencies in Microsoft or GitHub Agents](https://www.youtube.com/watch?v=OOxboLnojMM)
+
 NOTE: While labeled for EasyRepro, starting around the 6 minute mark you can follow the same technique within your Microsoft hosted agents.
 
 ### Building and executing Test Engine tests
@@ -78,6 +79,7 @@ To execute locally, you can simply clone local, build the executable and run the
 The solution below meets our requirements of finding a tool that meets our requirements of being supported and maintained by Microsoft. The solution assumes no ownership of code and will pull each time the test suite is set to run.
 The solution will remote checkout PowerApps-TestEngine, build the engine within the agent and run a test. If the test fails, it will fail the test workflow allowing for a badge to be presented upon completion. By enforcing instrumentation to the app we are testing, we are able to see the test run as shown below.
 
+![](https://raw.githubusercontent.com/aliyoussefi/TestingPowerPlatform/main/docs/artifacts/AvailabilityTests/PowerApps_PageViews_ms-isTestSetToFalse.JPG)
 
 [The sample for this solution is located here.](https://github.com/aliyoussefi/TestingPowerPlatform/blob/main/.github/workflows/Clone-Build-Test.yml)
 
