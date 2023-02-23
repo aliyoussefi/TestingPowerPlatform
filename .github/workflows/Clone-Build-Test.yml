@@ -29,6 +29,12 @@ jobs:
           # Repository name with owner. For example, actions/checkout
           repository: microsoft/PowerApps-TestEngine # optional, default is ${{ github.repository }}
           # The branch, tag or SHA to checkout. When checking out the repository that triggered a workflow, this defaults to the reference or SHA for that event.  Otherwise, uses the default branch.
+      - name: Checkout
+        uses: actions/checkout@v3.3.0
+        #with:
+          # Repository name with owner. For example, actions/checkout
+          #repository: aliyoussefi/TestingPow # optional, default is ${{ github.repository }}
+          # The branch, tag or SHA to checkout. When checking out the repository that triggered a workflow, this defaults to the reference or SHA for that event.  Otherwise, uses the default branch.
       - name: Install dependencies
         run: |
           cd src
