@@ -1,0 +1,22 @@
+testSuite:
+  testSuiteName: ALM Accelerator Admin Configuration
+  testSuiteDescription: Verifies that you can interact with the ALM Accelerator Admin Configuration
+  persona: User1
+  appLogicalName: cat_poweropsadmin_3c171
+
+  testCases:
+    - testCaseName: Case1
+      testSteps: |
+        = Screenshot("cat_poweropsadmin_3c171_loaded.png");
+
+testSettings:
+  locale: "en-US"
+  recordVideo: true
+  browserConfigurations:
+    - browser: Chromium
+
+environmentVariables:
+  users:
+    - personaName: User1
+      emailKey: user1Email
+      passwordKey: user1Password
