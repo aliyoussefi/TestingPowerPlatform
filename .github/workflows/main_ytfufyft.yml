@@ -3,11 +3,11 @@
 
 name: Build and deploy container app to Azure Web App - ytfufyft
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+# on:
+#   push:
+#     branches:
+#       - main
+#   workflow_dispatch:
 
 jobs:
   build:

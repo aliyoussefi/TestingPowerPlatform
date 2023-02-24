@@ -39,6 +39,12 @@ jobs:
       - name: Install dependencies
         run: |
           cd src
+          dir
+          cd ..
+          dir
+      - name: Install dependencies
+        run: |
+          cd src
           dotnet restore
       - name: Build
         run: |
