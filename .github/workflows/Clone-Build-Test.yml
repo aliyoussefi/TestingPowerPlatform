@@ -59,12 +59,12 @@ jobs:
           chmod +x yaml-integration-tests.sh
           export my_var=$(cat "../../tests/tests/test-suite.json")
           ./yaml-integration-tests.sh "$my_var"       
-      - name: Sample Test Report
+      - name: Power Apps Test Report
         uses: dorny/test-reporter@v1.5.0
         if: success() || failure() 
         #if: failure()   # run this step even if previous step failed
         with:
-          name: Sample Tests          # Name of the check run which will be created
+          name: Power Apps Tests          # Name of the check run which will be created
           path: '**/*.trx'            
           reporter: dotnet-trx        # Format of test results
           fail-on-error: 'true' # Set action as failed if test report contains any failed test      
