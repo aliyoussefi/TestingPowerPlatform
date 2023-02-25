@@ -1,4 +1,4 @@
-name: Build and test
+name: Import PowerApps TestEngine and run test suite
 
 on:
   workflow_dispatch:
@@ -10,10 +10,6 @@ on:
       - main
   schedule:
     - cron: '15 * * * *'
-    
-env:
-  AZURE_WEBAPP_NAME: AzureFunctionAndApplicationInsights-AusEast    # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root 
 
 jobs:
   build:
@@ -26,16 +22,13 @@ jobs:
       - name: CheckoutTestEngine
         uses: actions/checkout@v3.3.0
         with:
-          # Repository name with owner. For example, actions/checkout
-          repository: microsoft/PowerApps-TestEngine # optional, default is ${{ github.repository }}
-          # The branch, tag or SHA to checkout. When checking out the repository that triggered a workflow, this defaults to the reference or SHA for that event.  Otherwise, uses the default branch.
+          repository: microsoft/PowerApps-TestEngine
+
       - name: CheckoutTests
         uses: actions/checkout@v3.3.0
         with:
           path: tests
-          # Repository name with owner. For example, actions/checkout
-          #repository: aliyoussefi/TestingPow # optional, default is ${{ github.repository }}
-          # The branch, tag or SHA to checkout. When checking out the repository that triggered a workflow, this defaults to the reference or SHA for that event.  Otherwise, uses the default branch.
+
       - name: Review directory
         run: |
           cd .
@@ -65,8 +58,7 @@ jobs:
           cd ../../build-pipelines/scripts
           chmod +x yaml-integration-tests.sh
           export my_var=$(cat "../../tests/tests/test-suite.json")
-          ./yaml-integration-tests.sh "$my_var"       # run the script with the parameter, contains logic to run the tests
-          #e       # run the script with the parameter, contains logic to run the tests
+          ./yaml-integration-tests.sh "$my_var"       
       - name: Sample Test Report
         uses: dorny/test-reporter@v1.5.0
         if: success() || failure() 
@@ -84,20 +76,3 @@ jobs:
             path: |
                 **/TestResults/**
                 
-     # - name: Azure Login
-     #   uses: Azure/login@v1.4.6
-
-     # - name: 'Deploy to Azure WebApp'
-     #   id: deploy-to-webapp
-     #   uses: azure/webapps-deploy@v2
-     #   with:
-     #     app-name: ${{ env.AZURE_WEBAPP_NAME }}
-     #     publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-     #     package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-  yaml-integration-tests-prod:
-     needs: build
-     uses: ./.github/workflows/yaml-integration-tests.yml
-     with: 
-        parameters: 
-          '[{ "environmentId": "10195613-f7d0-4d8e-bc74-f8f6bf1fe7d4", "tenantId": "1557f771-4c8e-4dbd-8b80-dd00a88e833e", "domain": "apps.powerapps.com", "testPlanFile": "../../samples/basicgallery/testPlan.fx.yaml", "outputDirectory": "../../TestResults" }]'
-     secrets: inherit
