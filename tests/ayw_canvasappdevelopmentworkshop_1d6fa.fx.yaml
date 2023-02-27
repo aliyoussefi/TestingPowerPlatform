@@ -3,7 +3,13 @@ testSuite:
   testSuiteDescription: Verifies that you can interact with the Canvas App Development Workshop
   persona: User1
   appLogicalName: ayw_canvasappdevelopmentworkshop_1d6fa
-
+  onTestCaseComplete: |
+        = Trace(TestCaseResult.TestCaseName & " : " & If( TestCaseResult.Success, " Passed"
+            , TestCaseResult.TestFailureMessage)
+        ,If(  TestCaseResult.Success
+            , NotificationType.Success
+            , NotificationType.Error)
+          );
   testCases:
     - testCaseName: Canvas App Development Workshop - Availability - Chrome
       testSteps: |

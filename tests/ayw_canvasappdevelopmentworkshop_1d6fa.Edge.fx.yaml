@@ -20,7 +20,7 @@ testSettings:
   locale: "en-US"
   recordVideo: true
   browserConfigurations:
-    - browser: Edge
+    - browser: msedge
 
 environmentVariables:
   users:
