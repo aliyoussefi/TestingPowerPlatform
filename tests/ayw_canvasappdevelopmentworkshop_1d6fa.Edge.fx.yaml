@@ -7,7 +7,7 @@ testSuite:
   testCases:
     - testCaseName: Canvas App Development Workshop - Availability - Edge
       testCaseDescription: Canvas App Development Workshop - Availability - Edge
-      onTestCaseStart: |
+      onTestCaseComplete: |
         = Trace(TestCaseResult.TestCaseName & " : " & If( TestCaseResult.Success, " Passed"
             , TestCaseResult.TestFailureMessage)
         ,If(  TestCaseResult.Success
