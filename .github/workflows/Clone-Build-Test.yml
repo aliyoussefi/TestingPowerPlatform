@@ -29,12 +29,6 @@ jobs:
         with:
           path: tests
 
-      - name: Review directory
-        run: |
-          cd .
-          dir
-          cd tests
-          dir
       - name: Install dependencies
         run: |
           cd src
@@ -43,10 +37,7 @@ jobs:
         run: |
           cd src
           dotnet build --configuration Release --no-restore
-      # - name: Test
-      #   run: |
-      #     cd src
-      #     dotnet test --no-restore --verbosity normal --logger:trx --collect:"XPlat Code Coverage" --results-directory ./TestResults
+
       - name: Integration Test
         env:
             user1Email: '${{ secrets.POWER_PLATFORM_USER }}'
