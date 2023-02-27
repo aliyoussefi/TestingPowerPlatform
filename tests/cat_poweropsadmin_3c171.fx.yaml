@@ -7,7 +7,7 @@ testSuite:
   testCases:
     - testCaseName: Case1
       testSteps: |
-
+        = Screenshot("cat_poweropsadmin_3c171_loaded.png");
 
 testSettings:
   locale: "en-US"

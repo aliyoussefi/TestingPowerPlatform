@@ -1,0 +1,22 @@
+testSuite:
+  testSuiteName: Canvas App Development Workshop
+  testSuiteDescription: Verifies that you can interact with the Canvas App Development Workshop
+  persona: User1
+  appLogicalName: ayw_canvasappdevelopmentworkshop_1d6fa
+
+  testCases:
+    - testCaseName: Case1
+      testSteps: |
+        = Screenshot("ayw_canvasappdevelopmentworkshop_1d6fa_loaded.png");
+
+testSettings:
+  locale: "en-US"
+  recordVideo: true
+  browserConfigurations:
+    - browser: Edge
+
+environmentVariables:
+  users:
+    - personaName: User1
+      emailKey: user1Email
+      passwordKey: user1Password
