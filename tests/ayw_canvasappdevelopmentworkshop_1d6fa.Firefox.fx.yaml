@@ -5,7 +5,7 @@ testSuite:
   appLogicalName: ayw_canvasappdevelopmentworkshop_1d6fa
 
   testCases:
-    - testCaseName: Case1
+    - testCaseName: Canvas App Development Workshop - Availability - Firefox
       testSteps: |
         = Screenshot("ayw_canvasappdevelopmentworkshop_1d6fa_loaded.png");
 
@@ -13,7 +13,7 @@ testSettings:
   locale: "en-US"
   recordVideo: true
   browserConfigurations:
-    - browser: Edge
+    - browser: Firefox
 
 environmentVariables:
   users:

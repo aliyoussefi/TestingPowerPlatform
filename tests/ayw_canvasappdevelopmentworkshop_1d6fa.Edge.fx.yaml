@@ -5,7 +5,7 @@ testSuite:
   appLogicalName: ayw_canvasappdevelopmentworkshop_1d6fa
 
   testCases:
-    - testCaseName: Case1
+    - testCaseName: Canvas App Development Workshop - Availability - Edge
       testSteps: |
         = Screenshot("ayw_canvasappdevelopmentworkshop_1d6fa_loaded.png");
 
