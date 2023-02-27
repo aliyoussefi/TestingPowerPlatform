@@ -8,14 +8,13 @@ testSuite:
     - testCaseName: Canvas App Development Workshop - Availability - Edge
       testCaseDescription: Canvas App Development Workshop - Availability - Edge
       OnTestCaseStart: |
-      = Trace(TestCaseResult.TestCaseName & " : "
-        & If( TestCaseResult.Success
-            , " Passed"
+        = Trace(TestCaseResult.TestCaseName & " : " & If( TestCaseResult.Success, " Passed"
             , TestCaseResult.TestFailureMessage)
         ,If(  TestCaseResult.Success
             , NotificationType.Success
             , NotificationType.Error)
           );
+        
       testSteps: |
         = Screenshot("ayw_canvasappdevelopmentworkshop_1d6fa_loaded.png");
 
