@@ -3,17 +3,16 @@ testSuite:
   testSuiteDescription: Verifies that you can interact with the Canvas App Development Workshop
   persona: User1
   appLogicalName: ayw_canvasappdevelopmentworkshop_1d6fa
-
-  testCases:
-    - testCaseName: Canvas App Development Workshop - Availability - Edge
-      testCaseDescription: Canvas App Development Workshop - Availability - Edge
-      onTestCaseComplete: |
+  onTestCaseComplete: |
         = Trace(TestCaseResult.TestCaseName & " : " & If( TestCaseResult.Success, " Passed"
             , TestCaseResult.TestFailureMessage)
         ,If(  TestCaseResult.Success
             , NotificationType.Success
             , NotificationType.Error)
           );  
+  testCases:
+    - testCaseName: Canvas App Development Workshop - Availability - Edge
+      testCaseDescription: Canvas App Development Workshop - Availability - Edge
       testSteps: |
         = Screenshot("ayw_canvasappdevelopmentworkshop_1d6fa_loaded.png");
 
