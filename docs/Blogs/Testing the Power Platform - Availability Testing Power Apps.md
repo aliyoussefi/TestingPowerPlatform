@@ -52,7 +52,76 @@ Test Studio allows us to download the Power Fx yaml test suite. This can be done
 
 ![](../artifacts/TestStudio/TestStudio_CommandBar_DownloadSuite.JPG)
 
-Once downloaded, the yaml will look like this:
+Once downloaded, the yaml will look like this (YAML provided).
+### Test Definition
+```yml
+testSuite:
+  testSuiteName: Suite
+  testSuiteDescription: Test Suite description
+  persona: User1
+  appLogicalName: ayw_canvasappdevelopmentworkshop_1d6fa
+  appId: ''
+  onTestCaseStart: |
+    = 
+    Trace("Test Case Started", TraceSeverity.Information, {
+            TestStart: Text(Now())
+        });
+  onTestCaseComplete: |
+    = 
+    Trace("Test Case Complete", TraceSeverity.Information, {
+             TestPass: TestCaseResult.TestCaseName & ":" & Text(Now())
+             ,TestSuiteId: TestCaseResult.TestSuiteId
+             ,TestSuiteName: TestCaseResult.TestSuiteName
+             ,TestCaseId: TestCaseResult.TestCaseId
+             ,TestCaseName: TestCaseResult.TestCaseName
+             ,StartTime: TestCaseResult.StartTime
+             ,EndTime: TestCaseResult.EndTime
+             ,TestSuccess: TestCaseResult.Success
+             ,TestTraces: JSON(TestCaseResult.Traces)
+             ,TestFailureMessage: TestCaseResult.TestFailureMessage
+    }
+    );
+  onTestSuiteComplete: |
+    = 
+    Trace("Test Suite Complete", TraceSeverity.Information, {
+             TestSuiteId: TestSuiteResult.TestSuiteId
+             ,TestSuiteName: TestSuiteResult.TestSuiteName
+             ,StartTime: TestSuiteResult.StartTime
+             ,EndTime: TestSuiteResult.EndTime
+             ,TestPassCount: TestSuiteResult.TestsPassed
+             ,TestFailCount: TestSuiteResult.TestsFailed
+        }
+    );
+  networkRequestMocks: 
+  testCases:
+  - testCaseName: Availability Test
+    testCaseDescription: ''
+    testSteps: |
+      = 
+      Trace("App Launched");
+testSettings:
+  filePath: 
+  browserConfigurations:
+  - browser: Chromium
+    device: 
+    screenWidth: 0
+    screenHeight: 0
+  recordVideo: true
+  headless: true
+  enablePowerFxOverlay: false
+  timeout: 30000
+  workerCount: 10
+environmentVariables:
+  filePath: 
+  users:
+  - personaName: User1
+    emailKey: user1Email
+    passwordKey: user1Password
+
+```
+| Property | Description |
+|----|----|
+| Project Champion | Optional |
 
 
 A challenge here traditionally has been how to automate this test. Historically, the tool to use has been UI Automation using the [PowerAppsTestAutomation open source project.](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/test-studio-classic-pipeline-editor) This allows us to automate the tests within CI/CD pipelines but does require dependencies that need to be dealt with. For assistance on understanding browser dependencies and techniques to overcome these challenges, refer to my video:
@@ -61,7 +130,7 @@ A challenge here traditionally has been how to automate this test. Historically,
 
 NOTE: While labeled for EasyRepro, starting around the 6 minute mark you can follow the same technique within your Microsoft hosted agents.
 
-
+With the introduction of Power Apps Test Engine, we can run this Power Fx test bypassing the URL.
 
 
 ### Building and executing Test Engine tests

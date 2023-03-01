@@ -4,13 +4,11 @@ testSuite:
   persona: User1
   appLogicalName: ayw_canvasappdevelopmentworkshop_1d6fa
   onTestCaseStart: |
-    = 
-    Trace("Test Case Started", TraceSeverity.Information, {
+    = Trace("Test Case Started", TraceSeverity.Information, {
             TestStart: Text(Now())
         });
   onTestCaseComplete: |
-    = 
-    Trace("Test Case Complete", TraceSeverity.Information, {
+    = Trace("Test Case Complete", TraceSeverity.Information, {
              TestPass: TestCaseResult.TestCaseName & ":" & Text(Now())
              ,TestSuiteId: TestCaseResult.TestSuiteId
              ,TestSuiteName: TestCaseResult.TestSuiteName
@@ -24,8 +22,7 @@ testSuite:
     }
     );
   onTestSuiteComplete: |
-    = 
-    Trace("Test Suite Complete", TraceSeverity.Information, {
+    = Trace("Test Suite Complete", TraceSeverity.Information, {
              TestSuiteId: TestSuiteResult.TestSuiteId
              ,TestSuiteName: TestSuiteResult.TestSuiteName
              ,StartTime: TestSuiteResult.StartTime

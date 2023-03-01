@@ -1,5 +1,5 @@
 testSuite:
-  testSuiteName: Canvas App Development Workshop
+  testSuiteName: Canvas App Development Workshop - Edge
   testSuiteDescription: Verifies that you can interact with the Canvas App Development Workshop
   persona: User1
   appLogicalName: ayw_canvasappdevelopmentworkshop_1d6fa
