@@ -3,13 +3,37 @@ testSuite:
   testSuiteDescription: Verifies that you can interact with the Canvas App Development Workshop
   persona: User1
   appLogicalName: ayw_canvasappdevelopmentworkshop_1d6fa
+  onTestCaseStart: |
+    = 
+    Trace("Test Case Started", TraceSeverity.Information, {
+            TestStart: Text(Now())
+        });
   onTestCaseComplete: |
-        = Trace(TestCaseResult.TestCaseName & " : " & If( TestCaseResult.Success, " Passed"
-            , TestCaseResult.TestFailureMessage)
-        ,If(  TestCaseResult.Success
-            , NotificationType.Success
-            , NotificationType.Error)
-          );
+    = 
+    Trace("Test Case Complete", TraceSeverity.Information, {
+             TestPass: TestCaseResult.TestCaseName & ":" & Text(Now())
+             ,TestSuiteId: TestCaseResult.TestSuiteId
+             ,TestSuiteName: TestCaseResult.TestSuiteName
+             ,TestCaseId: TestCaseResult.TestCaseId
+             ,TestCaseName: TestCaseResult.TestCaseName
+             ,StartTime: TestCaseResult.StartTime
+             ,EndTime: TestCaseResult.EndTime
+             ,TestSuccess: TestCaseResult.Success
+             ,TestTraces: JSON(TestCaseResult.Traces)
+             ,TestFailureMessage: TestCaseResult.TestFailureMessage
+    }
+    );
+  onTestSuiteComplete: |
+    = 
+    Trace("Test Suite Complete", TraceSeverity.Information, {
+             TestSuiteId: TestSuiteResult.TestSuiteId
+             ,TestSuiteName: TestSuiteResult.TestSuiteName
+             ,StartTime: TestSuiteResult.StartTime
+             ,EndTime: TestSuiteResult.EndTime
+             ,TestPassCount: TestSuiteResult.TestsPassed
+             ,TestFailCount: TestSuiteResult.TestsFailed
+        }
+    );
   testCases:
     - testCaseName: Canvas App Development Workshop - Availability - Chrome
       testSteps: |
