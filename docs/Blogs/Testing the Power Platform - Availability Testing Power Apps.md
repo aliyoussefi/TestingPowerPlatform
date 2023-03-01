@@ -1,45 +1,15 @@
-# Monitoring the Power Platform: Continuous Monitoring Power Apps with Availability Tests
+# Testing the Power Platform: Overview of Power Apps Availability Testing
 
 ## Overview
 
 Continuous monitoring allows enterprises the opportunity to ensure reliable performant services are immediately available to its users. Platforms need to be able to keep up with demand in such a way that its seamless to a user. <u>Systems that become unreliable or unusable are quickly disregarded or abandoned</u>. One sure fire way to ensure uses won't use a service is if the service is unavailable. To account for this, enterprises looks to service level agreements and business continuity strategies. Part of this strategy includes testing for availability.
 
-**Azure Application Insights** provides features to allow organizations to quickly report and take action on current and trending availability metrics. This article will review the various tests that can be configured within the service. From there we will go into how the data is and can be collected for analysis. We will look into a use case involving monitoring the **Dataverse API**. Finally, we wrap with implementing a monitoring strategy to assist with notifications and automation.
-
-## Azure Application Insights Availability Tests
-
-**Azure Application Insights** availability tests come in three distinct groupings. The first, **reaches out to a URL from different points around the world**. The second, allows for **the replay of a recorded user interaction with a site or web based service**. Both of these originate from within the **Azure Application Insights** feature itself, created in the **Azure Portal** or through the **Azure APIs**.
-
-The final type of test is a completely custom test. This **custom test allows flexibility into how, what and where we test.** Due to these attributes, this type of test is ideal and will serve as the test strategy implemented below.
-
-**<u>Important Note on web tests:</u>**
-
-**<u>The web test mechanism has been marked as deprecated.</u>** As expected this announcement comes with various feedback. With this in mind, **I recommend avoiding implementing web tests**. If web tests are currently being used, look to migrate to custom tests.
-
-## Building Ping Tests
-
-**URL Ping Tests** with **Azure Application Insights** are tests that allow the service to **<u>make a request to a user specified URL</u>**. As documented, this test doesn't actually use ICMP but sends an HTTP request allowing for capturing response headers, duration timings, etc.
-
-For the **Power Platform**, this can be useful for testing availability of **Power Apps Portals** or services utilizing **Power Virtual Agents** or custom connectors. When configuring the test, conditions can be set for the actual request to the URL. These include **the ability to include dependent requests (such as images needed for the webpage) or the ability to retry on an initial failure**.
-
-The **<u>test frequency can be set to run every five, ten or fifteen minutes</u>** from various **Azure Data Centers** across the globe. [Its recommended to test from no fewer than five locations, this will help diagnose network and latency issues.](https://docs.microsoft.com/en-us/azure/azure-monitor/app/monitor-web-app-availability#create-a-url-ping-test)
-
-Finally, [the referenced documentation](https://docs.microsoft.com/en-us/azure/azure-monitor/app/monitor-web-app-availability#create-a-url-ping-test) recommends that **the optimal configuration for working with alerts is to set the number of test locations equal to the threshold of the alert plus two**.
-
-## Building Custom Tests
-
-Continuing down the path of availability tests, the need to expand beyond URL ping tests will eventually come up. Situations such as **validating not only uptime but authentication, latency, service health, etc. all could benefit from custom availability tests**.
-
-Before building custom tests, let's look take a closer look at the Availability table within **Azure Application Insights**.
-
-### The Availability Table
-
-The availability table is where our test telemetry will reside, either from URL ping tests or custom testing. The table is designed to allow for capturing if a test was **successful, the duration (typically captured in milliseconds with a stopwatch approach), location of the test and other properties**. I'll review this in depth further in the article but for now keep in mind at a minimum we want to capture success, timing and location for each test.
+**Microsoft Power Apps** provide multiple tools to test and monitor application usage, from launching an app to navigating within an app. We will look into building a test strategy for **Microsoft Power Apps.** We will cover tools available, defining and building test, distinguishing tests versus actual usage telemetry and running automated tests.
 
 ### Testing Power Apps are launching correctly
 Many organizations have an immense catalog of user created Power Apps used for multiple business purposes. These apps need a high level of uptime and need to respond quickly to provide users a reliable platform to perform their work. Uptime is essential for a reliable and performant solution. As we build towards operational excellence, we must continue to find ways to validate and report on all of our enterprise apps, their integrations, etc and be able to respond quickly to change.
 
-For Power Apps, typically a user will open the app from their desktop or mobile device. Considering the mobile aspect that user could be accessing the app from any point in the world. As such, organizations must be able to run synthetic tests globally. Many tools exist and will come that can help to simulate these tests. What we must focus on is not what tools we use but what must haves traits our strategy must adhere to.
+For **Power Apps**, typically a user will open the app from their desktop or mobile device. Considering the mobile aspect that user could be accessing the app from any point in the world. As such, organizations must be able to run synthetic tests globally. Many tools exist and will come that can help to simulate these tests. What we must focus on is not what tools we use but what must haves traits our strategy must adhere to.
 
 These must haves include guaranteed checks on uptime including the hosting platform and reducing any risks in tooling, the ability to deliver accurate reports, the ability to distinguish synthetic tests versus actual outages
 
@@ -57,19 +27,42 @@ The reporting tooling must be able to distinguish between a test and a real user
 - Build tests for mission critical apps
 - Test mission critical apps globally
 
-### Identifying missing app availability tests
+## Identifying missing app availability tests
+The Center of Excellence does a great job of cataloging apps used by the enterprise. I suggest looking into the data points collected from the COE coupled with the canvas app table within your production Dataverse instance.
+To view the canvas apps within the instance, make a request to the Dataverse API like below:
+https://<environment>.crm.dynamics.com/api/data/v9.2/canvasapps
 
-
-### Building tests
-We learned earlier that by leveraging the Availability Tests message within Azure Application Insights, we can populate duration and success of any test we want to execute. With that, let's look at a couple of popular test tools for Power Apps.
+## Building tests
+There are three ways tests can be built for Power Apps:
+- Using Test Studio direct URL or downloaded Power Fx Yml test
+- Defining a Power Fx Yml test manually
+- Building a UI test with EasyRepro
 
 ### Building and executing Test Studio tests
-Test Studio, a tool that requires no ownership of code, we simply call a URL and analyze the response. Test Studio tests allow us to monitor when the test starts. [We can also add tracing statements.](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/working-with-test-studio)
+Test Studio, a tool that requires no ownership of code, we simply call a URL and analyze the response. Test Studio tests allow us to monitor when the test starts. [We can also add tracing statements.](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/working-with-test-studio) --Note: This link contains a video showing how to use Power Apps Test Studio
+
+A key call out as we build out the test cases and suite for the Power App is the [test setup and breakdown properties.](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/working-with-test-studio#setup-your-tests) These allow us to add code prepping tests, add telemetry or other functionality. The properties include:
+- OnTestCaseStart
+- OnTestCaseComplete
+- OnTestSuiteComplete
+
+![](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/media/working-with-test-studio/ontestcasestart-example.png)
+
+Test Studio allows us to download the Power Fx yaml test suite. This can be done with the Download button below.
+
+![](../artifacts/TestStudio/TestStudio_CommandBar_DownloadSuite.JPG)
+
+Once downloaded, the yaml will look like this:
+
+
 A challenge here traditionally has been how to automate this test. Historically, the tool to use has been UI Automation using the [PowerAppsTestAutomation open source project.](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/test-studio-classic-pipeline-editor) This allows us to automate the tests within CI/CD pipelines but does require dependencies that need to be dealt with. For assistance on understanding browser dependencies and techniques to overcome these challenges, refer to my video:
 
 [EasyRepro - DevOps - Managing Browser Dependencies in Microsoft or GitHub Agents](https://www.youtube.com/watch?v=OOxboLnojMM)
 
 NOTE: While labeled for EasyRepro, starting around the 6 minute mark you can follow the same technique within your Microsoft hosted agents.
+
+
+
 
 ### Building and executing Test Engine tests
 Test Engine allows organizations to submit yaml based tests to an executable that will run the Power Fx based yaml tests against a Power App. Review the read me and samples to see how to build both the test engine and tests.
