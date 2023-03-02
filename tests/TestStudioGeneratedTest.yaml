@@ -46,7 +46,7 @@ testSettings:
   filePath: 
   browserConfigurations:
   - browser: Chromium
-    device: 
+    device: iPhone 6
     screenWidth: 0
     screenHeight: 0
   recordVideo: true

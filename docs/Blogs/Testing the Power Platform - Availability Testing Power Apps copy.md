@@ -32,13 +32,6 @@ The Center of Excellence does a great job of cataloging apps used by the enterpr
 To view the canvas apps within the instance, make a request to the Dataverse API like below:
 https://<environment>.crm.dynamics.com/api/data/v9.2/canvasapps
 
-From here, ensure test coverage within your test script repository. One way to achieve this is to list all test suites and cases in a repo and compare. A sample workflow is listed below.
-- Loop through all canvas apps from the Dataverse API
-- For each canvas app, locate the appropriate test suite
-- If missing, create a work item to create test suite
-
-As we progress, we will automate this but for now this approach will work.
-
 ## Building tests
 There are three ways tests can be built for Power Apps:
 - Using Test Studio direct URL or downloaded Power Fx Yml test
@@ -153,5 +146,9 @@ environmentVariables:
  Information on the test settings can be found on [the PowerApp-TestEngine repo.](https://github.com/microsoft/PowerApps-TestEngine/blob/main/docs/Yaml/test.md)
  Key call outs are the *locale* and *browser configurations* for **Test Settings**, *users* in **Environment Variables** and *test cases/steps* within the **Test Suite**.
 
+### Testing Globally for Availability and Latency
+In this example, we are looking to test availability from multiple spots worldwide. We are looking to test not only that Power Apps are opening up but how long it takes to open the app.
 
+The below image shows that we will deploy to an App Service allowing for Azure Web Jobs or Azure Functions to execute the tests.
+![Alt text](../artifacts/AvailabilityTests/AzureWorldMapDeployed.jpg)
 
