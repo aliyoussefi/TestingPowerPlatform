@@ -1,4 +1,4 @@
-# Testing the Power Platform: Overview of Power Apps Availability Testing
+# Power Apps Testing - Automation the Execution of Power Apps Tests
 
 ## Overview
 
@@ -6,54 +6,11 @@ Continuous monitoring allows enterprises the opportunity to ensure reliable perf
 
 **Microsoft Power Apps** provide multiple tools to test and monitor application usage, from launching an app to navigating within an app. We will look into building a test strategy for **Microsoft Power Apps.** We will cover tools available, defining and building test, distinguishing tests versus actual usage telemetry and running automated tests.
 
-### Testing Power Apps are launching correctly
-Many organizations have an immense catalog of user created Power Apps used for multiple business purposes. These apps need a high level of uptime and need to respond quickly to provide users a reliable platform to perform their work. Uptime is essential for a reliable and performant solution. As we build towards operational excellence, we must continue to find ways to validate and report on all of our enterprise apps, their integrations, etc and be able to respond quickly to change.
-
-For **Power Apps**, typically a user will open the app from their desktop or mobile device. Considering the mobile aspect that user could be accessing the app from any point in the world. As such, organizations must be able to run synthetic tests globally. Many tools exist and will come that can help to simulate these tests. What we must focus on is not what tools we use but what must haves traits our strategy must adhere to.
-
-These must haves include guaranteed checks on uptime including the hosting platform and reducing any risks in tooling, the ability to deliver accurate reports, the ability to distinguish synthetic tests versus actual outages
-
-### Identifying the tools and platforms needed for guaranteed checks
-When choosing a tool or multiple, look for attributes such as supportability, interoperability and maintainability. Ideally, a tool exists that meets these standards, if not, part of the strategy is to account for this and reduce risk. 
-
-### What's in a test
-Our tests must be able to tell us accurately if our app is up and running and ideally reporting on standard business requirements like app load times. The tests don't need to validate the app is working correctly, that's a different kind of test so keep the test short and sweet. It simply needs to tell what we want and that's it.
-
-### Synthetic testing and actual outages
-The reporting tooling must be able to distinguish between a test and a real user having an issue. This traditionally will come from the test tool which will identify its tests as simulations where real user interactions will come from the app.
-
-## Power App Availability Testing
-- Identify mission critical apps
-- Build tests for mission critical apps
-- Test mission critical apps globally
-
-## Identifying missing app availability tests
-The Center of Excellence does a great job of cataloging apps used by the enterprise. I suggest looking into the data points collected from the COE coupled with the canvas app table within your production Dataverse instance.
-To view the canvas apps within the instance, make a request to the Dataverse API like below:
-https://<environment>.crm.dynamics.com/api/data/v9.2/canvasapps
-
 ## Building tests
-There are three ways tests can be built for Power Apps:
-- Using Test Studio direct URL or downloaded Power Fx Yml test
-- Defining a Power Fx Yml test manually
-- Building a UI test with EasyRepro
+For more information on building tests, please go to sections [Overview and Getting Started](01%20Power%20Apps%20Testing%20-%20Overview%20and%20Getting%20Started.md)
 
 ### Building and executing Test Studio tests
-Test Studio, a tool that requires no ownership of code, we simply call a URL and analyze the response. Test Studio tests allow us to monitor when the test starts. [We can also add tracing statements.](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/working-with-test-studio) --Note: This link contains a video showing how to use Power Apps Test Studio
-
-A key call out as we build out the test cases and suite for the Power App is the [test setup and breakdown properties.](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/working-with-test-studio#setup-your-tests) These allow us to add code prepping tests, add telemetry or other functionality. The properties include:
-- OnTestCaseStart
-- OnTestCaseComplete
-- OnTestSuiteComplete
-
-![](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/media/working-with-test-studio/ontestcasestart-example.png)
-
-Test Studio allows us to download the Power Fx yaml test suite. This can be done with the Download button below.
-
-![](../artifacts/TestStudio/TestStudio_CommandBar_DownloadSuite.JPG)
-
-Once downloaded, the yaml will look like the YAML provided in the Test Definition section.
-
+Test Studio, a tool that requires no ownership of code, we simply call a URL and analyze the response. Test Studio tests allow us to monitor when the test starts. [We can also add tracing statements.](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/working-with-test-studio) --Note: This link contains a video showing how to use Power Apps Test Studio.
 
 A challenge here traditionally has been how to automate this test. Historically, the tool to use has been UI Automation using the [PowerAppsTestAutomation open source project.](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/test-studio-classic-pipeline-editor) This allows us to automate the tests within CI/CD pipelines but does require dependencies that need to be dealt with. For assistance on understanding browser dependencies and techniques to overcome these challenges, refer to my video:
 

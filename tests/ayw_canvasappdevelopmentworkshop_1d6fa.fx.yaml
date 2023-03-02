@@ -41,7 +41,7 @@ testSettings:
   recordVideo: true
   browserConfigurations:
     - browser: Chromium
-
+      device: iPhone 6
 environmentVariables:
   users:
     - personaName: User1
