@@ -1,4 +1,4 @@
-# Testing the Power Platform: Overview of Power Apps Availability Testing
+# Power Apps Testing - Overview and Getting Started
 
 ## Overview
 
@@ -152,6 +152,11 @@ environmentVariables:
 
  Information on the test settings can be found on [the PowerApp-TestEngine repo.](https://github.com/microsoft/PowerApps-TestEngine/blob/main/docs/Yaml/test.md)
  Key call outs are the *locale* and *browser configurations* for **Test Settings**, *users* in **Environment Variables** and *test cases/steps* within the **Test Suite**.
+
+## Next Steps
+In this section, we covered the basics of a Power Apps test strategy. We reviewed tools available, tools to help us build tests and test configurations and definitions at a high level. Next, we will dive deeper into executing tests, evaluating responses and how to further expand our testing. We will also look at tools to to help us accelerate the discovery and creation of tests.
+
+## References
 
 
 
