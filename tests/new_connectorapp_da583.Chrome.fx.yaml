@@ -8,7 +8,7 @@ testSuite:
       method: POST
       headers:
         x-ms-request-method: GET
-      responseDataFile: ../../response.json
+      responseDataFile: ../../tests/tests/response.json
 
   testCases:
     - testCaseName: Fill in a city name and do the search
