@@ -21,6 +21,7 @@ testSuite:
   #            ,TestCaseId: TestCaseResult.TestCaseId
   #            ,TestCaseName: TestCaseResult.TestCaseName
   #            ,StartTime: TestCaseResult.StartTime
+
   #            ,EndTime: TestCaseResult.EndTime
   #            ,TestSuccess: TestCaseResult.Success
   #            ,TestTraces: JSON(TestCaseResult.Traces)
@@ -48,7 +49,7 @@ testSettings:
   recordVideo: true
   browserConfigurations:
     - browser: Chromium
-      device: iPhone 6
+      device: iPhone 13
 environmentVariables:
   users:
     - personaName: User1
