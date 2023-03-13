@@ -1,0 +1,5 @@
+  locale: "en-US"
+  recordVideo: true
+  browserConfigurations:
+    - browser: Chromium
+      device: iPhone 13

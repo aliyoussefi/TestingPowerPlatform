@@ -1,5 +1,5 @@
 testSuite:
-  testSuiteName: Canvas App Development Workshop
+  testSuiteName: Canvas App Development Workshop - Chrome - iPhone 13
   testSuiteDescription: Verifies that you can interact with the Canvas App Development Workshop
   persona: User1
   appLogicalName: ayw_canvasappdevelopmentworkshop_1d6fa
@@ -39,7 +39,7 @@ testSuite:
   #       }
   #   );
   testCases:
-    - testCaseName: Canvas App Development Workshop - Availability - Chrome
+    - testCaseName: Canvas App Development Workshop - Availability - Chrome - iPhone 13
       testSteps: |
         = Screenshot("ayw_canvasappdevelopmentworkshop_1d6fa_loaded.png");
           Select(Button1);

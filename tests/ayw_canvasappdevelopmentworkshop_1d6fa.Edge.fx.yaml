@@ -17,10 +17,7 @@ testSuite:
         = Screenshot("ayw_canvasappdevelopmentworkshop_1d6fa_loaded.png");
 
 testSettings:
-  locale: "en-US"
-  recordVideo: true
-  browserConfigurations:
-    - browser: msedge
+  filepath: ../../tests/tests/GlobalEnvVars.yml
 
 environmentVariables:
   users:
