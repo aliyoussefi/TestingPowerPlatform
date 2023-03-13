@@ -17,7 +17,7 @@ testSuite:
         = Screenshot("ayw_canvasappdevelopmentworkshop_1d6fa_loaded.png");
 
 testSettings:
-  filepath: ../../tests/tests/GlobalEnvVars.yml
+  filePath: ../../tests/tests/GlobalEnvVars.yml
 
 environmentVariables:
   users:
