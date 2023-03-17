@@ -1,4 +1,4 @@
-# Power Apps Testing – Extending Power Apps Test Engine
+# Power Apps Testing – Extending and Contributing to the PowerApps Test Engine
 
 ## Overview
 
@@ -6,11 +6,13 @@
 
 In this series, we are focusing on how organizations can incorporate **Power Apps** into their suite of business-critical applications. All organizations require some level of testing, from unit to stress, all applications needed by the enterprise must be resilient. In this series, we will attempt to lay out the necessary tools and design to empower organizations to implement a testing strategy for **Power Apps**.
 
-For Model Driven Applications, I highly encourage you to check out [my other series on EasyRepro and Test Automation.](https://community.dynamics.com/365/b/crminthefield/posts/test-automation-and-easyrepro-01---overview-and-getting-started)
+For **Model Driven Applications** , I highly encourage you to check out [my other series on EasyRepro and Test Automation.](https://community.dynamics.com/365/b/crminthefield/posts/test-automation-and-easyrepro-01---overview-and-getting-started)
 
-This specific section will discuss how to build tests for **Power Apps Test Engine** and **Test Studio**. We will dive deep into the structure of the tests and key call outs for configurations. We will also investigate storing tests and delivery of tests including dynamic variables to our test engines. If you have not reviewed the Overview, I suggest you do as this is a continuation of that section.
+This specific section will discuss how to extend the **PowerApps Test Engine**. We will look to describe the architecture of the source code to understand how the components interact with each other. This will set the foundation allowing us to extend the tooling to suit our business needs. We will take an example, walk through the steps to do implement and how to contribute back to the **PowerApps Test Engine**.
 
-## What is Power Fx?
+This section covers professional development topics and will require a basic understanding of the C# language. I'll attempt to make this topic as approachable as possible but want to set the expectation of the skillset involved.
+
+## What is the Power Fx Engine?
 
 [Power Fx](https://learn.microsoft.com/en-us/power-platform/power-fx/overview) is the low-code language that is used across **Microsoft Power Platform**. It's a general-purpose, strong-typed, declarative, and functional programming language. The anticipation is it will continue to grow as the preferred language of the platform, for apps, flow, bots, etc. **Power Fx** even has the ability to [transform natural language](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/power-apps-ideas-train-examples) to low-code as well as [provide recommendations](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/power-apps-ideas-transform?source=recommendations).
 
@@ -18,107 +20,138 @@ In this section, **Power Fx** is used to define what actions the tests are perfo
 
 To learn more about **Power Fx** including a curated learning path, [start here](https://learn.microsoft.com/en-us/training/paths/use-basic-formulas-powerapps-canvas-app/?ns-enrollment-type=Collection&ns-enrollment-id=m0js310oz3r5z).
 
-## Using YAML to define the Test Definition
+## Working with the PowerApps Test Engine source code
 
-**YAML** is the language used for our **Power Apps Test Suite** and **Power Fx** is the language used for the test definition.
+The source code is available on GitHub and is open for replication and contribution. This allows the community to contribute while maintaining a specific version of the test engine.
 
-## Configuring the Test Suite
+The source code included the assembly ( **Microsoft.PowerApps.TestEngine** ) used by the test engine that tests will be submitted ( **PowerAppsTestEngine** ).
 
-Test suites include a number of cases and information on how to run each case. In the below tables you'll find the name of the properties available and a brief description.
+## **The PowerApps Test Engine Architecture**
 
-### Core Properties
+The code for the test engine is very straightforward. It consists of a TestEngine project that interacts directly with [PowerFx code found here](https://github.com/microsoft/Power-Fx). This TestEngine project has an accompanying test project providing a quick way to test various areas of the engine. This includes testing working with user personas and different configurations. It also test underlying browser automation frameworks such as _ **playwright** _ or _ **selenium** _ if desired.
 
-| **Name** | **Description** |
+![](/docs/artifacts/TestEngine/SourceCodeAndUsageArchitecture.JPG)
+
+The above image shows the design of the **PowerApps Test Engine** and how it interacts with tests and the Power App. Within the red box is the code located in the **PowerApps-TestEngine** source.
+
+Power Apps tests go in, actions are executed against the app and results are output. For most cases, interaction only with the _PowerAppsTestEngine_ is needed.
+
+That said, there might come a time where the _TestEngine_ itself needs to be extended.
+
+## **The Microsoft.PowerApps.TestEngine Architecture**
+
+The **Microsoft.PowerApps.TestEngine** is the primary component of the **PowerApps-TestEngine** project. It creates and maintains the test infrastructure needed to run our Power Fx tests. The project uses the test supplied and can execute the tests as instructed by the _PowerAppsTestEngine_ application. Let's look at the architecture.
+
+![](/docs/artifacts/TestEngine/PowerAppsTestEngineAndPowerFxArchitecture.JPG)
+
+The **Microsoft.PowerApps.TestEngine** is responsible for all test components, including delivering Power Fx statements to the **Microsoft.PowerFx** framework. The entry point is the Single Test Runner and includes the following:
+
+| **Property** | **Description** |
 | --- | --- |
-| testSuiteName | Required field naming the test. Will show in the logs for each test suite and it is useful for reporting. |
-| testSuiteDescription | Optional field describing the nature of the test suite. By default, this is not added to the trx file so would mainly be used by test writers. |
-| persona | Required field of user running the tests. Must match a user in the environmentVariables section below. |
-| appLogicalName | Required for solution aware apps. All business-critical apps should be in solutions per operational excellence architecture. You can find this in the solution in the Maker portal or through the Dataverse API. |
-| appId | Required for non-solution aware apps. See above. |
-| onTestCaseStart | Triggered for all test cases in a suite before the case begins executing. [Use this for common code (test data, initializing variables, etc) that needs to run before every case.](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/working-with-test-studio#setup-your-tests) |
-| onTestCaseComplete | Triggered on completion of a test case. Includes information about the test case. Schema:{TestPass: TestCaseResult.TestCaseName & ":" & Text(Now()),TestSuiteId: TestCaseResult.TestSuiteId,TestSuiteName: TestCaseResult.TestSuiteName,TestCaseId: TestCaseResult.TestCaseId,TestCaseName: TestCaseResult.TestCaseName,StartTime: TestCaseResult.StartTime,EndTime: TestCaseResult.EndTime,TestSuccess: TestCaseResult.Success,TestTraces: JSON(TestCaseResult.Traces),TestFailureMessage: TestCaseResult.TestFailureMessage} |
-| onTestSuiteComplete | Trigged on complete of the test suite. Includes information about successful and unsuccessful tests. Schema:{TestSuiteId: TestSuiteResult.TestSuiteId,TestSuiteName: TestSuiteResult.TestSuiteName,StartTime: TestSuiteResult.StartTime,EndTime: TestSuiteResult.EndTime,TestPassCount: TestSuiteResult.TestsPassed,TestFailCount: TestSuiteResult.TestsFailed} |
-| networkRequestMocks | Provide mock requests for connectors. Highly recommended for shift left tests. Examples are [here](https://github.com/microsoft/PowerApps-TestEngine/blob/main/samples/connector/testPlan.fx.yaml) and here. |
-| testCases | Includes one or more test cases. |
+| [Test Reporter](https://github.com/microsoft/PowerApps-TestEngine/blob/main/src/Microsoft.PowerApps.TestEngine/Reporting/TestReporter.cs) | Defines the test suites, cases and runs and generates a test report. Depends on the File System and will write to file by default. |
+| [Power Fx Engine](https://github.com/microsoft/PowerApps-TestEngine/blob/main/src/Microsoft.PowerApps.TestEngine/PowerFx/PowerFxEngine.cs) | Works directly with the Power Fx Engine and is responsible for defining which functions can be used by PowerApps Test Engine. **We will explore how to update this in the following section.** |
+| [Test Infrastructure Functions](https://github.com/microsoft/PowerApps-TestEngine/blob/main/src/Microsoft.PowerApps.TestEngine/TestInfra/PlaywrightTestInfraFunctions.cs) | Creates the browser configuration, any mock responses and navigates to the Url. Relies on the test state and file system. |
+| [User Manager](https://github.com/microsoft/PowerApps-TestEngine/blob/main/src/Microsoft.PowerApps.TestEngine/Users/UserManager.cs) | Manages user log-in including working with environment variables, routing to the log-in url and submitting credentials. Defines the input types for the Microsoft log-in page (e.g. idBtn\_Back). |
+| [Test State](https://github.com/microsoft/PowerApps-TestEngine/blob/main/src/Microsoft.PowerApps.TestEngine/Config/TestState.cs) | Defines the test plan definition and settings used to run tests. |
+| [Url Mapper](https://github.com/microsoft/PowerApps-TestEngine/blob/main/src/Microsoft.PowerApps.TestEngine/PowerApps/PowerAppsUrlMapper.cs) | Used to generate the Power App url and pass test parameters. |
+| [File System](https://github.com/microsoft/PowerApps-TestEngine/blob/main/src/Microsoft.PowerApps.TestEngine/System/FileSystem.cs) | Used for reading and writing to disk. Uses System.IO. |
+| Logger factory | Derived from Microsoft.Extensions.Logging. Could be used to inject |
 
-### Test Case Properties
+## Configuring a new function for PowerApps Test Engine
 
-| **Name** | **Description** |
-| --- | --- |
-| testCaseName | Required field naming the test case. This is used in the trx file and test suite complete information. I recommend making each of these unique and should inform what the test is trying to do. |
-| testCaseDescription | Optional field but can further define the test case. |
-| testSteps | Required list of Power Fx operations. [For PowerApps-TestEngine, refer to this document.](https://github.com/microsoft/PowerApps-TestEngine/tree/main/docs/PowerFX) This can be extended and is covered in an upcoming section. |
+Start by reviewing the [PowerFx Engine](https://github.com/microsoft/PowerApps-TestEngine/blob/main/src/Microsoft.PowerApps.TestEngine/PowerFx/PowerFxEngine.cs). This class creates a Power Fx configuration used by the [Recalc Engine](https://github.com/microsoft/Power-Fx/blob/main/src/libraries/Microsoft.PowerFx.Interpreter/RecalcEngine.cs). The image below is a snapshot, review the _ **Setup** _ function for existing functionality.
 
-## Configuring the Test Settings
+![](/docs/artifacts/TestEngine/PowerFxEngine.Setup.JPG)
 
-The test settings section allows testers to define which devices and browsers will be used to run the tests. Test settings also provide additional properties to define how the tests are run such as interactive mode and parallelism. Also included are default settings to record a video of the tests or how long to wait until the test should end if it doesn't receive a response from an action.
+Highlighted above is the declaration of the _PowerFxConfig_ object, the addition of functions used by the Test Engine and the creation of the _RecalcEngine_.
 
-A reference to the test settings can be [found here](https://github.com/microsoft/PowerApps-TestEngine/blob/main/docs/Yaml/testSettings.md). I'll provide additional thoughts in the table below.
+## Defining the Trace Function
 
-| **Name** | **Description** |
-| --- | --- |
-| filePath | The file path to a separate yaml file with all the environment variables. If provided, it will override all the users in the test plan. |
-| browserConfigurations | Must identify at least one browser. I would recommend [making the properties within variables if running in an automated fashion](https://docs.github.com/en/actions/learn-github-actions/variables). |
-| recordVideo | Creates a recording of the tests as a WEBM file. I would recommend setting this to true unless you have an extremely long running test. |
-| headless | If running tests manually or locally I would set this to false allowing you to watch the test run. For automated tests, this can be set to true to reduce possible resource consumption. |
-| enablePowerFxOverlay | Will show the PowerFx formula on the screen. This could be helpful when running manually or locally. For automated tests, determine usefulness especially when there are concerns with source control. |
-| timeout | Default is 30 seconds. Depending on the type of test and the number of tests being run consider reducing or increasing. This setting is one I would recommend making a variable in automated tests. |
-| workerCount | Default is 10. I haven't tested the boundaries of this yet but would expect this to be determined by the test runner's capabilities. If parallelism is a concern, consider [running multiple test runners in unison.](https://learn.microsoft.com/en-us/azure/container-apps/overview) |
+Defining a new function requires the use of the _ReflectionFunction_ class. Start with implementing this base class as shown below.
 
-### Browser Configurations
+![](/docs/artifacts/TestEngine/PowerFxEngine.ReflectionFunctionBaseInheritance.JPG)
 
-Browser configurations let us choose how to launch the test. [This includes the latest and most prolific browsers and devices such as Chromium, iPhone, Android, etc.](https://playwright.dev/dotnet/docs/browsers) For Chromium based browsers such as Chrome and Edge, Playwright will use the open-sourced builds. This means while the browser currently installed on your machine maybe version 100, the test will run on version 101. This does provide the advantage of understanding a potential change to the browser that could impact your users.
+Define the constructor with the _ILogger_ interface as a dependent parameter. Further define with the base constructor properties.
 
-A reference to the browser configurations can be [found here](https://github.com/microsoft/PowerApps-TestEngine/blob/main/docs/Yaml/testSettings.md#browser-configuration). I'll provide additional thoughts in the table below.
+![](/docs/artifacts/TestEngine/PowerFxEngine.ReflectionFunctionBase.JPG)
 
-| **Name** | **Description** |
-| --- | --- |
-| browser | Must identify at least one browser. I would recommend [making the properties within variables if running in an automated fashion](https://docs.github.com/en/actions/learn-github-actions/variables). |
-| device | Optional value. Needs to be a [device supported by Playwright](https://playwright.dev/dotnet/docs/api/class-playwright#playwright-devices). [Here is a comprehensive list.](https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/server/deviceDescriptorsSource.json) I would recommend [making the properties within variables if running in an automated fashion](https://docs.github.com/en/actions/learn-github-actions/variables). I would also recommend testing a single app across all types of devices it may be used: mobile and workstation. |
-| screenHeight | Height of the browser screen. It defined will require screenWidth. In the extending Test Engine article, we can [further define browser arguments as shown here](https://github.com/microsoft/playwright/issues/4046). |
-| screenWidth | Width of the browser screen. It defined will require screenHeight. In the extending Test Engine article, we can [further define browser arguments as shown here](https://github.com/microsoft/playwright/issues/4046). |
+The name parameter will be what the Power Fx test will call. The return type property can help respond with an object of string. Finally, the param types will allow us to define one or more properties for the Power Fx function.
 
-## Configuring Environment Variables
+## Defining the Execute function
 
-Environment variables can be applied to a single test suite or across all test suites. The reason to include across all test suites might be to have a single source of personas to choose from, like variable groups within Azure DevOps. This allows us to centralize and reduce the sprawl of user personas. This also helps as we test across environments during application deployments.
+Using a new function called *Execute*, further define the actual implementation of the Power Fx test action.
 
-A reference to the environment variables can be [found here](https://github.com/microsoft/PowerApps-TestEngine/blob/main/docs/Yaml/environmentVariables.md).
+In this case, the code will create the _Trace_ function and will use the Power Fx documentation located here. The documentation calls out three properties: the message, the severity level and a custom object.
 
-| **Name** | **Description** |
-| --- | --- |
-| filePath | The file path to a separate yaml file with all the environment variables. If provided, it will override all the users in the test plan. Consider making this a [GitHub action environment variable](https://docs.github.com/en/actions/learn-github-actions/variables#defining-environment-variables-for-a-single-workflow). |
+![](/docs/artifacts/TestEngine/PowerFxEngine.Execute.JPG)
 
-## Configuring Users
+The image above shows how to loop through the properties of the _RecordValue_. Use the PrimitiveValue\<T\> to get the value of the object property.
 
-**Microsoft Power Apps** users come to apps with different roles and different business requirements. As we define our tests, we must consider how these users will use the app and what their experience using the app will be. It's recommended to execute tests as the primary persona who will interact with the app, which can vary depending on the app's purpose. Luckily, the environment variables all of us to define multiple personas and programmatically define which user to run our test suite as.
+In this example, the following code is used within the Power Fx test:
 
-| **Name** | **Description** |
-| --- | --- |
-| personaName | The name of the type of user (e.g., User1, ContosoUser1, HRManager, etc) |
-| emailKey | Username of the user (xxx@xxx.onmicrosoft.com) |
-| passwordKey | Password of the user |
+**Trace("Sample message", "Information", {sampleKey: "sampleValue"});**
 
-## Test Best Practices
+## Adding the command to the Test Engine command list
 
-The documentation for **Power Apps Test Studio** does a really good job of laying out fundamental best practices including:
+Navigating to the _PowerFxEngine_, add the following to the setup. By doing this, we are now adding our Trace command to the list of available commands executable in a Power Fx test.
 
-- Keeping test cases small.
-- Keeping expressions to a single action in a test.
-- Building deterministic tests.
-- Managing multiple tests with test suites.
+![](/docs/artifacts/TestEngine/PowerFxEngine.Setup.WithTrace.JPG)
 
-A few points I want to call out about tests come from the Test Desiderata. Building upon the deterministic attribute above, we must consider the fact we are running tests against an ever-changing variable, the browser. Fundamentally our tests should always provide the same result and I expect they should.
+## Debugging and Testing Locally
 
-However, it is key that we are testing against the build version (vNext) understanding this is not what the current user base may see. I suggest running the same tests across not only the vNext but the vCurrent of the browser. This also applies to devices. Consider the landscape of devices available that users interact with. Tablets, phones, watches, of all different builds and versions. Attempting to test across this can provide cumbersome. It's important that as we define our test strategy, we make every good faith attempt to provide coverage but clearly set expectations to the user base and decision makers. If you are interested, I highly recommend finding a used copy of [Dino Esposito's "Architecting Mobile Solutions for the Enterprise".](https://www.microsoftpressstore.com/store/architecting-mobile-solutions-for-the-enterprise-9780735663022) The section covering WURFL is especially appealing.
+Building and Running tests against the source code will help pause the execution allowing for deep insights into the runtime. You can use multiple IDE's such as **Visual Studio Code** or **Visual Studio**. I chose to go with *Visual Studio 2022*.
 
-## Dynamically Setting Variables
+Look at the image below, highlighting the three projects and the default project used for debugging.
 
-Not to look too far ahead, but by now we should be planning how to run multiple test cases and suites at scale. Most likely this will take form in an automated fashion using test runners. Each test runner engine has various ways to configure variables that can be passed into and used within each test run.
+![](/docs/artifacts/TestEngine/PowerAppsTestEngine.DebugStart.JPG)
 
-In the case of **PowerApps-TestEngine** , the **filePath** property is extremely helpful as we look to dynamically set variables. Referencing a singular file for configuration can make our lives easier by simply modifying the single file which replicates to all tests.
+Using the _PowerAppsTestEngine_ project and starting the debugger will run the code in real time. The benefit to this is we can add stops or breakpoints in the code to better understand how the code is working. In the example below, a breakpoint has been set on the before entering into the [_ **RunTestAsync** _](https://github.com/microsoft/PowerApps-TestEngine/blob/522401e9c03a049e28bce3f48e951ec6b04f2a0b/src/PowerAppsTestEngine/Program.cs#L160) function. This allows developers to review and modify each input.
 
-Using variables to modify the single file makes this process even more agile. Consider [the example shown here](../../tests/GlobalEnvVars.yml), using a yaml file for global environment variables.
+![](/docs/artifacts/TestEngine/PowerAppsTestEngine.RunTestAsync.JPG)
+
+## Configuring Debug Properties
+
+_PowerAppsTestEngine_ is an executable that requires environment variables for the user persona. Optionally, arguments can be passed in further defining what the engine can do.
+
+**To set environment variables during debug, open the project properties**. Navigate to the debug properties and define the variables. Depending on the IDE you use this process may change slightly.
+
+![](/docs/artifacts/TestEngine/PowerAppsTestEngine.DebugProperties.JPG)
+
+Command line arguments can be provided during the debug session. Review the argument list in _PowerAppsTestEngine_ for the latest options. As with the trace function, if an argument doesn't exist but is needed, it can be added and contributed.
+
+I've found that adding verbose tracing is essential when stepping into each test case step. Using the
+ "-l 0" we can enable verbose tracing during debugging.
+
+## Contributing to the source
+
+The source code for the **PowerApps Test Engine** is located on GitHub. Contributions can be made using standard GitHub procedures. In this case, we will Fork the project, make changes and make a pull request.
+
+## Fork Power Apps Test Engine
+
+Begin by navigating to the source code and clicking the Fork button. This will present an option to fork the project into a specific account.
+
+![](/docs/artifacts/TestEngine/GitHub.CreateFork.JPG)
+
+## Clone local and commit changes
+
+Clone the fork to a workstation and commit the changes to a new branch. Ideally the fork and branch would have been done before creating the code, but changes can be moved into the forked project as well.
+
+Its key to point out that once the project has been forked, you are free to make any changes to the forked project. No changes will be applied to the source code until a Pull Request has been made.
+
+Once all the changes are ready, commit the changes and push remotely.
+
+## Creating a Pull Request and Contributing back to Power Apps Test Engine
+
+Once the changes have been pushed to your GitHub forked project, you can continue working on the forked project. If you have a contribution, use the "Contribute" button to create a Pull Request. A Pull Request is an attempt to merge your changes into the source. This will require validation and authorization.
+
+![](/docs/artifacts/TestEngine/GitHub.CreatePullRequest.JPG)
+
+Once the Pull Request has been merged, you have **successfully contributed to Power Apps Test Engine**.
 
 ## Next Steps
 
 By now, you should have a firm understanding of test tools available for **Canvas Apps**. You should also be able to articulate and define test suites and cases. You should be able to show how to configure tests within a specific suite and globally across all tests.
+
+You have now learned how to modify the source code for the **Power Apps Test Engine**. Additionally, you can now articulate the steps needed to contribute back to the open source project.
+
+Continue evaluating any gaps in the **Power Apps Test Engine** for your business needs. If a more complex command is needed review other commands such as the *Select*, which perform an action and retrieve updates to the app.
