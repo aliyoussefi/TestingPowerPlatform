@@ -39,10 +39,10 @@ testSuite:
   #       }
   #   );
   testCases:
-    - testCaseName: Canvas App Development Workshop - Availability - Chrome - iPhone 13
+    - testCaseName: Canvas App Development Workshop - Availability - Chrome
       testSteps: |
         = Screenshot("ayw_canvasappdevelopmentworkshop_1d6fa_loaded.png");
-          Select(Button1);
+          Select(Button2);
 
 testSettings:
   locale: "en-US"
