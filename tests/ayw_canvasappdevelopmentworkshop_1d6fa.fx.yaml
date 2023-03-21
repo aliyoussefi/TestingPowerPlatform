@@ -39,10 +39,10 @@ testSuite:
   #       }
   #   );
   testCases:
-    - testCaseName: Canvas App Development Workshop - Availability - Chrome
+    - testCaseName: Canvas App Development Workshop - Availability - Chrome - Button 1 select
       testSteps: |
         = Screenshot("ayw_canvasappdevelopmentworkshop_1d6fa_loaded.png");
-          Select(Button2);
+          Select(Button1);
 
 testSettings:
   locale: "en-US"
