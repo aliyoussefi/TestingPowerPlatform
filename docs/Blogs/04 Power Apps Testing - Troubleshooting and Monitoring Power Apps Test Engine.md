@@ -1,4 +1,4 @@
-# 04 Power Apps Testing - Troubleshooting and Monitoring Power Apps Test Engine
+# Power Apps Testing – Troubleshooting and Monitoring Test Engine
 
 ## Overview
 
@@ -8,150 +8,90 @@ In this series, we are focusing on how organizations can incorporate **Power App
 
 For **Model Driven Applications** , I highly encourage you to check out [my other series on EasyRepro and Test Automation.](https://community.dynamics.com/365/b/crminthefield/posts/test-automation-and-easyrepro-01---overview-and-getting-started)
 
-This specific section will discuss how to extend the **PowerApps Test Engine**. We will look to describe the architecture of the source code to understand how the components interact with each other. This will set the foundation allowing us to extend the tooling to suit our business needs. We will take an example, walk through the steps to do implement and how to contribute back to the **PowerApps Test Engine**.
+This specific section will discuss how to troubleshoot and extend the **PowerApps Test Engine**. We will look at common errors encountered when running the test engine and how to diagnose. We will explore how to extend instrumentation which can help further troubleshooting.
+
+Finally, we will look to extend Power Apps Test Engine to work with **Microsoft Edge** browser and send telemetry to **Azure Application Insights**.
 
 This section covers professional development topics and will require a basic understanding of the C# language. I'll attempt to make this topic as approachable as possible but want to set the expectation of the skillset involved.
 
-## What is the Power Fx Engine?
+## Troubleshooting Basics
 
-[Power Fx](https://learn.microsoft.com/en-us/power-platform/power-fx/overview) is the low-code language that is used across **Microsoft Power Platform**. It's a general-purpose, strong-typed, declarative, and functional programming language. The anticipation is it will continue to grow as the preferred language of the platform, for apps, flow, bots, etc. **Power Fx** even has the ability to [transform natural language](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/power-apps-ideas-train-examples) to low-code as well as [provide recommendations](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/power-apps-ideas-transform?source=recommendations).
+Its recommend, when troubleshooting, to try to reproduce the issue. Once the issue is reliably reproducible, troubleshooting can be as easy as walking through the steps, identifying a failure and correcting.
 
-In this section, **Power Fx** is used to define what actions the tests are performing.
+Start with reviewing the logs from **Power Apps Test Engine** and the test runner if running in an automated fashion. For test runner details, refer to the infrastructure documentation. Most likely, the issue will come from the steps needed to build and execute **Power Apps Test Engine**.
 
-To learn more about **Power Fx** including a curated learning path, [start here](https://learn.microsoft.com/en-us/training/paths/use-basic-formulas-powerapps-canvas-app/?ns-enrollment-type=Collection&ns-enrollment-id=m0js310oz3r5z).
+Once **Power Apps Test Engine** has been built and is executing, look to the information provided in the logs. **Power Apps Test Engine** has [a mechanism built in, covered in Section 03, allowing for different log levels to be output.](https://github.com/aliyoussefi/TestingPowerPlatform/blob/main/docs/Blogs/03%20Power%20Apps%20Testing%20-%20Extending%20Power%20Apps%20Test%20Engine.md#configuring-debug-properties) Review the current configuration and if needed, increase the level of logging down to Verbose.
 
-## Working with the PowerApps Test Engine source code
+Let's look at some common errors and how to diagnose.
 
-The source code is available on GitHub and is open for replication and contribution. This allows the community to contribute while maintaining a specific version of the test engine.
+### Fixing Name isn't valid. 'Control' isn't recognized errors
 
-The source code included the assembly ( **Microsoft.PowerApps.TestEngine** ) used by the test engine that tests will be submitted ( **PowerAppsTestEngine** ).
+This one is straightforward, the **Power Fx Engine** cannot find the control. W **hile the error signifies that the control can't be found, this doesn't necessarily mean it's not there.** To begin, look for any changes to the control, ensuring that it is in fact on the app and named the same as the test. [If the organization is using source control and extracting](https://learn.microsoft.com/en-us/power-platform/developer/cli/reference/canvas#pac-canvas-unpack)_ **the msapp package** _ content each time an app is published this will save a significant amount of time. If the organization is not, it's suggested to begin doing so. **A video detailing the steps can be found here.**
 
-## **The PowerApps Test Engine Architecture**
+![](/docs/artifacts/TestEngine/PowerFxEngine.ControlNotFoundErrorStackTrace.JPG)
 
-The code for the test engine is very straightforward. It consists of a TestEngine project that interacts directly with [PowerFx code found here](https://github.com/microsoft/Power-Fx). This TestEngine project has an accompanying test project providing a quick way to test various areas of the engine. This includes testing working with user personas and different configurations. It also test underlying browser automation frameworks such as _ **playwright** _ or _ **selenium** _ if desired.
+In the above image, we see that 'Button1' isn't recognized. In this example, simply correcting the control reference will fix the test. That said, let's look deeper in the stack trace to understand what's happening during the execution.
 
-![](/docs/artifacts/TestEngine/SourceCodeAndUsageArchitecture.JPG)
+Near the end of the stack at the bottom of the image is this line:
 
-The above image shows the design of the **PowerApps Test Engine** and how it interacts with tests and the Power App. Within the red box is the code located in the **PowerApps-TestEngine** source.
+**at Microsoft.PowerApps.TestEngine.PowerFx.PowerFxEngine.Execute(String testSteps) in C:\Users\username\source\repos\PowerApps-TestEngine\src\Microsoft.PowerApps.TestEngine\PowerFx\PowerFxEngine.cs:line 124**
 
-Power Apps tests go in, actions are executed against the app and results are output. For most cases, interaction only with the _PowerAppsTestEngine_ is needed.
-
-That said, there might come a time where the _TestEngine_ itself needs to be extended.
-
-## **The Microsoft.PowerApps.TestEngine Architecture**
-
-The **Microsoft.PowerApps.TestEngine** is the primary component of the **PowerApps-TestEngine** project. It creates and maintains the test infrastructure needed to run our Power Fx tests. The project uses the test supplied and can execute the tests as instructed by the _PowerAppsTestEngine_ application. Let's look at the architecture.
-
-![](/docs/artifacts/TestEngine/PowerAppsTestEngineAndPowerFxArchitecture.JPG)
-
-The **Microsoft.PowerApps.TestEngine** is responsible for all test components, including delivering Power Fx statements to the **Microsoft.PowerFx** framework. The entry point is the Single Test Runner and includes the following:
-
-| **Property** | **Description** |
-| --- | --- |
-| [Test Reporter](https://github.com/microsoft/PowerApps-TestEngine/blob/main/src/Microsoft.PowerApps.TestEngine/Reporting/TestReporter.cs) | Defines the test suites, cases and runs and generates a test report. Depends on the File System and will write to file by default. |
-| [Power Fx Engine](https://github.com/microsoft/PowerApps-TestEngine/blob/main/src/Microsoft.PowerApps.TestEngine/PowerFx/PowerFxEngine.cs) | Works directly with the Power Fx Engine and is responsible for defining which functions can be used by PowerApps Test Engine. **We will explore how to update this in the following section.** |
-| [Test Infrastructure Functions](https://github.com/microsoft/PowerApps-TestEngine/blob/main/src/Microsoft.PowerApps.TestEngine/TestInfra/PlaywrightTestInfraFunctions.cs) | Creates the browser configuration, any mock responses and navigates to the Url. Relies on the test state and file system. |
-| [User Manager](https://github.com/microsoft/PowerApps-TestEngine/blob/main/src/Microsoft.PowerApps.TestEngine/Users/UserManager.cs) | Manages user log-in including working with environment variables, routing to the log-in url and submitting credentials. Defines the input types for the Microsoft log-in page (e.g. idBtn\_Back). |
-| [Test State](https://github.com/microsoft/PowerApps-TestEngine/blob/main/src/Microsoft.PowerApps.TestEngine/Config/TestState.cs) | Defines the test plan definition and settings used to run tests. |
-| [Url Mapper](https://github.com/microsoft/PowerApps-TestEngine/blob/main/src/Microsoft.PowerApps.TestEngine/PowerApps/PowerAppsUrlMapper.cs) | Used to generate the Power App url and pass test parameters. |
-| [File System](https://github.com/microsoft/PowerApps-TestEngine/blob/main/src/Microsoft.PowerApps.TestEngine/System/FileSystem.cs) | Used for reading and writing to disk. Uses System.IO. |
-| Logger factory | Derived from Microsoft.Extensions.Logging. Could be used to inject |
-
-## Configuring a new function for PowerApps Test Engine
-
-Start by reviewing the [PowerFx Engine](https://github.com/microsoft/PowerApps-TestEngine/blob/main/src/Microsoft.PowerApps.TestEngine/PowerFx/PowerFxEngine.cs). This class creates a Power Fx configuration used by the [Recalc Engine](https://github.com/microsoft/Power-Fx/blob/main/src/libraries/Microsoft.PowerFx.Interpreter/RecalcEngine.cs). The image below is a snapshot, review the _ **Setup** _ function for existing functionality.
-
-![](/docs/artifacts/TestEngine/PowerFxEngine.Setup.JPG)
-
-Highlighted above is the declaration of the _PowerFxConfig_ object, the addition of functions used by the Test Engine and the creation of the _RecalcEngine_.
-
-## Defining the Trace Function
-
-Defining a new function requires the use of the _ReflectionFunction_ class. Start with implementing this base class as shown below.
-
-![](/docs/artifacts/TestEngine/PowerFxEngine.ReflectionFunctionBaseInheritance.JPG)
-
-Define the constructor with the _ILogger_ interface as a dependent parameter. Further define with the base constructor properties.
-
-![](/docs/artifacts/TestEngine/PowerFxEngine.ReflectionFunctionBase.JPG)
-
-The name parameter will be what the Power Fx test will call. The return type property can help respond with an object of string. Finally, the param types will allow us to define one or more properties for the Power Fx function.
-
-## Defining the Execute function
-
-Using a new function called *Execute*, further define the actual implementation of the Power Fx test action.
-
-In this case, the code will create the _Trace_ function and will use the Power Fx documentation located here. The documentation calls out three properties: the message, the severity level and a custom object.
+[Referring to this Section 03 image showing the execution of the test, we can see the exact line that is called out above.](https://github.com/aliyoussefi/TestingPowerPlatform/blob/main/docs/Blogs/03%20Power%20Apps%20Testing%20-%20Extending%20Power%20Apps%20Test%20Engine.md#defining-the-execute-function)
 
 ![](/docs/artifacts/TestEngine/PowerFxEngine.Execute.JPG)
 
-The image above shows how to loop through the properties of the _RecordValue_. Use the PrimitiveValue\<T\> to get the value of the object property.
+### NOTE: System.ArgumentException: locale error during automation
 
-In this example, the following code is used within the Power Fx test:
+If you are running **Power Apps Test Engine** on a test runner, such as **GitHub workflows** , you may encounter something like this:
 
-**Trace("Sample message", "Information", {sampleKey: "sampleValue"});**
+![](//docs/artifacts/TestEngine/PowerFxEngine.ArgumentExceptionLocale.GitHubStackTrace.JPG)
 
-## Adding the command to the Test Engine command list
+**This originates from the same error as we see locally** , _Button1 not recognized_. However, in this error, the message is not as clear. Looking back into our troubleshooting steps, reproducing this locally gave insight into the true cause of the error. This allowed for a quick fix to the test case avoiding any source code modification.
 
-Navigating to the _PowerFxEngine_, add the following to the setup. By doing this, we are now adding our Trace command to the list of available commands executable in a Power Fx test.
+### Fixing Executable Doesn't Exist errors
 
-![](/docs/artifacts/TestEngine/PowerFxEngine.Setup.WithTrace.JPG)
+Typically, this means the test is trying to run with a browser driver that doesn't exist where playwright expects it. [A good question that highlights the potential issue can be found on the Playwright GitHub Issues page.](../%5BQuestion%5D%20Chromium%20distribution%20'msedge-canary'%20is%20not%20found%20%C2%B7%20Issue%20#15859%20%C2%B7%20microsoft/playwright%20(github.com))
 
-## Debugging and Testing Locally
+If running **Power Apps Test Engine** locally, try running the **playwright.ps1** file again. This will remove the drivers used by **Playwright** , located in the _AppData_ folder, and reinstall.
 
-Building and Running tests against the source code will help pause the execution allowing for deep insights into the runtime. You can use multiple IDE's such as **Visual Studio Code** or **Visual Studio**. I chose to go with *Visual Studio 2022*.
+If running on a test runner, confirm that the browser driver exists. [Here is a reference for the Ubuntu Microsoft hosted agent included software.](https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md)
 
-Look at the image below, highlighting the three projects and the default project used for debugging.
+The supported out of the box **Power Apps Test Engine** browsers include **Chrome** , **Firefox** and **Webkit**. These require no modifications to the code and can be referred to in the **Power Fx** test safely.
 
-![](/docs/artifacts/TestEngine/PowerAppsTestEngine.DebugStart.JPG)
+To add an additional browser, such as **Microsoft Edge** , the source code will have to be modified. Here is an example of modifying the configuration prior to launching the browser that will run **Microsoft Edge**.
 
-Using the _PowerAppsTestEngine_ project and starting the debugger will run the code in real time. The benefit to this is we can add stops or breakpoints in the code to better understand how the code is working. In the example below, a breakpoint has been set on the before entering into the [_ **RunTestAsync** _](https://github.com/microsoft/PowerApps-TestEngine/blob/522401e9c03a049e28bce3f48e951ec6b04f2a0b/src/PowerAppsTestEngine/Program.cs#L160) function. This allows developers to review and modify each input.
+![](/docs/artifacts/TestEngine/Playwright.BrowserConfigurations.MsEdge.JPG)
 
-![](/docs/artifacts/TestEngine/PowerAppsTestEngine.RunTestAsync.JPG)
+This example shows the hard coded version, ideally this is extended as a test setting. The following video and images showcase in detail and provide an example of how to implement for **Microsoft Edge**.
 
-## Configuring Debug Properties
+![](/docs/artifacts/TestEngine/Playwright.BrowserConfigurations.Channel.JPG)
 
-_PowerAppsTestEngine_ is an executable that requires environment variables for the user persona. Optionally, arguments can be passed in further defining what the engine can do.
+![](/docs/artifacts/TestEngine/Playwright.BrowserConfigurations.MsEdge.FromtestPlan.JPG)
 
-**To set environment variables during debug, open the project properties**. Navigate to the debug properties and define the variables. Depending on the IDE you use this process may change slightly.
+![](/docs/artifacts/TestEngine/TestPlan.MsEdge.JPG)
 
-![](/docs/artifacts/TestEngine/PowerAppsTestEngine.DebugProperties.JPG)
+## Extending Logging Information
 
-Command line arguments can be provided during the debug session. Review the argument list in _PowerAppsTestEngine_ for the latest options. As with the trace function, if an argument doesn't exist but is needed, it can be added and contributed.
+Logs in **Power Apps Test Engine** are stored as text files in the test output. These logs are produced when running locally or in an automated fashion. The logs will write based on the severity level configured or applied at run time. To set at run or debug time, follow [the Debugging and Testing Locally section](https://github.com/aliyoussefi/TestingPowerPlatform/blob/main/docs/Blogs/03%20Power%20Apps%20Testing%20-%20Extending%20Power%20Apps%20Test%20Engine.md#debugging-and-testing-locally) in **03. Power Apps Testing – Extending and Contributing to the PowerApps Test Engine.** For a configurable setting, refer to the _config.json_ showing how to set the "_logLevel_" property.
 
-I've found that adding verbose tracing is essential when stepping into each test case step. Using the
- "-l 0" we can enable verbose tracing during debugging.
+The out of the box logger uses the _Log_ function to write to the text file. **This message can be extended to include additional information such as timestamps or test runner details.** The image below shows the _Log_ method that can be extended.
 
-## Contributing to the source
+![](/docs/artifacts/TestEngine/TestLogger.Extend.JPG)
 
-The source code for the **PowerApps Test Engine** is located on GitHub. Contributions can be made using standard GitHub procedures. In this case, we will Fork the project, make changes and make a pull request.
+_ **NOTE: Simply adding a timestamp can help understand when a command executed and how long commands are taking to execute.** _
 
-## Fork Power Apps Test Engine
+## Extending Logging into Azure
 
-Begin by navigating to the source code and clicking the Fork button. This will present an option to fork the project into a specific account.
+The **Power Apps Test Engine** leverages the Microsoft.Extensions.Logging.ILogger interface. The benefit of this interface is that we can easily add providers to help us collect logs from the tests and test engine. The _ **PowerAppsTestEngine** _ console uses the _IServiceCollection_ which provides the ability to add items used within, such as reporting tools, test tools and in this case: logging tools.
 
-![](/docs/artifacts/TestEngine/GitHub.CreateFork.JPG)
+Here we can extend the _ILoggerBuilder_ to include **Application Insights**. The benefit here is that **Azure Application Insight** s, as part of **Azure Monitor** , will **collect telemetry and provide a source for reporting, alerting and storage.** [Detailed information on how to add Application Insights into ASP.NET Core applications can be found here.](https://learn.microsoft.com/en-us/azure/azure-monitor/app/asp-net-core?tabs=netcorenew%2Cnetcore6)
 
-## Clone local and commit changes
+![](/docs/artifacts/TestEngine/PowerAppsTestEngine.ILoggerExtension.AddAppInsightsWithConnectionString.JPG)
 
-Clone the fork to a workstation and commit the changes to a new branch. Ideally the fork and branch would have been done before creating the code, but changes can be moved into the forked project as well.
+In the image above, the highlighted areas show how to create the *InMemoryChannel*, how to configure the telemetry provider and implement **Application Insights** with a collection string.
 
-Its key to point out that once the project has been forked, you are free to make any changes to the forked project. No changes will be applied to the source code until a Pull Request has been made.
-
-Once all the changes are ready, commit the changes and push remotely.
-
-## Creating a Pull Request and Contributing back to Power Apps Test Engine
-
-Once the changes have been pushed to your GitHub forked project, you can continue working on the forked project. If you have a contribution, use the "Contribute" button to create a Pull Request. A Pull Request is an attempt to merge your changes into the source. This will require validation and authorization.
-
-![](/docs/artifacts/TestEngine/GitHub.CreatePullRequest.JPG)
-
-Once the Pull Request has been merged, you have **successfully contributed to Power Apps Test Engine**.
+Once configured, the messages delivered to **Application Insights** will include information about the test runner, the user running the test and timestamps **. As we look to scale testing globally and in parallel, having these properties automatically delivered will help determine performance or availability issues.**
 
 ## Next Steps
 
-By now, you should have a firm understanding of test tools available for **Canvas Apps**. You should also be able to articulate and define test suites and cases. You should be able to show how to configure tests within a specific suite and globally across all tests.
-
-You have now learned how to modify the source code for the **Power Apps Test Engine**. Additionally, you can now articulate the steps needed to contribute back to the open source project.
-
-Continue evaluating any gaps in the **Power Apps Test Engine** for your business needs. If a more complex command is needed review other commands such as the *Select*, which perform an action and retrieve updates to the app.
+By now, you should have a firm understanding of test tools available for **Canvas Apps**. You should also be able to articulate how to troubleshoot errors while running the Power Apps Test Engine. **You should also now be able to send telemetry to Azure Application Insights or  other data stores.**
