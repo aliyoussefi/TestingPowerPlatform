@@ -14,7 +14,7 @@ For **Power Apps**, typically a user will open the app from their desktop or mob
 These must haves include _guaranteed checks on uptime including the hosting platform and reducing any risks in tooling_, the ability to _deliver accurate reports_, the ability to _distinguish synthetic tests versus actual outages._
 
 ### Identifying the tools and platforms needed for guaranteed checks
-When choosing a tool or multiple, look for attributes such as supportability, interoperability and maintainability. Ideally, a tool exists that meets these standards, if not, part of the strategy is to account for this and reduce risk. 
+When choosing a tool or multiple, look for attributes such as **supportability**, **interoperability** and **maintainability**. Ideally, a tool exists that meets these standards, if not, part of the strategy is to **account for  risk. **
 
 ### What's in a test
 Our tests must be able to tell us accurately if our app is up and running and ideally reporting on standard business requirements like app load times. The tests don't need to validate the app is working correctly, that's a different kind of test so keep the test short and sweet. It simply needs to tell what we want and that's it.
