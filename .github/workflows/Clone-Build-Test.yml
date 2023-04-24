@@ -46,7 +46,7 @@ jobs:
           cd src/PowerAppsTestEngine
           dotnet build --configuration Debug --no-restore
           dir /home/runner/work/TestingPowerPlatform/TestingPowerPlatform/bin/Debug/PowerAppsTestEngine/
-          pwsh bin/Debug/net6.0/playwright.ps1 install
+          pwsh bin/Debug/playwright.ps1 install
           cd ../../build-pipelines/scripts
           chmod +x yaml-integration-tests.sh
           export test_suite=$(cat "../../tests/tests/test-suite.json")
