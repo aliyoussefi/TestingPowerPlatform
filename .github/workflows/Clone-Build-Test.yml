@@ -44,7 +44,7 @@ jobs:
             user1Password: '${{ secrets.POWER_PLATFORM_PASSWORD }}'
         run: |   
           cd src/PowerAppsTestEngine
-          dotnet build
+          dotnet build --configuration Debug --no-restore
           dir ../PowerAppsTestEngine
           pwsh bin/Debug/net6.0/playwright.ps1 install
           cd ../../build-pipelines/scripts
