@@ -45,10 +45,6 @@ jobs:
         run: |   
           cd src/PowerAppsTestEngine
           dotnet build
-          dir ../
-          echo "dir"
-          dir 
-          dir ../bin/Debug/net6.0/
           pwsh bin/Debug/net6.0/playwright.ps1 install
           cd ../../build-pipelines/scripts
           chmod +x yaml-integration-tests.sh
