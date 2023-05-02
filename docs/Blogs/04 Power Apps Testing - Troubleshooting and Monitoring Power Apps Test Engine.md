@@ -12,11 +12,11 @@ This specific section will discuss how to troubleshoot and extend the **PowerApp
 
 Finally, we will look to extend Power Apps Test Engine to work with **Microsoft Edge** browser and send telemetry to **Azure Application Insights**.
 
-This section covers professional development topics and will require a basic understanding of the C# language. I'll attempt to make this topic as approachable as possible but want to set the expectation of the skillset involved.
+This section covers professional development topics and will require a basic understanding of the C# language. I'll attempt to make this topic as approachable as possible but want to set the expectation of the skill set involved.
 
 ## Troubleshooting Basics
 
-Its recommend, when troubleshooting, to try to reproduce the issue. Once the issue is reliably reproducible, troubleshooting can be as easy as walking through the steps, identifying a failure and correcting.
+Its recommended, when troubleshooting, to try to reproduce the issue. Once the issue is reliably reproducible, troubleshooting can be as easy as walking through the steps, identifying a failure and correcting.
 
 Start with reviewing the logs from **Power Apps Test Engine** and the test runner if running in an automated fashion. For test runner details, refer to the infrastructure documentation. Most likely, the issue will come from the steps needed to build and execute **Power Apps Test Engine**.
 
@@ -26,11 +26,11 @@ Let's look at some common errors and how to diagnose.
 
 ### Fixing Name isn't valid. 'Control' isn't recognized errors
 
-This one is straightforward, the **Power Fx Engine** cannot find the control. W **hile the error signifies that the control can't be found, this doesn't necessarily mean it's not there.** To begin, look for any changes to the control, ensuring that it is in fact on the app and named the same as the test. [If the organization is using source control and extracting](https://learn.microsoft.com/en-us/power-platform/developer/cli/reference/canvas#pac-canvas-unpack)_ **the msapp package** _ content each time an app is published this will save a significant amount of time. If the organization is not, it's suggested to begin doing so. **A video detailing the steps can be found here.**
+This one is straightforward, the **Power Fx Engine** cannot find the control. **While the error signifies that the control can't be found, this doesn't necessarily mean it's not there.** To begin, look for any changes to the control, ensuring that it is in fact on the app and named the same as the test. [If the organization is using source control and extracting](https://learn.microsoft.com/en-us/power-platform/developer/cli/reference/canvas#pac-canvas-unpack) **the msapp package** content each time an app is published this will save a significant amount of time. If the organization is not, it's suggested to begin doing so. **A video detailing the steps can be found here.**
 
 ![](/docs/artifacts/TestEngine/PowerFxEngine.ControlNotFoundErrorStackTrace.JPG)
 
-In the above image, we see that 'Button1' isn't recognized. In this example, simply correcting the control reference will fix the test. That said, let's look deeper in the stack trace to understand what's happening during the execution.
+In the above image, we see that '*Button1*' isn't recognized. In this example, simply correcting the control reference will fix the test. That said, let's look deeper in the stack trace to understand what's happening during the execution.
 
 Near the end of the stack at the bottom of the image is this line:
 
@@ -44,7 +44,7 @@ Near the end of the stack at the bottom of the image is this line:
 
 If you are running **Power Apps Test Engine** on a test runner, such as **GitHub workflows** , you may encounter something like this:
 
-![](//docs/artifacts/TestEngine/PowerFxEngine.ArgumentExceptionLocale.GitHubStackTrace.JPG)
+![](/docs/artifacts/TestEngine/PowerFxEngine.ArgumentExceptionLocale.GitHubStackTrace.JPG)
 
 **This originates from the same error as we see locally** , _Button1 not recognized_. However, in this error, the message is not as clear. Looking back into our troubleshooting steps, reproducing this locally gave insight into the true cause of the error. This allowed for a quick fix to the test case avoiding any source code modification.
 
@@ -78,7 +78,7 @@ The out of the box logger uses the _Log_ function to write to the text file. **T
 
 ![](/docs/artifacts/TestEngine/TestLogger.Extend.JPG)
 
-_ **NOTE: Simply adding a timestamp can help understand when a command executed and how long commands are taking to execute.** _
+**NOTE: Simply adding a timestamp can help understand when a command executed and how long commands are taking to execute.**
 
 ## Extending Logging into Azure
 
@@ -95,3 +95,11 @@ Once configured, the messages delivered to **Application Insights** will include
 ## Next Steps
 
 By now, you should have a firm understanding of test tools available for **Canvas Apps**. You should also be able to articulate how to troubleshoot errors while running the Power Apps Test Engine. **You should also now be able to send telemetry to Azure Application Insights or  other data stores.**
+
+## References
+| **Model Driven Apps** | **Canvas Apps** |
+|----|----|
+| [Test Automation and EasyRepro 01 - Overview and Getting Started](https://github.com/aliyoussefi/TestingPowerPlatform/blob/main/docs/Blogs/Test%20Automation%20and%20EasyRepro%2001%20-%20Overview%20and%20Getting%20Started.md) | [01 Power Apps Testing - Overview and Getting Started](https://github.com/aliyoussefi/TestingPowerPlatform/blob/main/docs/Blogs/01%20Power%20Apps%20Testing%20-%20Overview%20and%20Getting%20Started.md) |
+| [Test Automation and EasyRepro: 02 - Designing and Debugging Unit Tests](https://github.com/aliyoussefi/TestingPowerPlatform/blob/main/docs/Blogs/Test%20Automation%20and%20EasyRepro%2002%20-%20Designing%20and%20Debugging%20Unit%20Tests.md) | [02 Power Apps Testing - Automating the Execution of Power Apps Tests](https://github.com/aliyoussefi/TestingPowerPlatform/blob/main/docs/Blogs/02%20Power%20Apps%20Testing%20-%20Automating%20the%20Execution%20of%20Power%20Apps%20Tests.md) |
+| [Test Automation and EasyRepro: 03 - Extending the EasyRepro Framework](https://github.com/aliyoussefi/TestingPowerPlatform/blob/main/docs/Blogs/Test%20Automation%20and%20EasyRepro%2003%20-%20Extending%20and%20Working%20with%20XPath.md) | [03 Power Apps Testing - Extending Power Apps Test Engine](https://github.com/aliyoussefi/TestingPowerPlatform/blob/main/docs/Blogs/03%20Power%20Apps%20Testing%20-%20Extending%20Power%20Apps%20Test%20Engine.md) |
+| [Test Automation and EasyRepro: 04 - Monitoring and Insights with EasyRepro](https://github.com/aliyoussefi/TestingPowerPlatform/blob/main/docs/Blogs/Test%20Automation%20and%20EasyRepro%2004%20-%20Monitoring%20and%20Insights%20with%20EasyRepro.md) | [Power Apps Testing 04 - Troubleshooting and Monitoring Test Engine](https://github.com/aliyoussefi/TestingPowerPlatform/blob/main/docs/Blogs/04%20Power%20Apps%20Testing%20-%20Troubleshooting%20and%20Monitoring%20Power%20Apps%20Test%20Engine.md) |
