@@ -1,0 +1,29 @@
+"Screen2 As screen.'tabletLayout_HeaderAndGallery_ver3.0'":
+
+    RectQuickActionBar1 As rectangle:
+        Height: =64
+        Width: =Parent.Width
+        ZIndex: =1
+
+    Title3 As label:
+        Align: =Align.Center
+        Height: =64
+        PaddingRight: =10
+        Text: ="App name"
+        Width: =Parent.Width
+        ZIndex: =2
+
+    Radio2 As radio:
+        Height: =107
+        Items: =["Skype", "Skype for Business"]
+        Width: =306
+        X: =393
+        Y: =81
+        ZIndex: =4
+
+    Radio3 As radio:
+        Items: =Organizations.'User Skype Protocol'
+        X: =972
+        Y: =105
+        ZIndex: =5
+

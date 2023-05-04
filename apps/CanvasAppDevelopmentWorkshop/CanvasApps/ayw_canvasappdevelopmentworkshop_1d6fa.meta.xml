@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CanvasApp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>ayw_canvasappdevelopmentworkshop_1d6fa</Name>
+  <AppVersion>2023-05-03T13:29:55Z</AppVersion>
+  <Status>Ready</Status>
+  <CreatedByClientVersion>3.23043.16.0</CreatedByClientVersion>
+  <MinClientVersion>3.23043.16.0</MinClientVersion>
+  <Tags>{"primaryDeviceWidth":"1366","primaryDeviceHeight":"768","sienaVersion":"20230406T172533Z-3.23033.15.0","deviceCapabilities":"","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","publisherVersion":"3.23043.16","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","optimizedForTeamsMeeting":"false"}</Tags>
+  <IsCdsUpgraded>0</IsCdsUpgraded>
+  <GalleryItemId xsi:nil="true"></GalleryItemId>
+  <BackgroundColor>RGBA(0,176,240,1)</BackgroundColor>
+  <DisplayName>Canvas App Development Workshop</DisplayName>
+  <Description xsi:nil="true"></Description>
+  <CommitMessage xsi:nil="true"></CommitMessage>
+  <Publisher xsi:nil="true"></Publisher>
+  <AuthorizationReferences>[]</AuthorizationReferences>
+  <ConnectionReferences>{"6e912558-8c63-474b-a242-cc57cf725098":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1615/1.0.1615.3163/logicflows/icon.png","dataSources":["RespondWithErrorCode"],"dependencies":[],"dependents":[],"parameterHints":{"workflowName":{"value":"a32aaec5-c1bd-4c83-89ec-13fe8738e970"},"workflowEntityId":{"value":"f6977319-542c-ec11-b6e5-000d3a1c4e5e"}},"parameterHintsV2":{"workflowName":{"value":"a32aaec5-c1bd-4c83-89ec-13fe8738e970"},"workflowEntityId":{"value":"f6977319-542c-ec11-b6e5-000d3a1c4e5e"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]}}</ConnectionReferences>
+  <DatabaseReferences>{"default.cds":{"databaseDetails":{"referenceType":"Environmental","environmentName":"default.cds","overrideValues":{"status":"NotSpecified"}},"dataSources":{"Accounts":{"entitySetName":"accounts","logicalName":"account"}}}}</DatabaseReferences>
+  <AppComponents>[]</AppComponents>
+  <AppComponentDependencies>[]</AppComponentDependencies>
+  <CanConsumeAppPass>1</CanConsumeAppPass>
+  <CanvasAppType>0</CanvasAppType>
+  <BypassConsent>0</BypassConsent>
+  <AdminControlBypassConsent>0</AdminControlBypassConsent>
+  <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <CdsDependencies>{"cdsdependencies":[{"dependencyid":"f6977319-542c-ec11-b6e5-000d3a1c4e5e","componenttype":29,"componenttypeplatformname":"Workflow"},{"logicalname":"account","componenttype":1}]}</CdsDependencies>
+  <IsCustomizable>1</IsCustomizable>
+  <BackgroundImageUri>/CanvasApps/ayw_canvasappdevelopmentworkshop_1d6fa_BackgroundImageUri</BackgroundImageUri>
+  <DocumentUri>/CanvasApps/ayw_canvasappdevelopmentworkshop_1d6fa_DocumentUri.msapp</DocumentUri>
+</CanvasApp>

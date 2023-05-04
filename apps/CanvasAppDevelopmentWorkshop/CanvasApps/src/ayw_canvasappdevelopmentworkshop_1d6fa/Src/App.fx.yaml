@@ -1,0 +1,11 @@
+App As appinfo:
+    BackEnabled: =false
+    StartScreen: =Trace("App.StartScreen",TraceSeverity.Information);
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

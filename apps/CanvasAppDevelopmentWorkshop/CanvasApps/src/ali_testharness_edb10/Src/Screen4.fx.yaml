@@ -1,0 +1,13 @@
+Screen4 As screen:
+
+    DataTable3 As dataTable.datatable:
+        BorderStyle: =BorderStyle.Solid
+        DisplayMode: =DisplayMode.Edit
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =500
+        Items: =Employees
+        Width: =800
+        X: =40
+        Y: =40
+        ZIndex: =1
+

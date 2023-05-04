@@ -1,0 +1,71 @@
+{
+  "31cacc59-9a5a-40a9-95c5-ded479e1e997": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1615/1.0.1615.3163/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "workflowEntityId": {
+          "value": "f6977319-542c-ec11-b6e5-000d3a1c4e5e"
+        },
+        "workflowName": {
+          "value": "3f67ae30-7e56-53a5-b366-8d88bc8fe8bf"
+        }
+      },
+      "parameterHintsV2": {
+        "workflowEntityId": {
+          "value": "f6977319-542c-ec11-b6e5-000d3a1c4e5e"
+        },
+        "workflowName": {
+          "value": "3f67ae30-7e56-53a5-b366-8d88bc8fe8bf"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "RespondWithErrorCode",
+      "RespondWithErrorCode_1",
+      "RespondWithErrorCode_2",
+      "RespondWithErrorCode_3",
+      "RespondWithErrorCode_4",
+      "RespondWithErrorCode_5"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "31cacc59-9a5a-40a9-95c5-ded479e1e997"
+  },
+  "d9008673-f043-407d-a41f-52b18aa1230f": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "authenticationType": "windowsAuthentication",
+      "displayName": "SQL Server",
+      "gatewayObjectIdHint": "b3deb2b3-23fa-45a7-9483-adb6dc874c42",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1617/1.0.1617.3171/sql/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sql",
+      "isOnPremiseConnection": true,
+      "parameterHints": {},
+      "parameterHintsV2": {},
+      "sharedConnectionId": "/providers/microsoft.powerapps/apis/shared_sql/connections/efeae981cf36404ba93ef8846242f769",
+      "xrmConnectionReferenceLogicalName": "new_sharedsql_2d2e6"
+    },
+    "datasets": {
+      "localhost%5csqlexpress,Employees": {
+        "dataSources": {
+          "Employees": {
+            "tableName": "[dbo].[Employees]"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Employees"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "endpoints": [
+      "localhost%5csqlexpress,Employees"
+    ],
+    "id": "d9008673-f043-407d-a41f-52b18aa1230f"
+  }
+}

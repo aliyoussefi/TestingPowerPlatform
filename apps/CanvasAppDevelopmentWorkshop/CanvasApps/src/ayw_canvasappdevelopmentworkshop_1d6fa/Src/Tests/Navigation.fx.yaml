@@ -1,0 +1,52 @@
+"'eda3fe63-04d0-4acd-ac9c-f7c2d9cf07b7' As TestSuite":
+    Description: =""
+    DisplayName: ="Navigation"
+
+    "'ced5f68f-9cde-4796-8bb9-108f6d90794e' As TestCase":
+        Description: =""
+        DisplayName: ="Nav Button"
+
+        Step1 As TestStep:
+            Description: ="Select 'Button5'"
+            Screen: =Screen1
+            Value: =Select(Button5)
+
+        Step2 As TestStep:
+            Description: ="Select 'btn50Rectangles'"
+            Screen: =Screen1
+            Value: =Select(btn50Rectangles)
+
+        Step3 As TestStep:
+            Description: ="Select 'Button3'"
+            Screen: =Screen1
+            Value: =Select(Button3)
+
+        Step4 As TestStep:
+            Description: ="Select 'lblDelayOutputText'"
+            Screen: =Module 2 Design Interface
+            Value: =Select(lblDelayOutputText)
+
+        Step5 As TestStep:
+            Description: ="Select 'lblDisplayMode3'"
+            Screen: =Module 2 Design Interface
+            Value: =Select(lblDisplayMode3)
+
+        Step6 As TestStep:
+            Description: ="Select 'btnOnSelect'"
+            Screen: =Module 2 Design Interface
+            Value: =Select(btnOnSelect)
+
+        Step7 As TestStep:
+            Description: ="Select 'NextArrow1' in row 4 in 'Gallery1'"
+            Screen: =Module 2 Design Interface
+            Value: =Select(Gallery1, 4, NextArrow1)
+
+        Step8 As TestStep:
+            Description: ="Set 'txtDelayOutput'.Text to ""test"""
+            Screen: =Module 2 Design Interface
+            Value: =SetProperty(txtDelayOutput.Text, "test")
+
+        Step9 As TestStep:
+            Description: ="Assert(Label1.Text = ""test"")"
+            Value: =Assert(Label1.Text = "test")
+

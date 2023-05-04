@@ -1,0 +1,59 @@
+Screen1 As screen:
+
+    Label1 As label:
+        Text: ="Text"
+        X: =40
+        Y: =40
+        ZIndex: =1
+
+    Label2 As label:
+        Text: ="Text"
+        X: =40
+        Y: =203
+        ZIndex: =2
+
+    Button2 As button:
+        OnSelect: |-
+            =Patch(Accounts, Defaults(Accounts), {
+            'Account Name': "From Canvas App"
+            });
+        Text: ="Button"
+        X: =130
+        Y: =188
+        ZIndex: =3
+
+    Button3 As button:
+        OnSelect: =Navigate('Module 2 Design Interface');
+        Text: ="Module 2"
+        X: =130
+        Y: =261
+        ZIndex: =4
+
+    btn50Rectangles As button:
+        OnSelect: =Navigate('50 Rectangles')
+        Text: ="50 Rectangles"
+        X: =130
+        Y: =366
+        ZIndex: =5
+
+    Button5 As button:
+        OnSelect: =Navigate('50 Textboxes')
+        Text: ="50 Textboxes"
+        X: =130
+        Y: =441
+        ZIndex: =6
+
+    Button4 As button:
+        OnSelect: =Navigate(Screen2);
+        Text: ="Nav"
+        X: =1132
+        Y: =64
+        ZIndex: =7
+
+    btnFlow As button:
+        OnSelect: =RespondWithErrorCode.Run("test");
+        Text: ="Button"
+        X: =130
+        Y: =114
+        ZIndex: =8
+

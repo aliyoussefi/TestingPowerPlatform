@@ -1,0 +1,310 @@
+"'50 Textboxes' As screen":
+
+    TextInput1 As text:
+        Default: ="Text input"
+        X: =40
+        Y: =40
+        ZIndex: =1
+
+    TextInput1_1 As text:
+        Default: ="Text input"
+        X: =60
+        Y: =60
+        ZIndex: =2
+
+    TextInput1_2 As text:
+        Default: ="Text input"
+        X: =80
+        Y: =80
+        ZIndex: =3
+
+    TextInput1_3 As text:
+        Default: ="Text input"
+        X: =100
+        Y: =100
+        ZIndex: =4
+
+    TextInput1_4 As text:
+        Default: ="Text input"
+        X: =120
+        Y: =120
+        ZIndex: =5
+
+    TextInput1_5 As text:
+        Default: ="Text input"
+        X: =140
+        Y: =140
+        ZIndex: =6
+
+    TextInput1_6 As text:
+        Default: ="Text input"
+        X: =160
+        Y: =160
+        ZIndex: =7
+
+    TextInput1_7 As text:
+        Default: ="Text input"
+        X: =180
+        Y: =180
+        ZIndex: =8
+
+    TextInput1_8 As text:
+        Default: ="Text input"
+        X: =200
+        Y: =200
+        ZIndex: =9
+
+    TextInput1_9 As text:
+        Default: ="Text input"
+        X: =220
+        Y: =220
+        ZIndex: =10
+
+    TextInput1_10 As text:
+        Default: ="Text input"
+        X: =240
+        Y: =240
+        ZIndex: =11
+
+    TextInput1_11 As text:
+        Default: ="Text input"
+        X: =260
+        Y: =260
+        ZIndex: =12
+
+    TextInput1_12 As text:
+        Default: ="Text input"
+        X: =280
+        Y: =280
+        ZIndex: =13
+
+    TextInput1_13 As text:
+        Default: ="Text input"
+        X: =300
+        Y: =300
+        ZIndex: =14
+
+    TextInput1_14 As text:
+        Default: ="Text input"
+        X: =320
+        Y: =320
+        ZIndex: =15
+
+    TextInput1_15 As text:
+        Default: ="Text input"
+        X: =340
+        Y: =340
+        ZIndex: =16
+
+    TextInput1_16 As text:
+        Default: ="Text input"
+        X: =360
+        Y: =360
+        ZIndex: =17
+
+    TextInput1_17 As text:
+        Default: ="Text input"
+        X: =380
+        Y: =380
+        ZIndex: =18
+
+    TextInput1_18 As text:
+        Default: ="Text input"
+        X: =400
+        Y: =400
+        ZIndex: =19
+
+    TextInput1_19 As text:
+        Default: ="Text input"
+        X: =420
+        Y: =420
+        ZIndex: =20
+
+    TextInput1_20 As text:
+        Default: ="Text input"
+        X: =440
+        Y: =440
+        ZIndex: =21
+
+    TextInput1_21 As text:
+        Default: ="Text input"
+        X: =460
+        Y: =460
+        ZIndex: =22
+
+    TextInput1_22 As text:
+        Default: ="Text input"
+        X: =480
+        Y: =480
+        ZIndex: =23
+
+    TextInput1_23 As text:
+        Default: ="Text input"
+        X: =500
+        Y: =500
+        ZIndex: =24
+
+    TextInput1_24 As text:
+        Default: ="Text input"
+        X: =520
+        Y: =520
+        ZIndex: =25
+
+    TextInput1_25 As text:
+        Default: ="Text input"
+        X: =540
+        Y: =540
+        ZIndex: =26
+
+    TextInput1_26 As text:
+        Default: ="Text input"
+        X: =560
+        Y: =560
+        ZIndex: =27
+
+    TextInput1_27 As text:
+        Default: ="Text input"
+        X: =580
+        Y: =580
+        ZIndex: =28
+
+    TextInput1_28 As text:
+        Default: ="Text input"
+        X: =600
+        Y: =600
+        ZIndex: =29
+
+    TextInput1_29 As text:
+        Default: ="Text input"
+        X: =620
+        Y: =620
+        ZIndex: =30
+
+    TextInput1_30 As text:
+        Default: ="Text input"
+        X: =640
+        Y: =640
+        ZIndex: =31
+
+    TextInput1_31 As text:
+        Default: ="Text input"
+        X: =660
+        Y: =660
+        ZIndex: =32
+
+    TextInput1_32 As text:
+        Default: ="Text input"
+        X: =680
+        Y: =680
+        ZIndex: =33
+
+    TextInput1_33 As text:
+        Default: ="Text input"
+        X: =700
+        Y: =700
+        ZIndex: =34
+
+    TextInput1_34 As text:
+        Default: ="Text input"
+        X: =720
+        Y: =720
+        ZIndex: =35
+
+    TextInput1_35 As text:
+        Default: ="Text input"
+        X: =740
+        Y: =728
+        ZIndex: =36
+
+    TextInput1_36 As text:
+        Default: ="Text input"
+        X: =760
+        Y: =728
+        ZIndex: =37
+
+    TextInput1_37 As text:
+        Default: ="Text input"
+        X: =780
+        Y: =728
+        ZIndex: =38
+
+    TextInput1_38 As text:
+        Default: ="Text input"
+        X: =800
+        Y: =728
+        ZIndex: =39
+
+    TextInput1_39 As text:
+        Default: ="Text input"
+        X: =820
+        Y: =728
+        ZIndex: =40
+
+    TextInput1_40 As text:
+        Default: ="Text input"
+        X: =840
+        Y: =728
+        ZIndex: =41
+
+    TextInput1_41 As text:
+        Default: ="Text input"
+        X: =860
+        Y: =728
+        ZIndex: =42
+
+    TextInput1_42 As text:
+        Default: ="Text input"
+        X: =880
+        Y: =728
+        ZIndex: =43
+
+    TextInput1_43 As text:
+        Default: ="Text input"
+        X: =900
+        Y: =728
+        ZIndex: =44
+
+    TextInput1_44 As text:
+        Default: ="Text input"
+        X: =920
+        Y: =728
+        ZIndex: =45
+
+    TextInput1_45 As text:
+        Default: ="Text input"
+        X: =940
+        Y: =728
+        ZIndex: =46
+
+    TextInput1_46 As text:
+        Default: ="Text input"
+        X: =960
+        Y: =728
+        ZIndex: =47
+
+    TextInput1_47 As text:
+        Default: ="Text input"
+        X: =980
+        Y: =728
+        ZIndex: =48
+
+    TextInput1_48 As text:
+        Default: ="Text input"
+        X: =1000
+        Y: =728
+        ZIndex: =49
+
+    TextInput1_49 As text:
+        Default: ="Text input"
+        X: =1020
+        Y: =728
+        ZIndex: =50
+
+    Timer2 As timer:
+        AutoStart: =true
+        Duration: =5000
+        OnTimerEnd: =Navigate(Screen1)
+        X: =1200
+        Y: =290
+        ZIndex: =51
+

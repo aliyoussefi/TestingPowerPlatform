@@ -1,0 +1,43 @@
+{
+  "QualifiedValues": [
+    {
+      "Kind": "default.cds_account_forms",
+      "Namespace": "Accounts (Forms)",
+      "Values": {
+        " quick view form": "9fcc998f-3b54-eb11-a812-000d3a106e64",
+        "Account": "8448b78f-8f42-454e-8e2a-f8196b0419af",
+        "Account - Mobile": "74da4947-5d1d-4400-9f99-c6ed578211bb",
+        "account card": "b028db32-3619-48a5-ac51-cf3f947b0ef3",
+        "Account Card form": "cccff382-2b92-467e-bf1b-3db179512af8",
+        "Account for Interactive experience": "a72c7955-442b-4ea4-9499-b10cd18b4256",
+        "Account for Multisession experience": "ff49442f-8c60-4877-bdae-8fe51e6f4636",
+        "Account Hierarchy Tile Form": "69cff312-cfb6-4289-9631-249ab85d2c62",
+        "Account Quick Create": "c9e7ec2d-efca-4e4c-b3e3-f63c4bba5e4b",
+        "Account Reference Panel": "098ae145-1567-41ec-8398-86dbaac70c9b",
+        "Account Summary Card": "894155a3-95d5-4881-b9c3-04444cef1bcc",
+        "Accounts Dashboard": "15915835-b87c-49ec-9ffc-bfac3ac44ef1",
+        "American Airlines Test": "2433f0b4-777e-ea11-a812-000d3a5466d8",
+        "App for Outlook Account Card": "fb65cc73-181c-468b-9bb3-82ecde306991",
+        "App for Outlook Account Quick View": "76b81f10-2a08-4f1a-9454-ee38bea94eb5",
+        "Customer profile": "e9a9c8a9-e94d-47a9-a6c3-ec37ddb83b99",
+        "EasyRepro Demo Form": "cb255c08-c31b-4a1a-97ae-888e9ef8df23",
+        "Embedded Canvas App": "7b6a25a3-a029-4c52-aa6e-ebf16a58c73f",
+        "In Context Form": "face3aa6-99c4-4b7e-af07-55f121cdca86",
+        "Information": "b053a39a-041a-4356-acef-ddf00182762b",
+        "Monitoring Demo": "2c33a421-28d6-e911-a995-000d3a1bec70",
+        "Multi Timeline": "3999d57f-448a-ea11-a812-000d3a8a7593",
+        "New Form": "32b7926b-82f0-44c4-82b1-f0112a73e337",
+        "One Accord Form": "786481d1-54dc-48d3-a4ae-27f133dc89cd",
+        "Portal Account": "f145c04d-9c36-417e-a9f8-5d61e0b09980",
+        "Portal Account for Interactive experience": "9a2f8b85-425c-469c-9af7-843adea62aa9",
+        "Power BI Form": "824f833b-ebe2-ea11-a813-000d3a8a7593",
+        "Recent Cases and Entitlements": "43300723-f867-420b-ab28-976a4d12e6c4",
+        "Release Wave 2 - 2020": "6da3bca9-d198-4677-afce-4e11a5bf80d4",
+        "Sales Insights": "cb430327-bcc1-416d-959d-db7592e685af",
+        "Social Profiles": "2205c86d-ed88-4a2f-a447-3b86a8781f2e",
+        "Timeline Control Form": "4f37ad8f-e6f1-ea11-a815-000d3a8a7593",
+        "TimelineWallControl - Account- Main": "6df8e8ce-7655-468c-925e-660d59aa7f4c"
+      }
+    }
+  ]
+}

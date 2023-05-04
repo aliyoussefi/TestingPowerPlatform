@@ -1,0 +1,311 @@
+"'50 Rectangles' As screen":
+    OnVisible: =Timer1.AutoStart = true
+
+    Rectangle1 As rectangle:
+        Width: =310
+        X: =40
+        Y: =40
+        ZIndex: =1
+
+    Rectangle1_1 As rectangle:
+        Width: =310
+        X: =373
+        Y: =40
+        ZIndex: =2
+
+    Rectangle1_2 As rectangle:
+        Width: =310
+        X: =60
+        Y: =60
+        ZIndex: =3
+
+    Rectangle1_3 As rectangle:
+        Width: =310
+        X: =80
+        Y: =80
+        ZIndex: =4
+
+    Rectangle1_4 As rectangle:
+        Width: =310
+        X: =100
+        Y: =100
+        ZIndex: =5
+
+    Rectangle1_5 As rectangle:
+        Width: =310
+        X: =120
+        Y: =120
+        ZIndex: =6
+
+    Rectangle1_6 As rectangle:
+        Width: =310
+        X: =140
+        Y: =140
+        ZIndex: =7
+
+    Rectangle1_7 As rectangle:
+        Width: =310
+        X: =160
+        Y: =160
+        ZIndex: =8
+
+    Rectangle1_8 As rectangle:
+        Width: =310
+        X: =180
+        Y: =180
+        ZIndex: =9
+
+    Rectangle1_9 As rectangle:
+        Width: =310
+        X: =200
+        Y: =200
+        ZIndex: =10
+
+    Rectangle1_10 As rectangle:
+        Width: =310
+        X: =220
+        Y: =220
+        ZIndex: =11
+
+    Rectangle1_11 As rectangle:
+        Width: =310
+        X: =240
+        Y: =240
+        ZIndex: =12
+
+    Rectangle1_12 As rectangle:
+        Width: =310
+        X: =260
+        Y: =260
+        ZIndex: =13
+
+    Rectangle1_13 As rectangle:
+        Width: =310
+        X: =280
+        Y: =280
+        ZIndex: =14
+
+    Rectangle1_14 As rectangle:
+        Width: =310
+        X: =300
+        Y: =300
+        ZIndex: =15
+
+    Rectangle1_15 As rectangle:
+        Width: =310
+        X: =320
+        Y: =320
+        ZIndex: =16
+
+    Rectangle1_16 As rectangle:
+        Width: =310
+        X: =340
+        Y: =340
+        ZIndex: =17
+
+    Rectangle1_17 As rectangle:
+        Width: =310
+        X: =360
+        Y: =360
+        ZIndex: =18
+
+    Rectangle1_18 As rectangle:
+        Width: =310
+        X: =380
+        Y: =380
+        ZIndex: =19
+
+    Rectangle1_19 As rectangle:
+        Width: =310
+        X: =400
+        Y: =400
+        ZIndex: =20
+
+    Rectangle1_20 As rectangle:
+        Width: =310
+        X: =420
+        Y: =420
+        ZIndex: =21
+
+    Rectangle1_21 As rectangle:
+        Width: =310
+        X: =440
+        Y: =440
+        ZIndex: =22
+
+    Rectangle1_22 As rectangle:
+        Width: =310
+        X: =460
+        Y: =460
+        ZIndex: =23
+
+    Rectangle1_23 As rectangle:
+        Width: =310
+        X: =480
+        Y: =480
+        ZIndex: =24
+
+    Rectangle1_24 As rectangle:
+        Width: =310
+        X: =500
+        Y: =500
+        ZIndex: =25
+
+    Rectangle1_25 As rectangle:
+        Width: =310
+        X: =520
+        Y: =520
+        ZIndex: =26
+
+    Rectangle1_26 As rectangle:
+        Width: =310
+        X: =540
+        Y: =540
+        ZIndex: =27
+
+    Rectangle1_27 As rectangle:
+        Width: =310
+        X: =560
+        Y: =560
+        ZIndex: =28
+
+    Rectangle1_28 As rectangle:
+        Width: =310
+        X: =580
+        Y: =580
+        ZIndex: =29
+
+    Rectangle1_29 As rectangle:
+        Width: =310
+        X: =600
+        Y: =600
+        ZIndex: =30
+
+    Rectangle1_30 As rectangle:
+        Width: =310
+        X: =620
+        Y: =620
+        ZIndex: =31
+
+    Rectangle1_31 As rectangle:
+        Width: =310
+        X: =640
+        Y: =640
+        ZIndex: =32
+
+    Rectangle1_32 As rectangle:
+        Width: =310
+        X: =660
+        Y: =660
+        ZIndex: =33
+
+    Rectangle1_33 As rectangle:
+        Width: =310
+        X: =680
+        Y: =668
+        ZIndex: =34
+
+    Rectangle1_34 As rectangle:
+        Width: =310
+        X: =700
+        Y: =668
+        ZIndex: =35
+
+    Rectangle1_35 As rectangle:
+        Width: =310
+        X: =720
+        Y: =668
+        ZIndex: =36
+
+    Rectangle1_36 As rectangle:
+        Width: =310
+        X: =740
+        Y: =668
+        ZIndex: =37
+
+    Rectangle1_37 As rectangle:
+        Width: =310
+        X: =760
+        Y: =668
+        ZIndex: =38
+
+    Rectangle1_38 As rectangle:
+        Width: =310
+        X: =780
+        Y: =668
+        ZIndex: =39
+
+    Rectangle1_39 As rectangle:
+        Width: =310
+        X: =800
+        Y: =668
+        ZIndex: =40
+
+    Rectangle1_40 As rectangle:
+        Width: =310
+        X: =820
+        Y: =668
+        ZIndex: =41
+
+    Rectangle1_41 As rectangle:
+        Width: =310
+        X: =840
+        Y: =668
+        ZIndex: =42
+
+    Rectangle1_42 As rectangle:
+        Width: =310
+        X: =860
+        Y: =668
+        ZIndex: =43
+
+    Rectangle1_43 As rectangle:
+        Width: =310
+        X: =880
+        Y: =668
+        ZIndex: =44
+
+    Rectangle1_44 As rectangle:
+        Width: =310
+        X: =900
+        Y: =668
+        ZIndex: =45
+
+    Rectangle1_45 As rectangle:
+        Width: =310
+        X: =920
+        Y: =668
+        ZIndex: =46
+
+    Rectangle1_46 As rectangle:
+        Width: =310
+        X: =940
+        Y: =668
+        ZIndex: =47
+
+    Rectangle1_47 As rectangle:
+        Width: =310
+        X: =960
+        Y: =668
+        ZIndex: =48
+
+    Rectangle1_48 As rectangle:
+        Width: =310
+        X: =980
+        Y: =668
+        ZIndex: =49
+
+    Rectangle1_49 As rectangle:
+        Width: =310
+        X: =1000
+        Y: =668
+        ZIndex: =50
+
+    Timer1 As timer:
+        AutoStart: =true
+        Duration: =5000
+        OnTimerEnd: =Navigate(Screen1)
+        X: =1130
+        Y: =140
+        ZIndex: =51
+

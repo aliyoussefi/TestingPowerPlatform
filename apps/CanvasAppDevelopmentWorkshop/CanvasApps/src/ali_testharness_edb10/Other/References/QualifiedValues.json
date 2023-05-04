@@ -1,0 +1,115 @@
+{
+  "QualifiedValues": [
+    {
+      "Kind": "default.cds_pfe_testharness_forms",
+      "Namespace": "Test Harnesses (Forms)",
+      "Values": {
+        "All Fields": "34095f09-3f07-eb11-a813-000d3a8a7593",
+        "Information": "f5b6d6dd-f32e-4c1f-91e3-f6f4cb533802",
+        "Multiple Tab Form": "8767c05a-7523-eb11-a813-000d3a106e64"
+      }
+    },
+    {
+      "Kind": "default.cds_account_forms",
+      "Namespace": "Accounts (Forms)",
+      "Values": {
+        " quick view form": "9fcc998f-3b54-eb11-a812-000d3a106e64",
+        "Account": "8448b78f-8f42-454e-8e2a-f8196b0419af",
+        "Account - Mobile": "74da4947-5d1d-4400-9f99-c6ed578211bb",
+        "account card": "b028db32-3619-48a5-ac51-cf3f947b0ef3",
+        "Account Card form": "cccff382-2b92-467e-bf1b-3db179512af8",
+        "Account for Interactive experience": "a72c7955-442b-4ea4-9499-b10cd18b4256",
+        "Account for Multisession experience": "ff49442f-8c60-4877-bdae-8fe51e6f4636",
+        "Account Hierarchy Tile Form": "69cff312-cfb6-4289-9631-249ab85d2c62",
+        "Account Quick Create": "c9e7ec2d-efca-4e4c-b3e3-f63c4bba5e4b",
+        "Account Reference Panel": "098ae145-1567-41ec-8398-86dbaac70c9b",
+        "Account Summary Card": "894155a3-95d5-4881-b9c3-04444cef1bcc",
+        "Accounts Dashboard": "15915835-b87c-49ec-9ffc-bfac3ac44ef1",
+        "American Airlines Test": "2433f0b4-777e-ea11-a812-000d3a5466d8",
+        "App for Outlook Account Card": "fb65cc73-181c-468b-9bb3-82ecde306991",
+        "App for Outlook Account Quick View": "76b81f10-2a08-4f1a-9454-ee38bea94eb5",
+        "Customer profile": "e9a9c8a9-e94d-47a9-a6c3-ec37ddb83b99",
+        "EasyRepro Demo Form": "cb255c08-c31b-4a1a-97ae-888e9ef8df23",
+        "Embedded Canvas App": "7b6a25a3-a029-4c52-aa6e-ebf16a58c73f",
+        "In Context Form": "face3aa6-99c4-4b7e-af07-55f121cdca86",
+        "Information": "b053a39a-041a-4356-acef-ddf00182762b",
+        "Monitoring Demo": "2c33a421-28d6-e911-a995-000d3a1bec70",
+        "Multi Timeline": "3999d57f-448a-ea11-a812-000d3a8a7593",
+        "New Form": "32b7926b-82f0-44c4-82b1-f0112a73e337",
+        "One Accord Form": "786481d1-54dc-48d3-a4ae-27f133dc89cd",
+        "Portal Account": "f145c04d-9c36-417e-a9f8-5d61e0b09980",
+        "Portal Account for Interactive experience": "9a2f8b85-425c-469c-9af7-843adea62aa9",
+        "Power BI Form": "824f833b-ebe2-ea11-a813-000d3a8a7593",
+        "Recent Cases and Entitlements": "43300723-f867-420b-ab28-976a4d12e6c4",
+        "Release Wave 2 - 2020": "6da3bca9-d198-4677-afce-4e11a5bf80d4",
+        "Sales Insights": "cb430327-bcc1-416d-959d-db7592e685af",
+        "Social Profiles": "2205c86d-ed88-4a2f-a447-3b86a8781f2e",
+        "Timeline Control Form": "4f37ad8f-e6f1-ea11-a815-000d3a8a7593",
+        "TimelineWallControl - Account- Main": "6df8e8ce-7655-468c-925e-660d59aa7f4c"
+      }
+    },
+    {
+      "Kind": "default.cds_opportunity_forms",
+      "Namespace": "Opportunities (Forms)",
+      "Values": {
+        "AI for Sales": "595978a6-704c-4aec-aab8-34f3927c1cda",
+        "BPF JavaScript": "fc448136-b94f-eb11-a813-000d3a5466d8",
+        "Cargo Notes": "33586b30-8286-eb11-a812-000d3a1e0ce2",
+        "Custom Page Side Panel": "378f47a0-7bac-ed11-aad1-0022481c8213",
+        "Field Service Information": "8335a04b-dc80-44b0-83ab-11ed80f93d3e",
+        "Follow up with Opportunity": "a769690f-c29a-4495-8f06-1349f81de627",
+        "In Context Form": "ba7f7ad7-e0e7-43aa-be19-5069dd9c60eb",
+        "Information": "a2a56263-ec37-4991-a3b0-e7b37a71d818",
+        "LinkedIn Integration": "9d7ec8a6-46e0-4e16-b3e4-4fd4b6e36640",
+        "Opportunities Dashboard": "f7e6d29b-1e3e-e711-80e1-00155d871bb4",
+        "Opportunity": "a837e4a7-01b8-4f82-a475-be9abd67e667",
+        "Opportunity Forecasting": "51ffc1a4-6618-eb11-a813-000d3a5466d8",
+        "Opportunity main form": "83018da7-c1df-ed11-a7c7-00224823fa6d",
+        "Project Information": "2e5bb425-abef-4661-9ed7-df5cb28f2ed4",
+        "Quick Opportunity View Form": "24b5ce86-1811-44c3-b1ad-90f7ea02d2d7"
+      }
+    },
+    {
+      "Kind": "default.cds_contact_forms",
+      "Namespace": "Contacts (Forms)",
+      "Values": {
+        "account contact card": "29de27bc-a257-4f29-99cf-bab4a84e688f",
+        "App for Outlook Contact Card": "cdbb9298-3b2e-41f3-8f4a-0168d6b09fc4",
+        "App for Outlook Contact Quick View": "3d22ab88-96c8-4b3f-a533-d4827e2925c9",
+        "ChangePassword": "01707dcb-aeca-4b87-a9e4-a5b199a54ece",
+        "Contact": "1fed44d1-ae68-4a41-bd2b-f13acac4acfa",
+        "Contact - Mobile": "28b5b9b6-dfa2-45d6-8a81-3f6ba02a098a",
+        "contact card": "707fc57b-c5e6-471b-a180-e37ed28a38e2",
+        "Contact Card form": "bc0f68dd-a4b1-4a8f-bed3-c8f5db2f89cf",
+        "Contact Dashboard": "b54410ad-36fd-ea11-a815-000d3a8a7593",
+        "Contact for Interactive experience": "cc760212-3eab-4009-b5c3-ea9cf6f3e141",
+        "Contact for Multisession experience": "e06af4d1-2812-45c7-a9c2-9fb73fee7bec",
+        "Contact Quick Create": "661157fe-2fc9-4eaa-835f-5bfa2f7b64f7",
+        "Contact Quick Form": "bdb0ae1c-32fa-4374-b637-8dafe107bc44",
+        "Contact Reference Panel": "d880c3cf-80e2-42f3-82f9-24d040d09f17",
+        "Contacts Dashboard": "70ad8b15-e3f3-4d7d-9e4b-16cb4e51b484",
+        "Customer profile": "05ea391a-d034-43fe-849b-b4fa3213a2b2",
+        "Filtered Lookup": "669ac03b-d2f6-4de7-84f0-6b7b0ebb7c74",
+        "In Context Form": "4c9c89b9-f909-4b34-8f63-b87d7ff2f0c4",
+        "Information": "894cc46a-b0cb-4ab0-8bf6-200544e46a2d",
+        "Invite Web Form": "d6190b35-9474-4098-9698-33f6627eb3bf",
+        "LinkedIn Integration": "67420b17-d1c0-475e-956d-8eb5faebac32",
+        "Live Persona Card Form": "449faa0e-f471-48ec-87d0-4719909546d2",
+        "Portal Contact": "3fb651a5-cdbf-46c9-87fb-d2c748662bb8",
+        "Portal Contact for Interactive experience": "49d062e4-d892-4baa-af50-6387989ac638",
+        "Profile Web Form": "0bd832d5-9d6a-456d-bdc1-21129e82cc0f",
+        "Profile Web Form - Japanese": "36cc830c-eeab-4a89-a7c9-da2ac6c451a1",
+        "Recent Cases and Entitlements": "f3b707fb-3b5f-45f9-9c6b-5e573bb5d19e",
+        "Sales Insights": "293c878f-f068-40a0-ae48-4297e060871c",
+        "Social Profiles": "7bb87dfd-ec3e-4ed9-8e3e-5725d3067295",
+        "TimelineWallControl - Contact - Main": "986258b5-2985-4ae0-970a-5e1d108ab793",
+        "Update Contact": "26843818-6508-4afe-9342-5fae2ebf15ca"
+      }
+    },
+    {
+      "Kind": "default.cds_organization_forms",
+      "Namespace": "Organizations (Forms)",
+      "Values": {}
+    }
+  ]
+}

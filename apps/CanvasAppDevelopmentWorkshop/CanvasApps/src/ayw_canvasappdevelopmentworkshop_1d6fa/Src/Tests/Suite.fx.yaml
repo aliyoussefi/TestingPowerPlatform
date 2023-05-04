@@ -1,0 +1,68 @@
+"'8612646e-422f-48d9-8dc2-8a7eb5256f6d' As TestSuite":
+    Description: ="Test Suite description"
+    DisplayName: ="Suite"
+
+    "'bc5797f7-d33d-44d7-9f16-bca10bd82096' As TestCase":
+        Description: =""
+        DisplayName: ="Availability Test"
+
+        Step1 As TestStep:
+            Description: ="Select 'btn50Rectangles'"
+            Screen: =Screen1
+            Value: =Select(btn50Rectangles)
+
+        Step2 As TestStep:
+            Description: ="Select 'btn50Textboxes'"
+            Screen: =Screen1
+            Value: =Select(btn50Textboxes)
+
+        Step3 As TestStep:
+            Description: ="Select 'Button3'"
+            Screen: =Screen1
+            Value: =Select(Button3)
+
+        Step4 As TestStep:
+            Description: ="Select 'btnOnSelect'"
+            Screen: =Module 2 Design Interface
+            Value: =Select(btnOnSelect)
+
+        Step5 As TestStep:
+            Description: ="Select 'NextArrow1' in row 4 in 'Gallery1'"
+            Screen: =Module 2 Design Interface
+            Value: =Select(Gallery1, 4, NextArrow1)
+
+        Step6 As TestStep:
+            Description: ="Select 'NextArrow1' in row 3 in 'Gallery1'"
+            Screen: =Module 2 Design Interface
+            Value: =Select(Gallery1, 3, NextArrow1)
+
+        Step7 As TestStep:
+            Description: ="Select 'NextArrow1' in row 2 in 'Gallery1'"
+            Screen: =Module 2 Design Interface
+            Value: =Select(Gallery1, 2, NextArrow1)
+
+        Step8 As TestStep:
+            Description: ="Select 'NextArrow1' in row 1 in 'Gallery1'"
+            Screen: =Module 2 Design Interface
+            Value: =Select(Gallery1, 1, NextArrow1)
+
+        Step9 As TestStep:
+            Description: ="Set 'txtDelayOutput'.Text to ""Test input"""
+            Screen: =Module 2 Design Interface
+            Value: =SetProperty(txtDelayOutput.Text, "Test input")
+
+        Step10 As TestStep:
+            Description: ="Select 'lblDelayOutputText'"
+            Screen: =Module 2 Design Interface
+            Value: =Select(lblDelayOutputText)
+
+        Step11 As TestStep:
+            Description: ="Select 'lblDisplayMode3'"
+            Screen: =Module 2 Design Interface
+            Value: =Select(lblDisplayMode3)
+
+        Step12 As TestStep:
+            Description: ="Select 'btnOnSelect'"
+            Screen: =Module 2 Design Interface
+            Value: =Select(btnOnSelect)
+
