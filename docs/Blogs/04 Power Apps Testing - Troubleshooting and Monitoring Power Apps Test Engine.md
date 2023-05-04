@@ -26,7 +26,12 @@ Let's look at some common errors and how to diagnose.
 
 ### Fixing Name isn't valid. 'Control' isn't recognized errors
 
-This one is straightforward, the **Power Fx Engine** cannot find the control. **While the error signifies that the control can't be found, this doesn't necessarily mean it's not there.** To begin, look for any changes to the control, ensuring that it is in fact on the app and named the same as the test. [If the organization is using source control and extracting](https://learn.microsoft.com/en-us/power-platform/developer/cli/reference/canvas#pac-canvas-unpack) **the msapp package** content each time an app is published this will save a significant amount of time. If the organization is not, it's suggested to begin doing so. **A video detailing the steps can be found here.**
+This one is straightforward, the **Power Fx Engine** cannot find the control. **While the error signifies that the control can't be found, this doesn't necessarily mean it's not there.** To begin, look for any changes to the control, ensuring that it is in fact on the app and named the same as the test. [If the organization is using source control and extracting](https://learn.microsoft.com/en-us/power-platform/developer/cli/reference/canvas#pac-canvas-unpack) **the msapp package** content each time an app is published this will save a significant amount of time. If the organization is not, it's suggested to begin doing so. **A video detailing the steps can be found below.**
+
+<iframe
+  src="https://youtu.be/jUNeWNr2qi0"
+  style="width:100%; height:300px;"
+></iframe>
 
 ![](/docs/artifacts/TestEngine/PowerFxEngine.ControlNotFoundErrorStackTrace.JPG)
 
