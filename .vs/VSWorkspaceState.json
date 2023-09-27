@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\tests"
+    "\\tests",
+    "\\tests\\D365.Testing.FakeXrmEasy"
   ],
   "SelectedNode": "\\tests\\D365.Testing.sln",
   "PreviewInSolutionExplorer": false

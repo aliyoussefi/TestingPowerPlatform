@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FakeXrmEasy;
+using FakeXrmEasy.Plugins;
 
 namespace D365.Testing.FakeXrmEasy.TestConfig
 {

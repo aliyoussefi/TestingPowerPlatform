@@ -5,7 +5,9 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D365.Testing.FakeXrmEasy", "D365.Testing.FakeXrmEasy\D365.Testing.FakeXrmEasy.csproj", "{ABB53F94-20D4-462F-89C0-C7200C269B23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D365.Testing.SamplePlugin", "D365.Testing.SamplePlugin\D365.Testing.SamplePlugin.csproj", "{7B3D7A76-9FB9-4C78-90B0-3D4C409517DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D365.SamplePlugin", "D365.Testing.SamplePlugin\D365.SamplePlugin.csproj", "{7B3D7A76-9FB9-4C78-90B0-3D4C409517DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamics365.Monitoring.Plugins", "Dynamics365.Monitoring.Plugins\Dynamics365.Monitoring.Plugins.csproj", "{DF9F0213-6C0F-41C3-9C35-5078301EDFD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7B3D7A76-9FB9-4C78-90B0-3D4C409517DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B3D7A76-9FB9-4C78-90B0-3D4C409517DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B3D7A76-9FB9-4C78-90B0-3D4C409517DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF9F0213-6C0F-41C3-9C35-5078301EDFD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF9F0213-6C0F-41C3-9C35-5078301EDFD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF9F0213-6C0F-41C3-9C35-5078301EDFD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF9F0213-6C0F-41C3-9C35-5078301EDFD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace D365.Testing.SamplePlugin
+namespace D365.SamplePlugin
 {
     public class DoDynamicsAction : IPlugin {
 
