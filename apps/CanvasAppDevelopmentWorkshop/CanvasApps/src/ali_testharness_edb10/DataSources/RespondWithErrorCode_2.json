@@ -1,9 +1,0 @@
-[
-  {
-    "AddinConnectorId": "d4076e43-72a2-4417-908b-8d80df98755d",
-    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
-    "Name": "RespondWithErrorCode_2",
-    "ServiceKind": "AddinWadl",
-    "Type": "ServiceInfo"
-  }
-]
