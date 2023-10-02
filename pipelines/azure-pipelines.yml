@@ -23,7 +23,7 @@ steps:
   inputs:
     restoreSolution: '**\*.sln'
     feedsToUse: config
-    nugetConfigPath: 'NuGet.config'
+    nugetConfigPath: '**\s\tests\D365.Testing.Fake.XrmEasy\packages.config'
 
 # - task: VSBuild@1
 #   inputs:
