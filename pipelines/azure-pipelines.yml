@@ -16,11 +16,14 @@ steps:
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
+    dotnet build
   displayName: 'Run a multi-line script'
 
-- task: VSBuild@1
-  inputs:
-    solution: '**\*.sln'
+
+
+# - task: VSBuild@1
+#   inputs:
+#     solution: '**\*.sln'
 
 - task: VSTest@3
   inputs:
