@@ -17,11 +17,17 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
     dir **\tests
-    cd **\tests
-    dotnet build
+    # cd **\tests
+    # dotnet restore
+    # dotnet build
   displayName: 'Run a multi-line script'
 
-
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    restoreSolution: '**\*.sln'
+    feedsToUse: config
+    nugetConfigPath: 'NuGet.config'
 
 # - task: VSBuild@1
 #   inputs:
