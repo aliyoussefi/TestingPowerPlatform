@@ -339,3 +339,6 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/tests/CoverageReport
+/.vs/slnx.sqlite
+/tests/CoverageResults.xml
