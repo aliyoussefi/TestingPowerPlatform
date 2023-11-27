@@ -1,5 +1,8 @@
 ﻿using FakeXrmEasy;
+using FakeXrmEasy.Abstractions.Plugins.Enums;
+using FakeXrmEasy.Pipeline;
 using FakeXrmEasy.Plugins;
+using FakeXrmEasy.Plugins.PluginSteps;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using System;
@@ -7,6 +10,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Text;
+using System.Windows.Controls;
 
 namespace D365.Testing
 {
@@ -30,18 +34,120 @@ namespace D365.Testing
         }
 
         [TestMethod]
-        public void TestMultipleRetrieveCalls() {
-
-            //
-            // TODO: Add test logic here
-            //
-
+        public void TestMultipleRetrieveCalls_Update_PostOperation() {
             //Arrange
             var pluginContext = _context.GetDefaultPluginContext();
 
             pluginContext.MessageName = "Update";
             pluginContext.Stage = 40;
-            Debug.WriteLine("This is a test line.");
+            
+            string unsecureConfig = "";
+            string secureConfig = "";
+            try{
+                var result = _context.ExecutePluginWithConfigurations<Dynamics365.Monitoring.Plugins.MultipleRetrieveCalls>(pluginContext, unsecureConfig, secureConfig);
+            }
+            catch (Exception ex){
+                throw ex;
+            }
+            //Assert.IsTrue(((int)result["rtnInteger"]).Equals(5));
+        }
+        [TestMethod]
+        public void TestResourceLockPlugin_Update_PostOperation()
+        {
+            //Arrange
+            var pluginContext = _context.GetDefaultPluginContext();
+
+            pluginContext.MessageName = "Update";
+            pluginContext.Stage = 40;
+            
+            Entity accountEntity = new Entity("ali_monitoringperformance");
+            ParameterCollection inputParameters = new ParameterCollection();
+            inputParameters.Add("Target", accountEntity);
+
+            _context.RegisterPluginStep<Dynamics365.Monitoring.Plugins.ResourceLockPlugin>(new PluginStepDefinition()
+            {
+                MessageName = "Update",
+                EntityLogicalName = "ali_monitoringperformance",
+                Stage = ProcessingStepStage.Preoperation
+            });
+
+            string unsecureConfig = "";
+            string secureConfig = "";
+
+            pluginContext.InputParameters = inputParameters;
+
+            try
+            {
+                var result = _context.ExecutePluginWith<Dynamics365.Monitoring.Plugins.ResourceLockPlugin>(pluginContext);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            //Assert.IsTrue(((int)result["rtnInteger"]).Equals(5));
+        }
+
+        [TestMethod]
+        public void TestSleepyPlugin_Update_PostOperation()
+        {
+            //Arrange
+            var pluginContext = _context.GetDefaultPluginContext();
+
+            pluginContext.MessageName = "Update";
+            pluginContext.Stage = 40;
+            Entity accountEntity = new Entity("ali_monitoringperformance");
+            pluginContext.InputParameters = new ParameterCollection();
+            pluginContext.InputParameters.Add(new KeyValuePair<string, object>("Target", accountEntity));
+
+            string unsecureConfig = "";
+            string secureConfig = "";
+            try
+            {
+                var result = _context.ExecutePluginWithConfigurations<Dynamics365.Monitoring.Plugins.SleepyPlugin>(pluginContext, unsecureConfig, secureConfig);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            //Assert.IsTrue(((int)result["rtnInteger"]).Equals(5));
+        }
+
+        [TestMethod]
+        public void TestUpdateRecursivePlugin_Update_PostOperation_Success()
+        {
+            //Arrange
+            var pluginContext = _context.GetDefaultPluginContext();
+
+            pluginContext.MessageName = "Update";
+            pluginContext.Stage = 40;
+            Entity accountEntity = new Entity("ali_monitoringperformance");
+            accountEntity.Attributes = new AttributeCollection();
+            accountEntity.Attributes.Add(new KeyValuePair<string, object>("ayw_instrumentationkey", "12345"));
+            //((EntityReference)accountEntity.Attributes["parentaccountid"]).Id = null;
+
+            pluginContext.InputParameters = new ParameterCollection();
+            pluginContext.InputParameters.Add(new KeyValuePair<string, object>("Target", accountEntity));
+            string unsecureConfig = "";
+            string secureConfig = "";
+            try
+            {
+                var result = _context.ExecutePluginWithConfigurations<Dynamics365.Monitoring.Plugins.UpdateRecursive>(pluginContext, unsecureConfig, secureConfig);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            //Assert.IsTrue(((int)result["rtnInteger"]).Equals(5));
+        }
+
+        [TestMethod]
+        public void TestUpdateRecursivePlugin_Update_PostOperation_Failure()
+        {
+            //Arrange
+            var pluginContext = _context.GetDefaultPluginContext();
+
+            pluginContext.MessageName = "Update";
+            pluginContext.Stage = 40;
             Entity accountEntity = new Entity();
             accountEntity.Attributes = new AttributeCollection();
             accountEntity.Attributes.Add(new KeyValuePair<string, object>("branch", "Some Branch"));
@@ -50,40 +156,16 @@ namespace D365.Testing
 
             pluginContext.InputParameters = new ParameterCollection();
             pluginContext.InputParameters.Add(new KeyValuePair<string, object>("Target", accountEntity));
-            Debug.WriteLine("This is a test line 2.");
-            //PreImage
-            Entity PreImage = new Entity();
-            PreImage.Attributes = new AttributeCollection();
-            PreImage.Attributes.Add(new KeyValuePair<string, object>("branch", "Some Branch"));
-            PreImage.Attributes.Add(new KeyValuePair<string, object>("parentaccountid", new EntityReference("parentaccount", Guid.NewGuid())));
-
-            pluginContext.PreEntityImages = new EntityImageCollection();
-            pluginContext.PreEntityImages.Add(new KeyValuePair<string, Entity>("PreBusinessEntity", PreImage));
-
             string unsecureConfig = "";
             string secureConfig = "";
-
-            Debug.WriteLine("This is a test line 3.");
             try
             {
-                var result = _context.ExecutePluginWithConfigurations<Dynamics365.Monitoring.Plugins.MultipleRetrieveCalls>(pluginContext, unsecureConfig, secureConfig);
-                Debug.WriteLine("This is a test line 4.");
+                var result = _context.ExecutePluginWithConfigurations<Dynamics365.Monitoring.Plugins.UpdateRecursive>(pluginContext, unsecureConfig, secureConfig);
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-            
-
-            //Assert.IsTrue(((int)result["rtnInteger"]).Equals(5));
-        }
-        [TestMethod]
-        public void TestResourceLockPlugin()
-        {
-
-           
-
             //Assert.IsTrue(((int)result["rtnInteger"]).Equals(5));
         }
     }

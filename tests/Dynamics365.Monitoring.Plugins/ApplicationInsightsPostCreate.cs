@@ -54,9 +54,7 @@ namespace Dynamics365.Monitoring.Plugins {
             IPluginExecutionContext context = (IPluginExecutionContext)
                 serviceProvider.GetService(typeof(IPluginExecutionContext));
             logger.LogInformation("Created IPluginExecutionContext", context);
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(_unsecureString);
-            _instrumentationKey = GetValueNode(doc, "instrumentationKey");
+
             
             //logger.LogInformation("Log Information");
             //logger.LogWarning("Log Warning");
@@ -67,6 +65,9 @@ namespace Dynamics365.Monitoring.Plugins {
             //logger.LogMetric("Log Metric", 10000);
             try
             {
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(_unsecureString);
+                _instrumentationKey = GetValueNode(doc, "instrumentationKey");
                 //Do Sleepy Thread
                 SendRequest(BaseType.EventData, context, logger);
                 if (context.MessageName == "Create") {

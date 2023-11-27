@@ -8,7 +8,7 @@ using FakeXrmEasy.Plugins;
 
 namespace D365.Testing.FakeXrmEasy.TestConfig
 {
-    public class TestConfig
+    public class TestConfigBase
     {
         public string GenerateRandomString()
         {

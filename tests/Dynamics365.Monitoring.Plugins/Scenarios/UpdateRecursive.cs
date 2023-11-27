@@ -10,25 +10,20 @@
 */
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.PluginTelemetry;
-using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Security;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace Dynamics365.Monitoring.Plugins {
+namespace Dynamics365.Monitoring.Plugins
+{
     public class UpdateRecursive : IPlugin {
         public class TestObject
         {
             public string TestProperty { get; set; }
         }
+        
         private readonly string _unsecureString;
         private readonly string _secureString;
+
         public UpdateRecursive(string unsecureConfig, string secureConfig)
         {
             _unsecureString = unsecureConfig;

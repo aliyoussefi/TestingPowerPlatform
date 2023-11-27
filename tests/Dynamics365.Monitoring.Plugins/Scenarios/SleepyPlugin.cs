@@ -17,8 +17,8 @@ namespace Dynamics365.Monitoring.Plugins {
         private readonly string _secureString;
         public SleepyPlugin(string unsecureConfig, string secureConfig)
         {
-            _unsecureString = unsecureConfig ?? "1000";
-            _secureString = secureConfig ?? "1000";
+            _unsecureString = String.IsNullOrEmpty(unsecureConfig) ? "1000" : unsecureConfig;
+            _secureString = String.IsNullOrEmpty(secureConfig) ? "1000" : secureConfig;
         }
         public void Execute(IServiceProvider serviceProvider) {
             //https://msdn.microsoft.com/en-us/library/gg509027.aspx

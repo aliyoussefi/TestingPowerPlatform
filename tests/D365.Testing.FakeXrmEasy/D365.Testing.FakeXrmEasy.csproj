@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\ReportGenerator.5.1.25\build\netstandard2.0\ReportGenerator.props" Condition="Exists('..\packages\ReportGenerator.5.1.25\build\netstandard2.0\ReportGenerator.props')" />
   <Import Project="..\packages\MSTest.TestAdapter.1.2.1\build\net45\MSTest.TestAdapter.props" Condition="Exists('..\packages\MSTest.TestAdapter.1.2.1\build\net45\MSTest.TestAdapter.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -43,28 +44,28 @@
       <HintPath>..\packages\Castle.Core.5.1.1\lib\net462\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="FakeItEasy, Version=6.0.0.0, Culture=neutral, PublicKeyToken=eff28e2146d5fd2c, processorArchitecture=MSIL">
-      <HintPath>..\packages\FakeItEasy.6.0.0\lib\net45\FakeItEasy.dll</HintPath>
+      <HintPath>..\packages\FakeItEasy.6.2.1\lib\net45\FakeItEasy.dll</HintPath>
     </Reference>
-    <Reference Include="FakeXrmEasy, Version=2.3.1.0, Culture=neutral, PublicKeyToken=d91a65dda907a34f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FakeXrmEasy.v9.2.3.1\lib\net462\FakeXrmEasy.dll</HintPath>
+    <Reference Include="FakeXrmEasy, Version=2.3.3.0, Culture=neutral, PublicKeyToken=d91a65dda907a34f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FakeXrmEasy.v9.2.3.3\lib\net462\FakeXrmEasy.dll</HintPath>
     </Reference>
-    <Reference Include="FakeXrmEasy.Abstractions, Version=2.3.0.0, Culture=neutral, PublicKeyToken=d91a65dda907a34f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FakeXrmEasy.Abstractions.v9.2.3.0\lib\net462\FakeXrmEasy.Abstractions.dll</HintPath>
+    <Reference Include="FakeXrmEasy.Abstractions, Version=2.3.3.0, Culture=neutral, PublicKeyToken=d91a65dda907a34f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FakeXrmEasy.Abstractions.v9.2.3.3\lib\net462\FakeXrmEasy.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="FakeXrmEasy.CodeActivities, Version=2.3.0.0, Culture=neutral, PublicKeyToken=d91a65dda907a34f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FakeXrmEasy.CodeActivities.v9.2.3.0\lib\net462\FakeXrmEasy.CodeActivities.dll</HintPath>
+    <Reference Include="FakeXrmEasy.CodeActivities, Version=2.3.3.0, Culture=neutral, PublicKeyToken=d91a65dda907a34f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FakeXrmEasy.CodeActivities.v9.2.3.3\lib\net462\FakeXrmEasy.CodeActivities.dll</HintPath>
     </Reference>
-    <Reference Include="FakeXrmEasy.Core, Version=2.3.0.0, Culture=neutral, PublicKeyToken=d91a65dda907a34f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FakeXrmEasy.Core.v9.2.3.0\lib\net462\FakeXrmEasy.Core.dll</HintPath>
+    <Reference Include="FakeXrmEasy.Core, Version=2.3.3.0, Culture=neutral, PublicKeyToken=d91a65dda907a34f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FakeXrmEasy.Core.v9.2.3.3\lib\net462\FakeXrmEasy.Core.dll</HintPath>
     </Reference>
     <Reference Include="FakeXrmEasy.EdgeProxy.v9, Version=0.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FakeXrmEasy.EdgeProxy.v9.0.0.2\lib\net452\FakeXrmEasy.EdgeProxy.v9.dll</HintPath>
     </Reference>
-    <Reference Include="FakeXrmEasy.Messages, Version=2.3.0.0, Culture=neutral, PublicKeyToken=d91a65dda907a34f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FakeXrmEasy.Messages.v9.2.3.0\lib\net462\FakeXrmEasy.Messages.dll</HintPath>
+    <Reference Include="FakeXrmEasy.Messages, Version=2.3.3.0, Culture=neutral, PublicKeyToken=d91a65dda907a34f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FakeXrmEasy.Messages.v9.2.3.3\lib\net462\FakeXrmEasy.Messages.dll</HintPath>
     </Reference>
-    <Reference Include="FakeXrmEasy.Plugins, Version=2.3.0.0, Culture=neutral, PublicKeyToken=d91a65dda907a34f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FakeXrmEasy.Plugins.v9.2.3.0\lib\net462\FakeXrmEasy.Plugins.dll</HintPath>
+    <Reference Include="FakeXrmEasy.Plugins, Version=2.3.3.0, Culture=neutral, PublicKeyToken=d91a65dda907a34f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FakeXrmEasy.Plugins.v9.2.3.3\lib\net462\FakeXrmEasy.Plugins.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -153,9 +154,13 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dynamics365.Sales.Plugins.UnitTests.Pipeline.cs" />
     <Compile Include="Dynamics365.Monitoring.Plugins.UnitTests.cs" />
+    <Compile Include="enums\enums.cs" />
+    <Compile Include="FakeXrmEasyPipelineTestsBase.cs" />
     <Compile Include="FakeXrmEasyTestBase.cs" />
     <Compile Include="FakeXrmEasyUnitTests.cs" />
+    <Compile Include="Helpers\QuotePluginContextHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestConfig\Account.cs" />
     <Compile Include="TestConfig\TestConfig.cs" />
@@ -173,6 +178,14 @@
       <Project>{df9f0213-6c0f-41c3-9c35-5078301edfd0}</Project>
       <Name>Dynamics365.Monitoring.Plugins</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dynamics365.Sales.CPQ.Plugins\Dynamics365.Sales.CPQ.Plugins.csproj">
+      <Project>{5342a2e0-02c5-419d-8984-555510cfa14f}</Project>
+      <Name>Dynamics365.Sales.CPQ.Plugins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dynamics365.Sales.QTC.Plugins\Dynamics365.Sales.QTC.Plugins.csproj">
+      <Project>{7acd4058-c01d-4c14-900d-7b72099a6f66}</Project>
+      <Name>Dynamics365.Sales.QTC.Plugins</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -182,6 +195,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\MSTest.TestAdapter.1.2.1\build\net45\MSTest.TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestAdapter.1.2.1\build\net45\MSTest.TestAdapter.props'))" />
     <Error Condition="!Exists('..\packages\MSTest.TestAdapter.1.2.1\build\net45\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestAdapter.1.2.1\build\net45\MSTest.TestAdapter.targets'))" />
+    <Error Condition="!Exists('..\packages\OpenCover.4.7.1221\build\OpenCover.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OpenCover.4.7.1221\build\OpenCover.targets'))" />
+    <Error Condition="!Exists('..\packages\ReportGenerator.5.1.25\build\netstandard2.0\ReportGenerator.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ReportGenerator.5.1.25\build\netstandard2.0\ReportGenerator.props'))" />
   </Target>
   <Import Project="..\packages\MSTest.TestAdapter.1.2.1\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.1.2.1\build\net45\MSTest.TestAdapter.targets')" />
+  <Import Project="..\packages\OpenCover.4.7.1221\build\OpenCover.targets" Condition="Exists('..\packages\OpenCover.4.7.1221\build\OpenCover.targets')" />
 </Project>

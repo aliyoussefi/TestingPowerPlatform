@@ -1,4 +1,5 @@
-﻿using FakeXrmEasy.Abstractions;
+﻿using D365.Testing.FakeXrmEasy.TestConfig;
+using FakeXrmEasy.Abstractions;
 using FakeXrmEasy.Abstractions.Enums;
 using FakeXrmEasy.FakeMessageExecutors;
 using FakeXrmEasy.Middleware;
@@ -10,10 +11,11 @@ using System.Reflection;
 
 namespace D365.Testing
 {
-    public class FakeXrmEasyTestsBase
+    public class FakeXrmEasyTestsBase 
     {
         protected readonly IXrmFakedContext _context;
         protected readonly IOrganizationService _service;
+        public TestConfigBase _testConfig;
 
         public FakeXrmEasyTestsBase()
         {
@@ -31,7 +33,6 @@ namespace D365.Testing
 
                         .SetLicense(FakeXrmEasyLicense.RPL_1_5)
                         .Build();
-
             _service = _context.GetOrganizationService();
         }
     }
