@@ -55,14 +55,6 @@ namespace Dynamics365.Monitoring.Plugins {
                 serviceProvider.GetService(typeof(IPluginExecutionContext));
             logger.LogInformation("Created IPluginExecutionContext", context);
 
-            
-            //logger.LogInformation("Log Information");
-            //logger.LogWarning("Log Warning");
-            //logger.LogTrace("Log Trace");
-            //logger.LogCritical("Log Critical");
-            //logger.LogDebug("Log Debug");
-            //logger.LogError("Log Error");
-            //logger.LogMetric("Log Metric", 10000);
             try
             {
                 XmlDocument doc = new XmlDocument();

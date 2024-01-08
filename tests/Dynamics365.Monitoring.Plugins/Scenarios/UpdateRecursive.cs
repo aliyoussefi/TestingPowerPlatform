@@ -69,6 +69,7 @@ namespace Dynamics365.Monitoring.Plugins
             {
 
                 Entity target = (Entity)context.InputParameters["Target"];
+                //Set expected response time to today plus two hours.
                 target["ayw_instrumentationkey"] = DateTime.Now.ToString();
                 service.Update(target);
 

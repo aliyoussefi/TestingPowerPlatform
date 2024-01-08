@@ -17,58 +17,36 @@ namespace D365.Testing
 
 
     [TestClass]
-    public class Dynamics365MonitoringPluginsUnitTests : FakeXrmEasyTestsBase {
+    public class Dynamics365MonitoringPluginsUnitTestsMockAPI : FakeXrmEasyTestsBase {
 
         public string BuildUnsecureConfig()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("<Settings>");
-            sb.Append("<setting name='instrumentationKey'><value>12345</value>");
-            //sb.Append(@"<instrumentationKey>12345</instrumentationKey>");
-            //sb.Append(String.Format("<name={0}>", "1"));
-            //sb.Append(String.Format("<order={0}>", "1"));
-            //sb.Append(String.Format("<type={0}>", "1"));
+            sb.Append("<config><settings>");
+            sb.Append("<setting>");
+            sb.Append(String.Format("<name={0}>", ""));
+            sb.Append(String.Format("<order={0}>", ""));
+            sb.Append(String.Format("<type={0}>", ""));
             sb.Append("</setting>");
-
-            sb.Append("</Settings>");
+            sb.Append("</settings></config>");
 
             return sb.ToString();
         }
 
         [TestMethod]
-        public void TestTrackCustomEvent()
-        {
-            //Arrange
-            var pluginContext = _context.GetDefaultPluginContext();
-
-            pluginContext.MessageName = "Update";
-            pluginContext.Stage = 40;
-
-            string unsecureConfig = BuildUnsecureConfig();
-            string secureConfig = "";
-            try
-            {
-                var result = _context.ExecutePluginWithConfigurations<Dynamics365.Monitoring.Plugins.ApplicationInsightsTrackCustomEvent>(pluginContext, unsecureConfig, secureConfig);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            //Assert.IsTrue(((int)result["rtnInteger"]).Equals(5));
-        }
-
-        [TestMethod]
-        public void TestMultipleRetrieveCalls_Update_PostOperation() {
+        public void TestMockAPI() {
             //Arrange
             var pluginContext = _context.GetDefaultPluginContext();
 
             pluginContext.MessageName = "Update";
             pluginContext.Stage = 40;
             
-            string unsecureConfig = BuildUnsecureConfig();
+            string unsecureConfig = "";
             string secureConfig = "";
             try{
                 var result = _context.ExecutePluginWithConfigurations<Dynamics365.Monitoring.Plugins.MultipleRetrieveCalls>(pluginContext, unsecureConfig, secureConfig);
+
+                //var result = _context.Mo<Dynamics365.Monitoring.Plugins.MultipleRetrieveCalls>(pluginContext, unsecureConfig, secureConfig);
             }
             catch (Exception ex){
                 throw ex;

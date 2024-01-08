@@ -100,11 +100,9 @@ namespace Dynamics365.Monitoring.Plugins {
                 pagequery.PageInfo.PageNumber = pageNumber;
                 service.RetrieveMultiple(pagequery);
 
-                pagequery.EntityName = "contact";
-                service.RetrieveMultiple(pagequery);
 
-                pagequery.EntityName = "account";
-                service.RetrieveMultiple(pagequery);
+                EntityCollection contactResults = MakeDataverseRetrieveCall(service, pagequery, "contact");
+                EntityCollection accountResults =  MakeDataverseRetrieveCall(service, pagequery, "account");
 
                 pagequery.EntityName = "contact";
                 service.RetrieveMultiple(pagequery);
@@ -123,6 +121,12 @@ namespace Dynamics365.Monitoring.Plugins {
 
 
 
+        }
+
+        private EntityCollection MakeDataverseRetrieveCall(IOrganizationService service, QueryExpression pagequery, string entityName)
+        {
+            pagequery.EntityName = entityName;
+            return service.RetrieveMultiple(pagequery);
         }
     }
 }

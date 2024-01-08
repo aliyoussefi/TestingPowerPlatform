@@ -83,6 +83,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatGPT.GetOrderProductsFromOrder.cs" />
+    <Compile Include="ChatGPT.MakeExternalWebServiceCall.cs" />
     <Compile Include="GenerateQuote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
