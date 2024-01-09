@@ -100,6 +100,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MakeExternalWebServiceCall.cs" />
     <Compile Include="ConnectServiceWithMSAL.cs" />
     <Compile Include="CreateMultiplePlugin.cs" />
     <Compile Include="DoDynamicsAction.cs" />

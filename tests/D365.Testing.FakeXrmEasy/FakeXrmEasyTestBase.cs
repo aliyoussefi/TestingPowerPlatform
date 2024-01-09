@@ -30,7 +30,7 @@ namespace D365.Testing
 
                         .UseCrud()
                         .UseMessages()
-
+                        .AddFakeMessageExecutors()
                         .SetLicense(FakeXrmEasyLicense.RPL_1_5)
                         .Build();
             _service = _context.GetOrganizationService();
