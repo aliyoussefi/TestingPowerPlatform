@@ -9,10 +9,10 @@ on:
   workflow_dispatch:
     inputs:
         #logLevel:   
-        required: true
-        default: 'warning'
+      required: true
+      default: 'warning'
         #tags:
-        description: 'Test scenario tags'  
+      description: 'Test scenario tags'  
 jobs:
   test:
     runs-on: ubuntu-latest
