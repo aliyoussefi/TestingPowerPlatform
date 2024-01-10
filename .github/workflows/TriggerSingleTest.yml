@@ -6,21 +6,14 @@ on:
       parameters:
         required: true
         type: string
-resources:
-  repositories:
-  - repository: EasyRepro # The name used to reference this repository in the checkout step
-    type: github
-    endpoint: GitHub connection 1
-    name: microsoft/EasyRepro
-  # - repository: MyBitbucketRepo
-  #   type: bitbucket
-  #   endpoint: MyBitbucketServiceConnection
-  #   name: MyBitbucketOrgOrUser/MyBitbucketRepo
-  # - repository: MyAzureReposGitRepository # In a different organization
-  #   endpoint: MyAzureReposGitServiceConnection
-  #   type: git
-  #   name: OtherProject/MyAzureReposGitRepo
-
+  workflow_dispatch:
+    inputs:
+        #logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+        #tags:
+        description: 'Test scenario tags'  
 jobs:
   test:
     runs-on: ubuntu-latest
