@@ -26,17 +26,11 @@ jobs:
           path: easyrepro
       - name: Install dependencies
         run: |
-          #cd src
           dotnet restore
 
       - name: Build
         run: |
-          #dir .
-          #cd src
           dotnet build --configuration Debug --no-restore
-          #cd src/easyrepro
-          #dotnet build --configuration Debug --no-restore
-          #dir /home/runner/work/easyrepro
 
       - uses: actions/checkout@v2
       - name: Integration Test
