@@ -18,12 +18,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         #https://github.com/actions/checkout?tab=readme-ov-file#Checkout-multiple-repos-side-by-side
-      - name: Checkout tools repo
+      - name: Checkout Easy Repro
         uses: actions/checkout@v4
         with:
           repository: microsoft/easyrepro
           ref: features/dotnet/core
           path: easyrepro
+
+      - name: Build
+        run: |
+          cd src
+          dotnet build --configuration Debug --no-restore
+          cd src/easyrepro
+          dotnet build --configuration Debug --no-restore
+          dir /home/runner/work/easyrepro
+
       - uses: actions/checkout@v2
       - name: Integration Test
         env:
