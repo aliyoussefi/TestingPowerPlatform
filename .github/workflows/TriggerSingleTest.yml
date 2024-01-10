@@ -27,6 +27,7 @@ jobs:
 
       - name: Build
         run: |
+          dir
           cd src
           dotnet build --configuration Debug --no-restore
           cd src/easyrepro
