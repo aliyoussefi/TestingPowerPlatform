@@ -26,6 +26,7 @@ jobs:
           path: easyrepro
       - name: Install dependencies
         run: |
+          dir
           dotnet restore
 
       - name: Build
