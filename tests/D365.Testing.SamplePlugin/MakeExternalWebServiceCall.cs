@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using Microsoft.Crm.Sdk.Messages;
+using Microsoft.Identity.Client;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 
@@ -12,20 +13,22 @@ namespace D365.SamplePlugin
         {
              string MakeCall();
         }
-        private class ExternalWebService : IWebService
-        {
-            public string MakeCall()
-            {
-                return string.Empty;
-                //throw new NotImplementedException();
-            }
-        }
+        //public class ExternalWebService : IWebService
+        //{
+        //    public string MakeCall()
+        //    {
+        //        return string.Empty;
+        //        //throw new NotImplementedException();
+        //    }
+        //}
 
-        private IWebService MakeCall()
-        {
-            return new ExternalWebService();
-            // return an instance to my external service
-        }
+        //public IWebService MakeCall()
+        //{
+        //    return new ExternalWebService();
+        //    // return an instance to my external service
+        //}
+
+        public IWebService myService;
 
         public void Execute(IServiceProvider serviceProvider)
         {
@@ -38,10 +41,14 @@ namespace D365.SamplePlugin
 
             try
             {
-                IWebService myExternalService = new ExternalWebService();
-                // Make the web service call.
-                //MakeWebServiceCall();
-                myExternalService.MakeCall();
+                //IWebService myExternalService = new ExternalWebService();
+                //// Make the web service call.
+                ////MakeWebServiceCall();
+                //var response2 = MakeCall();
+                //var response = myExternalService.MakeCall();
+
+                var response = myService.MakeCall();
+
                 AddListMembersListRequest exampleMockedCall = new AddListMembersListRequest();
                 exampleMockedCall.MemberIds = new Guid[] {Guid.NewGuid() };
                 exampleMockedCall.ListId = Guid.NewGuid();

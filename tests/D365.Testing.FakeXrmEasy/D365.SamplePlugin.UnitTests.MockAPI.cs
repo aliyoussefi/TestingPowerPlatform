@@ -1,4 +1,5 @@
-﻿using FakeXrmEasy;
+﻿using FakeItEasy;
+using FakeXrmEasy;
 using FakeXrmEasy.Abstractions;
 using FakeXrmEasy.Abstractions.FakeMessageExecutors;
 using FakeXrmEasy.Abstractions.Plugins.Enums;
@@ -59,6 +60,12 @@ namespace D365.Testing
             //Arrange
             var pluginContext = _context.GetDefaultPluginContext();
 
+            var webservice = A.Fake<D365.SamplePlugin.ExternalWebServicePlugin.IWebService>();
+            string response = "this is faked";
+            A.CallTo(() => webservice.MakeCall()).Returns(response);
+
+            D365.SamplePlugin.ExternalWebServicePlugin plugin = new SamplePlugin.ExternalWebServicePlugin();
+            plugin.myService = webservice;
             
             pluginContext.MessageName = "Update";
             pluginContext.Stage = 40;
@@ -66,7 +73,7 @@ namespace D365.Testing
             string unsecureConfig = "";
             string secureConfig = "";
             try{
-                _context.ExecutePluginWith<D365.SamplePlugin.ExternalWebServicePlugin>(pluginContext);
+                _context.ExecutePluginWith(pluginContext, plugin);
             }
             catch (Exception ex){
                 throw ex;
