@@ -8,8 +8,7 @@ on:
         type: string
   workflow_dispatch:
     inputs:
-        #logLevel:
-        description: 'Log level'     
+        #logLevel:   
         required: true
         default: 'warning'
         #tags:
