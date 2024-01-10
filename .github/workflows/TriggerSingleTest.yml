@@ -17,6 +17,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+        #https://github.com/actions/checkout?tab=readme-ov-file#Checkout-multiple-repos-side-by-side
       - name: Checkout tools repo
         uses: actions/checkout@v4
         with:
@@ -30,7 +31,8 @@ jobs:
             OnlinePassword: '${{ secrets.ONLINE_PASSWORD }}'
             OnlineCrmUrl: '${{ secrets.ONLINE_CRMURL  }}'
             TestFilter: '${{ env.TEST_FILTER }}'
-        run: |   
+        run: |  
+          cd easyrepro 
           dotnet build
           #https://github.com/microsoft/vstest/issues/2387
           dotnet test --filter "${{ secrets.TEST_FILTER }}" --logger trx --results-directory "TestResults" --settings "Microsoft.Dynamics365.UIAutomation.Sample\AzureDevOps\EasyRepro.runsettings" 
