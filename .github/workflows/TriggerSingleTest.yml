@@ -17,6 +17,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout tools repo
+      - uses: actions/checkout@v4
+        with:
+          repository: microsoft/easyrepro
+          ref: features/dotnet/core
+          path: easyrepro
       - uses: actions/checkout@v2
       - name: Integration Test
         env:
