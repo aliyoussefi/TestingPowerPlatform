@@ -38,7 +38,7 @@ jobs:
           #dir Microsoft.Dynamics365.UIAutomation.Sample/bin/Debug/net6.0 #This prints whats in Sample project. Useful to see json file if need to override.
           echo '====variables===='
           echo '$(CHROMEWEBDRIVER)'
-          echo $(CHROMEWEBDRIVER)
+          echo ${{ CHROMEWEBDRIVER }}
           echo '${{ CHROMEWEBDRIVER }}'
           echo '${{ CHROMEDRIVER }}'
           echo '$(chromedriver --version | cut -d' ' -f2)'
