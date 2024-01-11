@@ -41,11 +41,11 @@ jobs:
           echo "CHROMEVER=${CHROMEVER}" >> $GITHUB_ENV
           echo '====/usr===='
           #echo '$(CHROMEWEBDRIVER)'
-          echo ${{chromedriver}}
+          #echo ${{chromedriver}} #doesn't work
           #echo '$(chromedriver --version | cut -d' ' -f2)'
           dir /usr
-          echo '===/opt/google/chrome/chrome ==='
-          dir /opt/google/chrome/chrome 
+          echo '===/usr/bin/google-chrome ==='
+          dir /usr/bin/google-chrome
           echo '===/usr/local/share ==='
           dir /usr/local/share
           echo '===/usr/local/share/chromedriver-linux64 ==='
