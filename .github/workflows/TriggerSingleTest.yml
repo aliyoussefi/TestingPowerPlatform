@@ -35,8 +35,8 @@ jobs:
           cd easyrepro  
           # https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-build
           dotnet build --configuration Debug --no-restore /property:WarningLevel=0
-          dir Microsoft.Dynamics365.UIAutomation.Sample/bin/Debug/net6.0
-          print '====variables===='
+          #dir Microsoft.Dynamics365.UIAutomation.Sample/bin/Debug/net6.0
+          echo '====variables===='
           print '$(CHROMEWEBDRIVER)'
           print '${CHROMEDRIVER}'
           print '$(chromedriver --version | cut -d' ' -f2)'
