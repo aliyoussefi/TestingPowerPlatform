@@ -41,7 +41,7 @@ jobs:
           echo "CHROMEVER=${CHROMEVER}" >> $GITHUB_ENV
           echo '====/usr===='
           #echo '$(CHROMEWEBDRIVER)'
-          #echo ${{chromedriver}} #doesn't work
+          #echo  #doesn't work
           #echo '$(chromedriver --version | cut -d' ' -f2)'
           dir /usr
           echo '===/usr/bin/google-chrome ==='
