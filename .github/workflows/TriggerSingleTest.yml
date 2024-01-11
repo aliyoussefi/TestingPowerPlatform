@@ -36,7 +36,7 @@ jobs:
           # https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-build
           dotnet build --configuration Debug --no-restore /property:WarningLevel=0
           #dir Microsoft.Dynamics365.UIAutomation.Sample/bin/Debug/net6.0 #This prints whats in Sample project. Useful to see json file if need to override.
-          echo ChromeWebDriver 
+          echo $(ChromeWebDriver)
           echo '====/usr===='
           #echo '$(CHROMEWEBDRIVER)'
           #echo ${CHROMEWEBDRIVER}
