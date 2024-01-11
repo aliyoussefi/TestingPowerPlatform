@@ -35,11 +35,11 @@ jobs:
           cd easyrepro  
           # https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-build
           dotnet build --configuration Debug --no-restore /property:WarningLevel=0
-          #dir Microsoft.Dynamics365.UIAutomation.Sample/bin/Debug/net6.0
+          #dir Microsoft.Dynamics365.UIAutomation.Sample/bin/Debug/net6.0 #This prints whats in Sample project. Useful to see json file if need to override.
           echo '====variables===='
-          print '$(CHROMEWEBDRIVER)'
-          print '${CHROMEDRIVER}'
-          print '$(chromedriver --version | cut -d' ' -f2)'
+          echo '$(CHROMEWEBDRIVER)'
+          echo '${CHROMEDRIVER}'
+          echo '$(chromedriver --version | cut -d' ' -f2)'
           dir /usr/local/share/chrome_driver
           dotnet test --filter "${{ secrets.TEST_FILTER }}" --logger trx --results-directory "TestResults" --settings "Microsoft.Dynamics365.UIAutomation.Sample\AzureDevOps\EasyRepro.runsettings" -- "TestRunParameters.Parameter(name=%22OnlineUsername%22, value=%22${{ secrets.ONLINE_USER }}%22)" -- "TestRunParameters.Parameter(name=%22OnlinePassword%22, value=%22${{ secrets.ONLINE_PASSWORD }}%22)" -- "TestRunParameters.Parameter(name=%22OnlineCrmUrl%22, value=%22${{ secrets.ONLINE_CRMURL  }}%22)" -- "TestRunParameters.Parameter(name=%22DriversPath%22, value=%22${{ env.CHROMEWEBDRIVER  }}%22)"
 
