@@ -342,3 +342,4 @@ healthchecksdb
 /tests/CoverageReport
 /.vs/slnx.sqlite
 /tests/CoverageResults.xml
+/gh.exe
