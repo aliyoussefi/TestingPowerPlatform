@@ -100,9 +100,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UpdateMultiplePlugin.cs" />
     <Compile Include="MakeExternalWebServiceCall.cs" />
     <Compile Include="ConnectServiceWithMSAL.cs" />
-    <Compile Include="CreateMultiplePlugin.cs" />
+    <Compile Include="RetrieveMultiplePlugin.cs" />
     <Compile Include="DoDynamicsAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

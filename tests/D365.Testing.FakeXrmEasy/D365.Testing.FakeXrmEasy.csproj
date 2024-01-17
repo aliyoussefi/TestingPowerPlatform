@@ -171,6 +171,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="D365.SamplePlugin.UnitTests.RetrieveMultiple.cs" />
     <Compile Include="D365.SamplePlugin.UnitTests.MockAPI.cs" />
     <Compile Include="Dynamics365.Sales.Plugins.UnitTests.Pipeline.cs" />
     <Compile Include="Dynamics365.Monitoring.Plugins.UnitTests.cs" />
