@@ -36,6 +36,7 @@ namespace D365.Testing
 
             return sb.ToString();
         }
+
         [TestMethod]
         public void TestCreateQuote()
         {

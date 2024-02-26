@@ -180,6 +180,7 @@
     <Compile Include="FakeXrmEasyTestBase.cs" />
     <Compile Include="D365.SamplePlugin.UnitTests.cs" />
     <Compile Include="FakeXrmEasyUnitTests.cs" />
+    <Compile Include="Helpers\CustomTestAttribute.cs" />
     <Compile Include="Helpers\QuotePluginContextHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestConfig\Account.cs" />

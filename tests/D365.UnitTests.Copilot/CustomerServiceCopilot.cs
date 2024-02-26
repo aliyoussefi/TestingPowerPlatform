@@ -116,8 +116,9 @@ namespace D365.UnitTests.Copilot
         [TestCategory("CustomerServiceCopilot")]
         [TestCategory("msdyn_InvokeIntelligenceAction")]
         [TestCategory("API")]
+        [TestCategory("MSAL")]
         [TestMethod]
-        public void msdyn_InvokeIntelligenceAction_API_SystemUserToken_WillFail()
+        public void msdyn_InvokeIntelligenceAction_API_MSAL_SystemUserToken_WillFail()
         {
             #region auth
             string resource = "https://orgb66e00bc.api.crm.dynamics.com";

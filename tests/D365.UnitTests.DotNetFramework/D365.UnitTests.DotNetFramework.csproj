@@ -143,7 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CopilotTesting.cs" />
-    <Compile Include="CustomerServiceCopilot.cs" />
+    <Compile Include="InvokeIntelligenceAction.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

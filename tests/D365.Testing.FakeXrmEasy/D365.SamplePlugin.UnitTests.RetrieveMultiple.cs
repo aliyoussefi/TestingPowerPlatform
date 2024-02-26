@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using D365.Testing.FakeXrmEasy.TestConfig;
+using D365.Testing.Helpers;
 using FakeXrmEasy;
 using FakeXrmEasy.Plugins;
 using Microsoft.Crm.Sdk.Messages;
@@ -31,7 +32,9 @@ namespace D365.Testing{
             return sb.ToString();
         }
 
-
+        [TestCategory("test")]
+        [MyCategoryAttribute("test")]
+        [MyAttribute]
         [TestMethod]
         public void TestFakedRetrieveMultiple()
         {
