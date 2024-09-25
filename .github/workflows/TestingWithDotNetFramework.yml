@@ -25,10 +25,7 @@ jobs:
           #token: ${{ secrets.AAINTERNAL_READONLY_PAT }} # Access token
           path: easyrepro
 
-      - name: Change Directory to EasyRepro
-        run: |
-          dir
-          cd easyrepro
+
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v2
         #with:
@@ -40,6 +37,12 @@ jobs:
           #vs-prerelease: # optional
           # The preferred processor architecture of MSBuild. Can be either "x86", "x64", or "arm64". "x64" is only available from Visual Studio version 17.0 and later.
           #msbuild-architecture: # optional, default is x86
+
+      - name: Change Directory to EasyRepro
+        run: |
+          dir
+          cd easyrepro
+          msbuild -t:restore
       - name: Build app for release
         run: msbuild -t:restore #-verbosity:diag -property:Configuration=Release  
 
