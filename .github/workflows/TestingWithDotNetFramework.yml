@@ -37,28 +37,25 @@ jobs:
           #vs-prerelease: # optional
           # The preferred processor architecture of MSBuild. Can be either "x86", "x64", or "arm64". "x64" is only available from Visual Studio version 17.0 and later.
           #msbuild-architecture: # optional, default is x86
-
+      - name: Setup Chrome
+          # You may pin to the exact commit or the version.
+          # uses: browser-actions/setup-chrome@facf10a55b9caf92e0cc749b4f82bf8220989148
+        uses: browser-actions/setup-chrome@v1.7.2
+        with:
+          # The Google Chrome/Chromium version to install and use.
+          chrome-version: 114.0.5735.9000 # optional, default is latest
+          # Install dependent packages for Google Chrome/Chromium (Linux only).
+          #install-dependencies: # optional
+          # Install the compatible version of ChromeDriver with the installed Google Chrome/Chromium.
+          install-chromedriver: true # optional
+          # Do not use sudo to install Google Chrome/Chromium (Linux only).
+          #no-sudo: # optional
+          
       - name: Change Directory to EasyRepro
         run: |
           dir
           cd easyrepro
           msbuild -t:restore
-          CHROMEVER="$(chromedriver --version | cut -d' ' -f2)"
-          echo "Actions ChromeDriver is $CHROMEVER"
-          echo "CHROMEVER=${CHROMEVER}" >> $GITHUB_ENV
-          echo '====/usr===='
-          #echo '$(CHROMEWEBDRIVER)'
-          #echo  #doesn't work
-          #echo '$(chromedriver --version | cut -d' ' -f2)'
-          dir /usr
-          echo '===/usr/bin/google-chrome ==='
-          dir /usr/bin/google-chrome
-          echo '===/usr/local/share ==='
-          dir /usr/local/share
-          echo '===/usr/local/share/chromedriver-linux64 ==='
-          dir /usr/local/share/chromedriver-linux64
-          echo '==/usr/local/share/chromedriver-linux64/chromedriver=='
-          dir /usr/local/share/chromedriver-linux64/chromedriver
           msbuild -t:build
 
 
