@@ -43,9 +43,23 @@ jobs:
           dir
           cd easyrepro
           msbuild -t:restore
+          CHROMEVER="$(chromedriver --version | cut -d' ' -f2)"
+          echo "Actions ChromeDriver is $CHROMEVER"
+          echo "CHROMEVER=${CHROMEVER}" >> $GITHUB_ENV
+          echo '====/usr===='
+          #echo '$(CHROMEWEBDRIVER)'
+          #echo  #doesn't work
+          #echo '$(chromedriver --version | cut -d' ' -f2)'
+          dir /usr
+          echo '===/usr/bin/google-chrome ==='
+          dir /usr/bin/google-chrome
+          echo '===/usr/local/share ==='
+          dir /usr/local/share
+          echo '===/usr/local/share/chromedriver-linux64 ==='
+          dir /usr/local/share/chromedriver-linux64
+          echo '==/usr/local/share/chromedriver-linux64/chromedriver=='
+          dir /usr/local/share/chromedriver-linux64/chromedriver
           msbuild -t:build
-      #- name: Build app for release
-       # run: msbuild -t:build #-verbosity:diag -property:Configuration=Release  
 
 
 
