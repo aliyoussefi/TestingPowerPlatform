@@ -24,7 +24,11 @@ jobs:
           # ref: develop
           #token: ${{ secrets.AAINTERNAL_READONLY_PAT }} # Access token
           path: easyrepro
-
+      - name: Install dependencies
+        run: |
+          dir
+          cd easyrepro
+          nuget UIAutomation.sln restore
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v2
         #with:
@@ -39,10 +43,46 @@ jobs:
       - name: Build app for release
         run: msbuild easyrepro\UIAutomation.sln -t:rebuild -verbosity:diag -property:Configuration=Release  
 
-      - name: Install dependencies
-        run: |
-          dir
-          cd easyrepro
-          dotnet restore
 
+
+      - name: vstest-action
+        uses: microsoft/vstest-action@v1.0.0
+        with:
+          # Run tests from the specified files
+          testAssembly: "**\\*Sample*.dll"
+          # Folder to search for the test assemblies
+          #searchFolder: 
+          # Additional criteria to filter tests from Test assemblies
+          #testFiltercriteria: # optional
+          # Specify which test platform should be used. Valid values are: `version` and `location`)
+          #vstestLocationMethod: # optional
+          # The version of Visual Studio test to use. If latest is specified it chooses Visual Studio 2017 or Visual Studio 2015 depending on what is installed. Visual Studio 2013 is not supported. Valid values are: `latest`, `14.0`, `15.0`, and `16.0`
+          #vsTestVersion: # optional
+          # Specify the path to VSTest
+          #vstestLocation: # optional
+          # Path to runsettings or testsettings file to use with the tests
+          #runSettingsFile: # optional
+          # Directory path to custom test adapters. Adapters residing in the same folder as the test assemblies are automatically discovered
+          #pathToCustomTestAdapters: # optional
+          # If set, tests will run in parallel leveraging available cores of the machine. This will override the MaxCpuCount if specified in your runsettings file. Valid values are: `true` and `false`
+          #runInParallel: # optional
+          # Runs the tests in an isolated process. This makes vstest.console.exe process less likely to be stopped on an error in the tests, but tests might run slower. Valid values are: `true` and `false`
+          #runTestsInIsolation: # optional
+          # Collect code coverage information from the test run
+          #codeCoverageEnabled: # optional
+          # Other console options that can be passed to vstest.console.exe
+          #otherConsoleOptions: # optional
+          # Build platform against which the tests should be reported. Valid values are: `x86`, `x64`, and `ARM`
+          #platform: # optional
+          # Test result logs artifact name
+          #resultLogsArtifactName: # default is vs-test-result-logs
+          # The desired behavior if no files are found using the provided path. Available Options:
+        #warn: Output a warning but do not fail the action
+        #error: Fail the action with an error message
+        #ignore: Do not output any warnings or errors, the action does not fail
+          # ifNoFilesFound: # optional, default is warn
+          # Duration after which artifact will expire in days. 0 means using default retention. Minimum 1 day. Maximum 90 days unless changed from the repository settings page.
+      
+         # retentionDays: # optional
+          
  
