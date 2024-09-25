@@ -20,7 +20,7 @@ jobs:
       - name: Checkout Easy Repro
         uses: actions/checkout@v4
         with:
-          repository: aliyoussefi/EasyRepro
+          repository: microsoft/EasyRepro
           # ref: develop
           #token: ${{ secrets.AAINTERNAL_READONLY_PAT }} # Access token
           path: easyrepro
