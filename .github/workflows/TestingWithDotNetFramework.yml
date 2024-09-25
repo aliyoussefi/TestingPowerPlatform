@@ -24,11 +24,7 @@ jobs:
           # ref: develop
           #token: ${{ secrets.AAINTERNAL_READONLY_PAT }} # Access token
           path: easyrepro
-      - name: Install dependencies
-        run: |
-          dir
-          cd easyrepro
-          nuget UIAutomation.sln restore
+
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v2
         #with:
@@ -41,7 +37,7 @@ jobs:
           # The preferred processor architecture of MSBuild. Can be either "x86", "x64", or "arm64". "x64" is only available from Visual Studio version 17.0 and later.
           #msbuild-architecture: # optional, default is x86
       - name: Build app for release
-        run: msbuild easyrepro\UIAutomation.sln -t:rebuild -verbosity:diag -property:Configuration=Release  
+        run: msbuild easyrepro\UIAutomation.sln -t:rebuild -restore -verbosity:diag -property:Configuration=Release  
 
 
 
