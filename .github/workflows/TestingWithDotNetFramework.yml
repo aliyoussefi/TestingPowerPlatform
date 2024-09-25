@@ -43,7 +43,7 @@ jobs:
         uses: browser-actions/setup-chrome@v1.7.2
         with:
           # The Google Chrome/Chromium version to install and use.
-          chrome-version: 114.0.5735.9000 # optional, default is latest
+          chrome-version: 114 # optional, default is latest
           # Install dependent packages for Google Chrome/Chromium (Linux only).
           #install-dependencies: # optional
           # Install the compatible version of ChromeDriver with the installed Google Chrome/Chromium.
