@@ -25,6 +25,10 @@ jobs:
           #token: ${{ secrets.AAINTERNAL_READONLY_PAT }} # Access token
           path: easyrepro
 
+      - name: Change Directory to EasyRepro
+        run: |
+          dir
+          cd easyrepro
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v2
         #with:
