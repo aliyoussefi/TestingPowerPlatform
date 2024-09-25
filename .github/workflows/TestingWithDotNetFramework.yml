@@ -43,8 +43,9 @@ jobs:
           dir
           cd easyrepro
           msbuild -t:restore
-      - name: Build app for release
-        run: msbuild -t:restore #-verbosity:diag -property:Configuration=Release  
+          msbuild -t:build
+      #- name: Build app for release
+       # run: msbuild -t:build #-verbosity:diag -property:Configuration=Release  
 
 
 
