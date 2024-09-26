@@ -22,7 +22,6 @@ jobs:
         with:
           repository: microsoft/EasyRepro
           # ref: develop
-          #token: ${{ secrets.AAINTERNAL_READONLY_PAT }} # Access token
           path: easyrepro
 
 
@@ -42,7 +41,7 @@ jobs:
       - name: Change Directory to EasyRepro
         run: |
           dir
-          echo ${{CHROMEWEBDRIVER}}
+          echo ${{ CHROMEWEBDRIVER }}
           cd easyrepro
           nuget restore UIAutomation.sln
           dir
