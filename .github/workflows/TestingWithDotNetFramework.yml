@@ -42,10 +42,15 @@ jobs:
       - name: Change Directory to EasyRepro
         run: |
           dir
+          CHROMEVER="$(chromedriver --version | cut -d' ' -f2)"
+          echo "Actions ChromeDriver is $CHROMEVER"
           cd easyrepro
           nuget restore UIAutomation.sln
+          dir
           msbuild -t:restore
+          dir
           # msbuild -t:build
+          dir
 
 
 
