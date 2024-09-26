@@ -41,7 +41,7 @@ jobs:
       - name: Change Directory to EasyRepro
         run: |
           dir
-          echo ${{ CHROMEWEBDRIVER }}
+          echo $(chromedriver)
           cd easyrepro
           nuget restore UIAutomation.sln
           dir
