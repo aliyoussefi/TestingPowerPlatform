@@ -44,6 +44,7 @@ jobs:
           Write-Host 'chrome driver' ${{env.CHROMEWEBDRIVER}} -ForegroundColor Green
           cd easyrepro
           nuget restore UIAutomation.sln
+          nuget restore Microsoft.Dynamics365.UIAutomation.Sample\Microsoft.Dynamics365.UIAutomation.Sample.csproj
           Write-Host 'NuGet restore complete' -ForegroundColor Green
           dir
           msbuild -t:restore
