@@ -41,16 +41,16 @@ jobs:
       - name: Change Directory to EasyRepro
         run: |
           dir
-          echo 'chrome driver' ${{env.CHROMEWEBDRIVER}}
+          Write-Host 'chrome driver' ${{env.CHROMEWEBDRIVER}} -ForegroundColor Green
           cd easyrepro
           nuget restore UIAutomation.sln
-          echo 'NuGet restore complete'
+          Write-Host 'NuGet restore complete' -ForegroundColor Green
           dir
           msbuild -t:restore
-          echo 'MSBuild restore complete'
+          Write-Host 'MSBuild restore complete' -ForegroundColor Green
           dir
           msbuild -t:build
-          echo 'MSBuild build complete'
+          Write-Host 'MSBuild build complete' -ForegroundColor Green
           dir
 
 
