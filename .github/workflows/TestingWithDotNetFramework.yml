@@ -45,7 +45,7 @@ jobs:
           cd easyrepro
           nuget restore UIAutomation.sln
           msbuild -t:restore
-          msbuild -t:build
+          # msbuild -t:build
 
 
 
