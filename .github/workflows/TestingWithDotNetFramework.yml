@@ -52,7 +52,7 @@ jobs:
           dir
           msbuild -t:build
           Write-Host 'MSBuild build complete' -ForegroundColor Green
-          dir
+          dir Microsoft.Dynamics365.UIAutomation.Sample\bin\Debug
 
 
 
