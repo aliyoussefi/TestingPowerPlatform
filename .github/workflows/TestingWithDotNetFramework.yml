@@ -54,10 +54,8 @@ jobs:
           Write-Host 'MSBuild build complete' -ForegroundColor Green
           dir Microsoft.Dynamics365.UIAutomation.Sample\bin\Debug
 
-
-
       - name: vstest-action
-        uses: microsoft/vstest-action@v1.0.0
+        uses: rusty-bender/vstest-action@main
         with:
           # Run tests from the specified files
           testAssembly: "**\\*Sample*.dll"
