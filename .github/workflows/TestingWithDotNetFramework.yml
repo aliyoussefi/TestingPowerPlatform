@@ -70,7 +70,7 @@ jobs:
           # Specify the path to VSTest
           #vstestLocation: # optional
           # Path to runsettings or testsettings file to use with the tests
-          runSettingsFile: "\\EasyRepro\\Microsoft.Dynamics365.UIAutomation.Sample\\AzureDevOps\\EasyRepro.runsettings"
+          runSettingsFile: "**\\EasyRepro\\Microsoft.Dynamics365.UIAutomation.Sample\\AzureDevOps\\EasyRepro.runsettings"
           # Directory path to custom test adapters. Adapters residing in the same folder as the test assemblies are automatically discovered
           #pathToCustomTestAdapters: # optional
           # If set, tests will run in parallel leveraging available cores of the machine. This will override the MaxCpuCount if specified in your runsettings file. Valid values are: `true` and `false`
