@@ -41,6 +41,8 @@ jobs:
       - name: Change Directory to EasyRepro
         run: |
           dir
+          Write-Host 'GITHUB_ACTION' ${{env.GITHUB_ACTION}}
+          Write-Host 'github.action' ${{github.action}}
           Write-Host 'chrome driver' ${{env.CHROMEWEBDRIVER}} -ForegroundColor Green
           cd easyrepro
           nuget restore UIAutomation.sln
