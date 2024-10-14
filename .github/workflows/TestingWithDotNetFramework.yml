@@ -62,7 +62,7 @@ jobs:
           # Folder to search for the test assemblies
           #searchFolder: 
           # Additional criteria to filter tests from Test assemblies
-          #testFiltercriteria: # optional
+          testFiltercriteria: "FullyQualifiedName~Microsoft.Dynamics365.UIAutomation.Sample.UCI.RegressionTests.Regression_EntityControls_GetValue_SetValue_All"
           # Specify which test platform should be used. Valid values are: `version` and `location`)
           #vstestLocationMethod: # optional
           # The version of Visual Studio test to use. If latest is specified it chooses Visual Studio 2017 or Visual Studio 2015 depending on what is installed. Visual Studio 2013 is not supported. Valid values are: `latest`, `14.0`, `15.0`, and `16.0`
@@ -70,7 +70,7 @@ jobs:
           # Specify the path to VSTest
           #vstestLocation: # optional
           # Path to runsettings or testsettings file to use with the tests
-          #runSettingsFile: # optional
+          runSettingsFile: "\\EasyRepro\\Microsoft.Dynamics365.UIAutomation.Sample\\AzureDevOps\\EasyRepro.runsettings"
           # Directory path to custom test adapters. Adapters residing in the same folder as the test assemblies are automatically discovered
           #pathToCustomTestAdapters: # optional
           # If set, tests will run in parallel leveraging available cores of the machine. This will override the MaxCpuCount if specified in your runsettings file. Valid values are: `true` and `false`
