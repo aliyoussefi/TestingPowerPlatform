@@ -82,7 +82,7 @@ jobs:
           runSettingsFile: '${{ github.workspace }}\\EasyRepro\\Microsoft.Dynamics365.UIAutomation.Sample\\AzureDevOps\\EasyRepro.runsettings'
           # Directory path to custom test adapters. Adapters residing in the same folder as the test assemblies are automatically discovered
           #pathToCustomTestAdapters: # optional
-          overrideTestrunParameters: '-- "TestRunParameters.Parameter(name=%22OnlineUsername%22, value=%22${{ secrets.ONLINE_USER }}%22)"'
+          overrideTestrunParameters: '-- "TestRunParameters.Parameter(name=\"OnlineUsername\", value=\"${{ secrets.ONLINE_USER }}\")"'
           # If set, tests will run in parallel leveraging available cores of the machine. This will override the MaxCpuCount if specified in your runsettings file. Valid values are: `true` and `false`
           #runInParallel: # optional
           # Runs the tests in an isolated process. This makes vstest.console.exe process less likely to be stopped on an error in the tests, but tests might run slower. Valid values are: `true` and `false`
