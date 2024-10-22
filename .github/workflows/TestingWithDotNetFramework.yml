@@ -43,7 +43,7 @@ jobs:
           Write-Host 'github.action' ${{github.action}}
           Write-Host 'github.workflow' ${{github.workflow}}
           Write-Host 'env.EDGEWEBDRIVER' ${{env.EdgeWebDriver}} 
-          Write-Host 'env.CHROMEWEBDRIVER' ${{env.CHROMEWEBDRIVER}} 
+          Write-Host 'env.CHROMEWEBDRIVER' ${{env.ChromeWebDriver}} 
           Write-Host 'env.GECKOWEBDRIVER' ${{env.GECKOWEBDRIVER}}
           Write-Host 'github.EDGEWEBDRIVER' ${{github.EDGEWEBDRIVER}} 
           
