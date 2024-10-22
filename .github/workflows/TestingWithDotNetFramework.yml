@@ -39,13 +39,13 @@ jobs:
       - name: GitHub Variables
         run: |
           #https://docs.github.com/en/actions/migrating-to-github-actions/using-github-actions-importer-to-automate-migrations/migrating-from-azure-devops-with-github-actions-importer#environment-variable-mapping
-          Write-Host 'github.workspace' ${{github.workspace}}
-          Write-Host 'github.action' ${{github.action}}
-          Write-Host 'github.workflow' ${{github.workflow}}
-          Write-Host 'env.EDGEWEBDRIVER' ${{env.EdgeWebDriver}} 
-          Write-Host 'env.CHROMEWEBDRIVER' ${{env.ChromeWebDriver}} 
-          Write-Host 'env.GECKOWEBDRIVER' ${{env.GECKOWEBDRIVER}}
-          Write-Host 'github.EDGEWEBDRIVER' ${{github.EDGEWEBDRIVER}} 
+          Write-Host 'github.workspace' ${{github.workspace}} 'Done'
+          Write-Host 'github.action' ${{github.action}} 'Done'
+          Write-Host 'github.workflow' ${{github.workflow}} 'Done'
+          Write-Host 'env.EDGEWEBDRIVER' ${{env.EdgeWebDriver}} 'Done'
+          Write-Host 'env.CHROMEWEBDRIVER' ${{env.ChromeWebDriver}} 'Done'
+          Write-Host 'env.GECKOWEBDRIVER' ${{env.GECKOWEBDRIVER}} 'Done'
+          Write-Host 'github.EDGEWEBDRIVER' ${{github.EDGEWEBDRIVER}} 'Done' 
           
       - name: Change Directory to EasyRepro
         run: |
