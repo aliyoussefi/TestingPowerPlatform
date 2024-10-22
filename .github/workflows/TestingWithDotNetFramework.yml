@@ -90,7 +90,7 @@ jobs:
           # Collect code coverage information from the test run
           #codeCoverageEnabled: # optional
           # Other console options that can be passed to vstest.console.exe
-          #otherConsoleOptions: # optional
+          otherConsoleOptions: '-- "TestRunParameters.Parameter(name=%22OnlineUsername%22, value=%22${{ secrets.ONLINE_USER }}%22)"'
           # Build platform against which the tests should be reported. Valid values are: `x86`, `x64`, and `ARM`
           #platform: # optional
           # Test result logs artifact name
