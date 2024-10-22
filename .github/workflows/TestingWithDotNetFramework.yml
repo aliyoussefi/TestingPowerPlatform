@@ -42,7 +42,6 @@ jobs:
           Write-Host 'github.workspace' ${{github.workspace}}
           Write-Host 'github.action' ${{github.action}}
           Write-Host 'github.workflow' ${{github.workflow}}
-          #Write-Host 'env.CHROMEWEBDRIVER' ${{CHROMEWEBDRIVER}} #Doesnt work
           Write-Host 'env.EDGEWEBDRIVER' ${{env.EDGEWEBDRIVER}} 
           
       - name: Change Directory to EasyRepro
