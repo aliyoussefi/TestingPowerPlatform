@@ -10,7 +10,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   Test_EasyRepro_DotNetFramework:
-    runs-on: windows-latest
+    runs-on: windows-2019
     env:
       RUNNER_DEBUG: 1
 
@@ -36,7 +36,13 @@ jobs:
           #vs-prerelease: # optional
           # The preferred processor architecture of MSBuild. Can be either "x86", "x64", or "arm64". "x64" is only available from Visual Studio version 17.0 and later.
           #msbuild-architecture: # optional, default is x86
-
+      - name: GitHub Variables
+        run: |
+          #https://docs.github.com/en/actions/migrating-to-github-actions/using-github-actions-importer-to-automate-migrations/migrating-from-azure-devops-with-github-actions-importer#environment-variable-mapping
+          Write-Host 'github.workspace' ${{github.workspace}}
+          Write-Host 'github.action' ${{github.action}}
+          Write-Host 'github.workflow' ${{github.workflow}}
+          Write-Host 'github.action' ${{CHROMEWEBDRIVER}}
           
       - name: Change Directory to EasyRepro
         run: |
