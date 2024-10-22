@@ -89,7 +89,7 @@ jobs:
           # Collect code coverage information from the test run
           #codeCoverageEnabled: # optional
           # Other console options that can be passed to vstest.console.exe
-          otherConsoleOptions: '-- "TestRunParameters.Parameter(name=\"OnlineCrmUrl\", value=\"${{ secrets.ONLINE_CRMURL }}\")" -- "TestRunParameters.Parameter(name=\"OnlineUsername\", value=\"${{ secrets.ONLINE_USER }}\")" -- "TestRunParameters.Parameter(name=\"OnlinePassword\", value=\"${{ secrets.ONLINE_PASSWORD }}\")" -- "TestRunParameters.Parameter(name=\"DriversPath\", value=\"$env:ChromeWebDriver\")"'
+          otherConsoleOptions: '-- "TestRunParameters.Parameter(name=\"OnlineCrmUrl\", value=\"${{ secrets.ONLINE_CRMURL }}\")" -- "TestRunParameters.Parameter(name=\"OnlineUsername\", value=\"${{ secrets.ONLINE_USER }}\")" -- "TestRunParameters.Parameter(name=\"OnlinePassword\", value=\"${{ secrets.ONLINE_PASSWORD }}\")" -- "TestRunParameters.Parameter(name=\"DriversPath\", value=\"${{ env:ChromeWebDriver }}\")"'
           # Build platform against which the tests should be reported. Valid values are: `x86`, `x64`, and `ARM`
           #platform: # optional
           # Test result logs artifact name
