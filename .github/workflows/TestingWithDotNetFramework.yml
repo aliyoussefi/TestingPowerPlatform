@@ -11,6 +11,9 @@ jobs:
   # This workflow contains a single job called "build"
   Test_EasyRepro_DotNetFramework:
     runs-on: windows-2019
+    environment: 
+      name: production
+      url: ${{ env.OnlineCrmUrl}}
     env:
       RUNNER_DEBUG: 1
 
@@ -41,6 +44,7 @@ jobs:
           env
           #https://docs.github.com/en/actions/migrating-to-github-actions/using-github-actions-importer-to-automate-migrations/migrating-from-azure-devops-with-github-actions-importer#environment-variable-mapping
           Write-Host 'github.workspace' ${{github.workspace}} 'Done'
+          Write-Host 'vars.OnlineCrmUrl' ${{vars.OnlineCrmUrl}} 'Done'
           Write-Host 'github.action' ${{github.action}} 'Done'
           Write-Host 'github.workflow' ${{github.workflow}} 'Done'
           Write-Host 'env.EDGEWEBDRIVER' ${{env.EdgeWebDriver}} 'Done'
