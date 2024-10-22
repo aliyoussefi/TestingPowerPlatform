@@ -44,8 +44,8 @@ jobs:
           Write-Host 'github.workflow' ${{github.workflow}} 'Done'
           Write-Host 'env.EDGEWEBDRIVER' ${{env.EdgeWebDriver}} 'Done'
           Write-Host 'env.CHROMEWEBDRIVER' ${{env.ChromeWebDriver}} 'Done'
-          Write-Host 'env.GECKOWEBDRIVER' ${{env.GECKOWEBDRIVER}} 'Done'
-          Write-Host 'github.EDGEWEBDRIVER' ${{github.EDGEWEBDRIVER}} 'Done' 
+          Write-Host 'env.GECKOWEBDRIVER' ${{env.ANDROID_HOME}} 'Done'
+          Write-Host 'github.EDGEWEBDRIVER' ${{github.EdgeWebDriver}} 'Done' 
           
       - name: Change Directory to EasyRepro
         run: |
